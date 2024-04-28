@@ -1,14 +1,14 @@
 <template>
-  <ConvocatoriaIngresoMinciencias/>
+  <AcompanamientoIngresoDepartamento/>
 </template>
 
 <script>
-import ConvocatoriaIngresoMinciencias from './components/vistas/minciencias/convocatoria/convocatoriaIngresoMinciencias.vue'
+import AcompanamientoIngresoDepartamento from './components/vistas/departamento/movilizacion/movilizacionIngresoDepartamento.vue'
 
 export default {
   name: 'App',
   components: {
-    ConvocatoriaIngresoMinciencias,
+    AcompanamientoIngresoDepartamento,
   }
 }
 </script>
