@@ -34,7 +34,7 @@
                 <label for="num_asesores_femenino">Femenino:</label>
             </div>
             <div class="col-md-3">
-                <input type="number" class="form-control" id="num_asesores_femenino" v-model="num_asesores_femenino" style="background-color: #D9D9D9; border: 0;" :style="{ border:'1px solid', borderColor: num_asesores_femenino<0 || typeof num_asesores_femenino === 'string' || num_asesores_hombre+num_asesores_femenino!=num_asesores? 'red' : '' }">
+                <input type="number" class="form-control" id="num_asesores_femenino" v-model="num_asesores_mujer" style="background-color: #D9D9D9; border: 0;" :style="{ border:'1px solid', borderColor: num_asesores_femenino<0 || typeof num_asesores_femenino === 'string' || num_asesores_hombre+num_asesores_femenino!=num_asesores? 'red' : '' }">
             </div>
             <div class="col-md-3" v-if="num_asesores_femenino<0" style="color: red; margin-top: 10px;">El número de asesores debe ser POSITIVO.</div>
             <div class="col-md-3" v-if="typeof num_asesores_femenino === 'string'" style="color: red; margin-top: 10px;">Debe ingresar un valor.</div>
@@ -193,7 +193,7 @@
             <div class="col-md-3" v-if="typeof monto_promedio_por_joven === 'string'" style="color: red; margin-top: 10px;">Debe ingresar un valor.</div>
         
         </div>
-        <button type="button" class="btn btn-primary" :disabled="!isFormValid" style="margin-bottom: 50px; margin-left: 45%; width: 150px">Guardar</button>
+        <button type="button" class="btn btn-primary" @click="saveData" :disabled="!isFormValid" style="margin-bottom: 50px; margin-left: 45%; width: 150px">Guardar</button>
 </template>
 
 <script>
@@ -201,9 +201,11 @@ export default {
     name: 'IngresoAcompanamiento',
     data() {
         return {
+            anio: 2001,
+            departamento: 'Caldas',
             num_asesores: null,
             num_asesores_hombre: null,
-            num_asesores_femenino: null,
+            num_asesores_mujer: null,
             num_asesorias: null,
             num_grupos_asesorados: null,
             num_promedio_asesorias: null,
@@ -222,14 +224,28 @@ export default {
     computed: {
         isFormValid() {
             // Comprueba si todos los campos están llenos
-            const allFieldsFilled = Object.values(this.$data).every(field => field !== null && field !== '' && field >=0);
+            const allFieldsFilled = Object.values(this.$data).every(field => field !== null && field !== '');
 
             // Comprueba si el total de asesores es igual a la suma de asesores masculinos y femeninos
             const genderTotalMatches = this.num_asesores === (this.num_asesores_hombre + this.num_asesores_femenino);
 
             return allFieldsFilled && genderTotalMatches;
         }
+    },
+    methods: {
+        async saveData(){
+            const response = await fetch('https://localhost:7192/api/Acompaniamientos', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(this.$data)
+            });
+            return response.json();
+        }
+    
     }
+
 };
 </script>
 
