@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import AcompanamientoIngresoDepartamento from './components/vistas/departamento/movilizacion/movilizacionIngresoDepartamento.vue'
+import AcompanamientoIngresoDepartamento from './components/vistas/departamento/acompanamiento/acompanamientoIngresoDepartamento.vue'
 
 export default {
   name: 'App',
