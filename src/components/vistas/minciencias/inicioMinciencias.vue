@@ -1,5 +1,5 @@
 <template>
-    <NavBarDepartamento/>
+    <NavBarMinciencias/>
     <div class="container" style="background-color: #D9D9D9; height:150px">
     <div class="row h-100">
     <div class="col-md-4 d-flex align-items-center justify-content-center">
@@ -59,16 +59,18 @@
       </div>
     </div>
     </div>
-  </div>
+  </div>s
 </template>
 
 <script>
-import NavBarDepartamento from '@/components/NavBars/navBarDepartamento.vue'
+import NavBarMinciencias from '@/components/NavBars/navBarMinciencias.vue'
+
 export default {
-    name: 'InicioDepartamento',
+    name: 'InicioMinciencias',
     components:{
-        NavBarDepartamento,
-    }
+        NavBarMinciencias,
+    },
+
 }
 </script>
 

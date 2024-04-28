@@ -1,14 +1,14 @@
 <template>
-  <InicioDepartamento/>
+  <ConvocatoriaIngresoMinciencias/>
 </template>
 
 <script>
-import InicioDepartamento from './components/vistas/departamento/inicioDepartamento.vue'
+import ConvocatoriaIngresoMinciencias from './components/vistas/minciencias/convocatoria/convocatoriaIngresoMinciencias.vue'
 
 export default {
   name: 'App',
   components: {
-    InicioDepartamento,
+    ConvocatoriaIngresoMinciencias,
   }
 }
 </script>
