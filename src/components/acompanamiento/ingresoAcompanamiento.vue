@@ -22,11 +22,11 @@
                 <label for="num_asesores_hombre">Masculino:</label>
             </div>
             <div class="col-md-3">
-                <input type="number" class="form-control" id="num_asesores_hombre" v-model="num_asesores_hombre" style="background-color: #D9D9D9; border: 0;" :style="{ border:'1px solid', borderColor: num_asesores_hombre<0 || typeof num_asesores_hombre === 'string' || num_asesores_hombre+num_asesores_femenino!=num_asesores? 'red' : '' }">
+                <input type="number" class="form-control" id="num_asesores_hombre" v-model="num_asesores_hombre" style="background-color: #D9D9D9; border: 0;" :style="{ border:'1px solid', borderColor: num_asesores_hombre<0 || typeof num_asesores_hombre === 'string' || num_asesores_hombre+num_asesores_mujer!=num_asesores? 'red' : '' }">
             </div>
             <div class="col-md-3" v-if="num_asesore_hombres<0" style="color: red; margin-top: 10px;">El número de asesores debe ser POSITIVO.</div>
             <div class="col-md-3" v-if="typeof num_asesores_hombre === 'string'" style="color: red; margin-top: 10px;">Debe ingresar un valor.</div>
-            <div class="col-md-3" v-if="num_asesores_hombre+num_asesores_femenino!=num_asesores" style="color: red; margin-top: 10px;">La suma de asesores masculinos y femeninos debe ser igual al total de asesores.</div>
+            <div class="col-md-3" v-if="num_asesores_hombre+num_asesores_mujer!=num_asesores" style="color: red; margin-top: 10px;">La suma de asesores masculinos y femeninos debe ser igual al total de asesores.</div>
         </div>
         <div class="row" style="margin-top: 45px;">
             <div class="col-md-2" style="text-align: left;"></div>
@@ -34,11 +34,11 @@
                 <label for="num_asesores_femenino">Femenino:</label>
             </div>
             <div class="col-md-3">
-                <input type="number" class="form-control" id="num_asesores_femenino" v-model="num_asesores_mujer" style="background-color: #D9D9D9; border: 0;" :style="{ border:'1px solid', borderColor: num_asesores_femenino<0 || typeof num_asesores_femenino === 'string' || num_asesores_hombre+num_asesores_femenino!=num_asesores? 'red' : '' }">
+                <input type="number" class="form-control" id="num_asesores_femenino" v-model="num_asesores_mujer" style="background-color: #D9D9D9; border: 0;" :style="{ border:'1px solid', borderColor: num_asesores_mujer<0 || typeof num_asesores_mujer === 'string' || num_asesores_hombre+num_asesores_mujer!=num_asesores? 'red' : '' }">
             </div>
-            <div class="col-md-3" v-if="num_asesores_femenino<0" style="color: red; margin-top: 10px;">El número de asesores debe ser POSITIVO.</div>
-            <div class="col-md-3" v-if="typeof num_asesores_femenino === 'string'" style="color: red; margin-top: 10px;">Debe ingresar un valor.</div>
-            <div class="col-md-3" v-if="num_asesores_hombre+num_asesores_femenino!=num_asesores" style="color: red; margin-top: 10px;">La suma de asesores masculinos y femeninos debe ser igual al total de asesores.</div>
+            <div class="col-md-3" v-if="num_asesores_mujer<0" style="color: red; margin-top: 10px;">El número de asesores debe ser POSITIVO.</div>
+            <div class="col-md-3" v-if="typeof num_asesores_mujer === 'string'" style="color: red; margin-top: 10px;">Debe ingresar un valor.</div>
+            <div class="col-md-3" v-if="num_asesores_hombre+num_asesores_mujer!=num_asesores" style="color: red; margin-top: 10px;">La suma de asesores masculinos y femeninos debe ser igual al total de asesores.</div>
         </div>
         <div class="row" style="margin-top: 45px;">
             <div class="col-md-1" style="text-align: left;"></div>
@@ -227,7 +227,7 @@ export default {
             const allFieldsFilled = Object.values(this.$data).every(field => field !== null && field !== '');
 
             // Comprueba si el total de asesores es igual a la suma de asesores masculinos y femeninos
-            const genderTotalMatches = this.num_asesores === (this.num_asesores_hombre + this.num_asesores_femenino);
+            const genderTotalMatches = this.num_asesores === (this.num_asesores_hombre + this.num_asesores_mujer);
 
             return allFieldsFilled && genderTotalMatches;
         }
