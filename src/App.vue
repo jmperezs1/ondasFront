@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import AcompanamientoIngresoDepartamento from './components/vistas/minciencias/convocatoria/exportarConvocatoriaMinciencias.vue'
+import AcompanamientoIngresoDepartamento from './components/vistas/minciencias/acompanamiento/exportarAcompanamientoMinciencias.vue'
 
 export default {
   name: 'App',
