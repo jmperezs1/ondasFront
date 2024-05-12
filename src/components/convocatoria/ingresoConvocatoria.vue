@@ -277,7 +277,7 @@
                 <label for="num_docentes_intersexual_vinculados">Ingrese el número de docentes intersexual:</label>
             </div>
             <div class="col-md-3">
-                <input type="number" class="form-control" id="num_docentes_intersexual_vinculados" v-model.number="Num_Docentes_Intersexual_Vinculados" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Docentes_Femenino_Vinculados<0 || this.Num_Docentes_Femenino_Vinculados + this.Num_Docentes_Intersexual_Vinculados + this.Num_Docentes_Intersexual_Vinculados != this.Num_Docentes ? 'red' : ''}">
+                <input type="number" class="form-control" id="num_docentes_intersexual_vinculados" v-model.number="Num_Docentes_Intersexual_Vinculados" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Docentes_Intersexual_Vinculados<0 || this.Num_Docentes_Femenino_Vinculados + this.Num_Docentes_Intersexual_Vinculados + this.Num_Docentes_Masculino_Vinculados != this.Num_Docentes ? 'red' : ''}">
             </div>
             <div class="col-md-3" v-if="Num_Docentes_Intersexual_Vinculados<0" style="color: red; margin-top: 10px; text-align: center">El número de docentes intersexual debe ser POSITIVO.</div>
         </div>
@@ -308,7 +308,7 @@
                 <label for="num_docentes_orientacion_bi">Ingrese el número de docentes con orientación bisexual:</label>
             </div>
             <div class="col-md-3">
-                <input type="number" class="form-control" id="num_docentes_orientacion_bi" v-model.number="Num_Docentes_Orientacion_Bi" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Docentes_Orientacion_Hetero<0 || this.Num_Docentes_Orientacion_Bi + this.Num_Docentes_Orientacion_Hetero + this.Num_Docentes_Orientacion_Bi + this.Num_Docentes_Orientacion_Otro != this.Num_Docentes ? 'red' : ''}">
+                <input type="number" class="form-control" id="num_docentes_orientacion_bi" v-model.number="Num_Docentes_Orientacion_Bi" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Docentes_Orientacion_Bi<0 || this.Num_Docentes_Orientacion_Homo + this.Num_Docentes_Orientacion_Hetero + this.Num_Docentes_Orientacion_Bi + this.Num_Docentes_Orientacion_Otro != this.Num_Docentes ? 'red' : ''}">
             </div>
             <div class="col-md-3" v-if="Num_Docentes_Orientacion_Bi<0" style="color: red; margin-top: 10px; text-align: center">El número de docentes bisexuales debe ser POSITIVO.</div>
         </div>

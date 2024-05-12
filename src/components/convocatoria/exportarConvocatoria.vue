@@ -20,12 +20,24 @@
           </ul>
         </div>
       </div>
-      <div class="row mb-3" style="margin-top: 20px;">
+      <div class="row mb-3" style="margin-top: 20px;" >
         <div class="col-md-2">
-          <label for="anio">Año:</label>
+          <label for="anio" v-if="this.id == 0">Año:</label>
+          <label for="anio" v-if="this.id == 1">Primer Año:</label>
         </div>
         <div class="col-md-9">
           <select class="custom-select" id="anio" v-model="anio"> 
+            <option selected>Seleccionar...</option>
+            <option  v-for="year in years" :key="year">{{ year }}</option>
+          </select>
+        </div>
+      </div>
+        <div class="row mb-3" style="margin-top: 20px;" v-if="this.id == 1">
+        <div class="col-md-2">
+          <label for="anio2" >Segundo año:</label>
+        </div>
+        <div class="col-md-9">
+          <select class="custom-select" id="anio2" v-model="anio2"> 
             <option selected>Seleccionar...</option>
             <option  v-for="year in years" :key="year">{{ year }}</option>
           </select>
@@ -141,7 +153,8 @@
         anio: null,
         selectedDesagregacion: null,
         selectedDesagregacion2: null,
-        selectedDepartamentos: []
+        selectedDepartamentos: [],
+        anio2 : null
       };
     },
     watch: {
@@ -331,10 +344,20 @@
         async descarga(response, identificador){
           var archivo = ''; 
           if(identificador === 0){
-            archivo = `convocatorias_${this.anio}_nacional.xlsx`;
+            if(this.id === 0){
+              archivo = `convocatorias_${this.anio}_nacional.xlsx`;
+            }
+            else if(this.id === 1){
+              archivo = `convocatorias_${this.anio}-${this.anio2}_nacional.xlsx`;
+            }
           }
           else if(identificador === 1 ){
-            archivo = `convocatorias_${this.anio}_departamental.xlsx`
+            if(this.id === 0){
+              archivo = `convocatorias_${this.anio}_departamental.xlsx`
+            }
+            else if(this.id === 1){
+              archivo = `convocatorias_${this.anio}-${this.anio2}_departamental.xlsx`
+            }
           }
           // Convert the response to a blob
           const blob = await response.blob();
@@ -355,9 +378,15 @@
         },
 
         async clickButton() {
+            let response;
             if (this.selectedDesagregacion === "nacional") {
                 const cadena = this.seleccionesIndicadores();
-                const response = await fetch(`https://localhost:7192/api/Convocatorias/filterGroupByAnio/${this.anio}?columnNames=${cadena}`);
+                if(this.id === 0){
+                  response = await fetch(`https://localhost:7192/api/Convocatorias/filterGroupByAnio/${this.anio}?columnNames=${cadena}`);
+                }
+                else if (this.id === 1){
+                  response = await fetch(`https://localhost:7192/api/Convocatorias/filterGroupByAnios/${this.anio}/${this.anio2}?columnNames=${cadena}`);
+                }
                 if (response.ok) {
                   this.descarga(response, 0);
               } else {
@@ -368,7 +397,12 @@
             else if(this.selectedDesagregacion === "departamental"){
               const departamentos = this.seleccionDepartamental();
               const columnas = this.seleccionesIndicadores();
-              const response = await fetch(`https://localhost:7192/api/Convocatorias/filterAnioDepartamento/${this.anio}?departamentos=${departamentos}&columnNames=${columnas}`);
+              if(this.id === 0){
+                  response = await fetch(`https://localhost:7192/api/Convocatorias/filterAnioDepartamento/${this.anio}?departamentos=${departamentos}&columnNames=${columnas}`);
+                }
+                else if (this.id === 1){
+                  response = await fetch(`https://localhost:7192/api/Convocatorias/filterAniosDepartamentos/${this.anio}/${this.anio2}?departamentos=${departamentos}&columnNames=${columnas}`);
+                }
               if (response.ok) {
                   this.descarga(response, 1);
               } else {
@@ -379,7 +413,12 @@
             else{
               if(this.selectedDesagregacion2 === "nacional"){
                 const cadena = this.seleccionAgrupamiento();
-                const response = await fetch(`https://localhost:7192/api/Convocatorias/filterGroupByAnio/${this.anio}?columnNames=${cadena}`);
+                if(this.id === 0){
+                  response = await fetch(`https://localhost:7192/api/Convocatorias/filterGroupByAnio/${this.anio}?columnNames=${cadena}`);
+                }
+                else if (this.id === 1){
+                  response = await fetch(`https://localhost:7192/api/Convocatorias/filterGroupByAnios/${this.anio}/${this.anio2}?columnNames=${cadena}`);
+                }
                 if (response.ok) {
                   this.descarga(response, 0);
                 } else {
@@ -390,7 +429,12 @@
               else if(this.selectedDesagregacion2 === "departamental"){
                 const departamentos = this.seleccionDepartamental();
                 const columnas = this.seleccionAgrupamiento();
-                const response = await fetch(`https://localhost:7192/api/Convocatorias/filterAnioDepartamento/${this.anio}?departamentos=${departamentos}&columnNames=${columnas}`);
+                if(this.id === 0){
+                  response = await fetch(`https://localhost:7192/api/Convocatorias/filterAnioDepartamento/${this.anio}?departamentos=${departamentos}&columnNames=${columnas}`);
+                }
+                else if (this.id === 1){
+                  response = await fetch(`https://localhost:7192/api/Convocatorias/filterAniosDepartamentos/${this.anio}/${this.anio2}?departamentos=${departamentos}&columnNames=${columnas}`);
+                }
                 if (response.ok) {
                     this.descarga(response, 1);
                 } else {
@@ -401,7 +445,12 @@
               else if(this.selectedDesagregacion2 === "pdet"){
                 const departamentos = "Cauca,Nariño,Valle del Cauca,Arauca,Antioquia,Norte de Santander,Chocó,Caquetá,Huila,Guaviare,Meta,Bolívar,Sucre,Putumayo,Cesar,La Guajira,Magdalena,Córdoba,Tolima";
                 const columnas = this.seleccionPdet();
-                const response = await fetch(`https://localhost:7192/api/Convocatorias/filterAnioDepartamento/${this.anio}?departamentos=${departamentos}&columnNames=${columnas}`);
+                if(this.id === 0){
+                  response = await fetch(`https://localhost:7192/api/Convocatorias/filterAnioDepartamento/${this.anio}?departamentos=${departamentos}&columnNames=${columnas}`);
+                }
+                else if (this.id === 1){
+                  response = await fetch(`https://localhost:7192/api/Convocatorias/filterAniosDepartamentos/${this.anio}/${this.anio2}?departamentos=${departamentos}&columnNames=${columnas}`);
+                }
                 if (response.ok) {
                     this.descarga(response, 1);
                 } else {
@@ -412,7 +461,12 @@
               else if(this.selectedDesagregacion2 === "zomac"){
                 const departamentos = "Antioquia,Arauca,Bolívar,Boyacá,Caldas,Caquetá,Casanare,Cauca,Cesar,Chocó,Córdoba,Cundinamarca,Guaviare,Huila,La Guajira,Magdalena,Meta,Nariño,Norte de Santander,Putumayo,Quindío,Risaralda,Santander,Sucre,Tolima,Valle del Cauca,Vaupés,Vichada";
                 const columnas = this.seleccionZomac();
-                const response = await fetch(`https://localhost:7192/api/Convocatorias/filterAnioDepartamento/${this.anio}?departamentos=${departamentos}&columnNames=${columnas}`);
+                if(this.id === 0){
+                  response = await fetch(`https://localhost:7192/api/Convocatorias/filterAnioDepartamento/${this.anio}?departamentos=${departamentos}&columnNames=${columnas}`);
+                }
+                else if (this.id === 1){
+                  response = await fetch(`https://localhost:7192/api/Convocatorias/filterAniosDepartamentos/${this.anio}/${this.anio2}?departamentos=${departamentos}&columnNames=${columnas}`);
+                }
                 if (response.ok) {
                     this.descarga(response, 1);
                 } else {
@@ -449,7 +503,7 @@
     computed: {
         isFormValid() {
             if(this.selectedIndicadores.length > 0){
-                if(this.anio!=null){
+                if(this.anio!=null && ((this.anio2!=null && this.id == 1) || (this.anio2==null && this.id == 0))){
                     if(this.selectedDesagregacion!=null){
                         if(this.selectedDesagregacion === "departamental" && this.selectedDepartamentos.length > 0){
                             return true;
@@ -536,6 +590,12 @@
         console.error('Error fetching data:', error);
       }
     },
+    props: {
+      id: {
+        type: Number,
+        required: true
+      }
+    }
   };
   </script>
   
