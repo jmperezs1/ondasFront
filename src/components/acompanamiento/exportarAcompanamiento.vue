@@ -136,7 +136,6 @@ export default {
           "Monto total destinado a la financiación de los proyectos de Ondas",
           "Monto promedio destinado por proyecto de investigación",
           "Monto promedio destinado por niño, niña o adolescente vinculado al programa",
-          "Porcentaje de municipios en el departamento con instituciones educativas vinculadas al programa Ondas"
         ],
         listDepartamentos: [
           "Amazonas", "Antioquia", "Arauca", "Atlántico", "Bogotá",
@@ -229,9 +228,261 @@ export default {
             }
           }
         },
-        clickButton(){
-          
-        }
+        async clickButton(){
+          if(this.selectedDesagregacion === "nacional"){
+            const cadena = this.seleccionIndicadores();
+            console.log(cadena)
+            const response = await fetch(`https://localhost:7192/api/acompaniamientos/filterGroupByAnio/${this.anio}?columnNames=${cadena}`)
+            if(response.ok){
+              this.descarga(response,0);
+            }else{
+              console.error('Failed to fetch data:', response.statusText);
+            } 
+          }
+          else if(this.selectedDesagregacion === "departamental"){
+              const departamentos = this.seleccionDepartamental();
+              const columnas = this.seleccionIndicadores();
+              const response = await fetch(`https://localhost:7192/api/acompaniamientos/filterAnioDepartamento/${this.anio}?departamentos=${departamentos}&columnNames=${columnas}`);
+              if (response.ok) {
+                  this.descarga(response, 1);
+              } else {
+                  // Handle the error if the response is not successful
+                  console.error('Failed to fetch data:', response.statusText);
+              }
+          }else{
+              if(this.selectedDesagregacion2 === "nacional"){
+                const cadena = this.seleccionAgrupamiento();
+                const response = await fetch(`https://localhost:7192/api/acompaniamientos/filterGroupByAnio/${this.anio}?columnNames=${cadena}`);
+                if (response.ok) {
+                  this.descarga(response, 0);
+                } else {
+                    // Handle the error if the response is not successful
+                    console.error('Failed to fetch data:', response.statusText);
+                }
+              }
+              else if(this.selectedDesagregacion2 === "departamental"){
+                const departamentos = this.seleccionDepartamental();
+                const columnas = this.seleccionAgrupamiento();
+                const response = await fetch(`https://localhost:7192/api/acompaniamientos/filterAnioDepartamento/${this.anio}?departamentos=${departamentos}&columnNames=${columnas}`);
+                if (response.ok) {
+                    this.descarga(response, 1);
+                } else {
+                    // Handle the error if the response is not successful
+                    console.error('Failed to fetch data:', response.statusText);
+                }
+              }
+              else if(this.selectedDesagregacion2 === "pdet"){
+                const departamentos = "Cauca,Nariño,Valle del Cauca,Arauca,Antioquia,Norte de Santander,Chocó,Caquetá,Huila,Guaviare,Meta,Bolívar,Sucre,Putumayo,Cesar,La Guajira,Magdalena,Córdoba,Tolima";
+                const columnas = this.seleccionPdet();
+                const response = await fetch(`https://localhost:7192/api/acompaniamientos/filterAnioDepartamento/${this.anio}?departamentos=${departamentos}&columnNames=${columnas}`);
+                if (response.ok) {
+                    this.descarga(response, 1);
+                } else {
+                    // Handle the error if the response is not successful
+                    console.error('Failed to fetch data:', response.statusText);
+                }
+              }
+              else if(this.selectedDesagregacion2 === "zomac"){
+                const departamentos = "Antioquia,Arauca,Bolívar,Boyacá,Caldas,Caquetá,Casanare,Cauca,Cesar,Chocó,Córdoba,Cundinamarca,Guaviare,Huila,La Guajira,Magdalena,Meta,Nariño,Norte de Santander,Putumayo,Quindío,Risaralda,Santander,Sucre,Tolima,Valle del Cauca,Vaupés,Vichada";
+                const columnas = this.seleccionZomac();
+                const response = await fetch(`https://localhost:7192/api/acompaniamientos/filterAnioDepartamento/${this.anio}?departamentos=${departamentos}&columnNames=${columnas}`);
+                if (response.ok) {
+                    this.descarga(response, 1);
+                } else {
+                    // Handle the error if the response is not successful
+                    console.error('Failed to fetch data:', response.statusText);
+                }
+              }
+            }
+        },
+        seleccionIndicadores(){
+          var cadena = '';
+          if(this.selectedIndicadores.includes("Número de asesores vinculados al programa")){
+            cadena += 'Num_Asesores';
+          }
+          if(this.selectedIndicadores.includes("Número de asesorías realizadas en el año")){
+            if(cadena === ''){
+              cadena += 'Num_Asesorias';
+            }
+            else{
+              cadena += ',Num_Asesorias';
+            }
+          }
+          if(this.selectedIndicadores.includes('Número de grupos de investigación que recibieron asesorías en el año')){
+            if(cadena === ''){
+              cadena += 'Num_Grupos_Asesorados';
+            }
+            else{
+              cadena += ',Num_Grupos_Asesorados';
+            }
+          }
+          if(this.selectedIndicadores.includes("Número promedio de asesorías que recibe cada grupo de investigación")){
+            if(cadena === ''){
+              cadena += 'Num_Promedio_Asesorias';
+            }
+            else{
+              cadena += ',Num_Promedio_Asesorias';
+            }
+          }
+          if(this.selectedIndicadores.includes("Número de grupos de investigación vinculados al programa por asesor")){
+            if(cadena === ''){
+              cadena += 'Num_Grupos_Por_Asesor';
+            }
+            else{
+              cadena += ',Num_Grupos_Por_Asesor';
+            }
+          }
+          if(this.selectedIndicadores.includes("Número de talleres de formación y/o capacitación realizados en cada coordinación")){
+            if(cadena === ''){
+              cadena += 'Num_Talleres';
+            }
+            else{
+              cadena += ',Num_Talleres';
+            }
+          }
+          if(this.selectedIndicadores.includes("Número de docentes vinculados al programa que participan en talleres de capacitación y/o formación")){
+            if(cadena === ''){
+              cadena += 'Num_Docentes_Vinculados';
+            }
+            else{
+              cadena += ',Num_Docentes_Vinculados';
+            }
+          }
+          if(this.selectedIndicadores.includes("Número promedio de horas dedicadas por los docentes vinculados al programa a actividades de Ondas")){
+            if(cadena === ''){
+              cadena += 'Num_Promedio_Horas_Docentes';
+            }
+            else{
+              cadena += ',Num_Promedio_Horas_Docentes';
+            }
+          }
+          if(this.selectedIndicadores.includes("Número promedio de horas dedicadas por los niños, niñas y adolescentes vinculados a Ondas a las actividades de investigación")){
+            if(cadena === ''){
+              cadena += 'Num_Promedio_Horas_Jovenes';
+            }
+            else{
+              cadena += ',Num_Promedio_Horas_Jovenes';
+            }
+          }
+          if(this.selectedIndicadores.includes("Duración promedio de los proyectos de investigación seleccionados")){
+            if(cadena === ''){
+              cadena += 'Duracion_Proyectos';
+            }
+            else{
+              cadena += ',Duracion_Proyectos';
+            }
+          }
+          if(this.selectedIndicadores.includes("Porcentaje de municipios en el departamento con instituciones educativas vinculadas al programa Ondas")){
+            if(cadena === ''){
+              cadena += 'Pct_Vinculados';
+            }
+            else{
+              cadena += ',Pct_Vinculados';
+            }
+          }
+          if(this.selectedIndicadores.includes("Monto total destinado a la financiación de los proyectos de Ondas")){
+            if(cadena === ''){
+              cadena += 'Monto_Financiacion';
+            }
+            else{
+              cadena += ',Monto_Financiacion';
+            }
+          }
+          if(this.selectedIndicadores.includes("Monto promedio destinado por proyecto de investigación")){
+            if(cadena === ''){
+              cadena += 'Monto_Promedio_Proyecto';
+            }
+            else{
+              cadena += ',Monto_Promedio_Proyecto';
+            }
+          }
+          if(this.selectedIndicadores.includes("Monto promedio destinado por niño, niña o adolescente vinculado al programa")){
+            if(cadena === ''){
+              cadena += 'Monto_Promedio_Por_Joven';
+            }
+            else{
+              cadena += ',Monto_Promedio_Por_Joven';
+            }
+          }
+          return cadena;
+        },
+        seleccionDepartamental(){
+          let cadena='';
+          for(let i=0; i<this.selectedDepartamentos.length; i++){
+            if(cadena===""){
+              cadena += this.selectedDepartamentos[i];
+            }
+            else{
+              cadena += `,${this.selectedDepartamentos[i]}`;
+            }
+          }
+          return cadena;
+
+        },
+        seleccionAgrupamiento(){
+          var cadena = '';
+          if(this.selectedIndicadores.includes("Número de asesores vinculados al programa")){
+            if(this.selectedDesagregacion === "genero"){
+              cadena = 'Num_Asesores_Hombre,Num_Asesores_Mujer,Num_Asesores_Intersexual,Num_Asesores';
+            }
+            else if(this.selectedDesagregacion === "orientacion"){
+              cadena = 'Num_Asesores_Orientacion_Homo,Num_Asesores_Orientacion_Hetero,Num_Asesores_Orientacion_Bi,Num_Asesores_Orientacion_Otro,Num_Asesores'
+            }
+            else if(this.selectedDesagregacion === "conflicto_armado"){
+              cadena = 'Num_Asesores_Conflicto_Armado,Num_Asesores';
+            }
+            else if(this.selectedDesagregacion === "reincorporacion"){
+              cadena = 'Num_Asesores_Reincorporacion,Num_Asesores';
+            }
+            else if(this.selectedDesagregacion === 'etnia'){
+              cadena = 'Num_Asesores_Indigena,Num_Asesores_Gitano,Num_Asesores_Raizal,Num_Asesores_Palenquero,Num_Asesores_Afro,Num_Asesores_Etnia,Num_Asesores'
+            }
+            else if (this.selectedDesagregacion === 'discapacidad'){
+              cadena = 'Num_Asesores_Discapacidad,Num_Asesores'
+            }
+          }
+          return cadena;
+        },
+        seleccionPdet(){
+          var cadena='';
+          if(this.selectedIndicadores.includes("Número de asesores vinculados al programa")){
+            cadena += 'Num_Asesores_Pdet,Num_Asesores';
+          }
+          return cadena;
+        },
+
+        seleccionZomac(){
+          var cadena='';
+          if(this.selectedIndicadores.includes("Número de asesores vinculados al programa")){
+            cadena += 'Num_Asesores_Zomac,Num_Asesores';
+          }
+          return cadena;
+        },
+        async descarga(response, identificador){
+          var archivo = ''; 
+          if(identificador === 0){
+            archivo = `Acompañamientos_${this.anio}_nacional.xlsx`;
+          }
+          else if(identificador === 1 ){
+            archivo = `Acompañamientos_${this.anio}_departamental.xlsx`
+          }
+          // Convert the response to a blob
+          const blob = await response.blob();
+          // Create a new anchor element
+          const link = document.createElement('a');
+          // Set the href attribute of the anchor to the blob URL
+          link.href = URL.createObjectURL(blob);
+          // Set the download attribute of the anchor to specify the filename
+          link.download = archivo;
+          // Hide the anchor element
+          link.style.display = 'none';
+          // Append the anchor element to the document body
+          document.body.appendChild(link);
+          // Simulate a click on the anchor element to trigger the download
+          link.click();
+          // Remove the anchor element from the document body
+          document.body.removeChild(link);
+        },
     },
     async mounted() {
         try{
