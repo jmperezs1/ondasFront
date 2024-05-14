@@ -1,24 +1,65 @@
 <template>
-    <div>
-        <img alt="Logo" src="../../assets/logo.png" style="margin-top: 417px; margin: 0% auto; height: 200px; width: 450px; margin-bottom: 74px;">
+    <div style="text-align: center">
+      <img alt="Logo" src="../../assets/logo.png" style="margin-top: 40px; height: 200px; width: 450px; margin-bottom: 74px;">
     </div>
     <div class="form-group" style="width: 540px; margin: 0% auto">
-        <label for="inputUser" style="text-align: left; display: block; margin-bottom: 5px;">Usuario</label>
-        <input class="form-control" id="inputUser" placeholder="Ingrese el usuario" style="margin-bottom: 27px;">
+      <label for="inputUser" style="text-align: left; display: block; margin-bottom: 5px;">Usuario</label>
+      <input class="form-control" id="inputUser" placeholder="Ingrese el usuario" style="margin-bottom: 27px;">
     </div>
     <div class="form-group" style="width: 540px; margin: 0% auto">
-        <label for="inputPassword" style="text-align: left; display: block; margin-bottom: 5px;">Contraseña</label>
-        <input type="password" class="form-control" id="inputPassword" placeholder="Ingrese la contraseña">
+      <label for="inputPassword" style="text-align: left; display: block; margin-bottom: 5px;">Contraseña</label>
+      <input type="password" class="form-control" id="inputPassword" placeholder="Ingrese la contraseña">
     </div>
-    <button type="submit" class="btn" style="height: 40px; width: 331px; margin-top: 74px; background-color: #53C0D9;">Ingresar</button>
-</template>
+    <div style="text-align: center;">
+      <button type="submit" class="btn" style="height: 40px; width: 331px; margin-top: 74px; background-color: #53C0D9;" @click="onLogin">Ingresar</button>
+    </div>
+  </template>
+  
+  <script>
+  import { jwtDecode } from 'jwt-decode';
+  
+  export default {
+    name: 'InicioSesion',
+    methods: {
+      async onLogin() {
+        const user = document.getElementById('inputUser').value;
+        const password = document.getElementById('inputPassword').value;
+  
+        try {
+          const response = await fetch('https://localhost:7192/api/autenticaciones/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ user, password })
+          });
+  
+          const data = await response.json();
+          console.log(data);
+  
+          if (response.ok) {
+            localStorage.setItem('token', data.message);
+            const decoded = jwtDecode(data.message);
 
-<script>
-export default {
-    name: 'InicioSesion'
-};
-</script>
-
-<style>
-/* Your component-specific styles go here */
-</style>
+            console.log(decoded.departamento);
+  
+            if (decoded.rol === "Minciencias") {
+              this.$router.push('/minciencias');
+            } else if (decoded.rol === "Departamento") {
+              this.$router.push('/departamentos');
+            }
+          } else {
+            console.error('Login failed', data);
+          }
+        } catch (error) {
+          console.error('An error occurred', error);
+        }
+      }
+    }
+  };
+  </script>
+  
+  <style>
+  /* Your component-specific styles go here */
+  </style>
+  
