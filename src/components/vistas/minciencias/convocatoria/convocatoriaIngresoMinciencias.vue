@@ -54,7 +54,7 @@ export default {
     methods: {
         async verificarExistencia() {
             if (this.anio != null && this.departamento != null) {
-                const response = await fetch(`https://localhost:7192/api/Convocatorias/anio/${this.anio}/departamento/${this.departamento}`);
+                const response = await fetch(`https://localhost:7192/api/Convocatorias/anio/${this.anio}/departamento/${this.departamento}/${this.userId}/${this.token}`);
                 if (response.status === 404) {
                     this.valido = true;
                 }

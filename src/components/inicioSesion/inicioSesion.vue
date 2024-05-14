@@ -15,9 +15,7 @@
     </div>
   </template>
   
-  <script>
-  import { jwtDecode } from 'jwt-decode';
-  
+  <script>  
   export default {
     name: 'InicioSesion',
     methods: {
@@ -35,17 +33,12 @@
           });
   
           const data = await response.json();
-          console.log(data);
   
           if (response.ok) {
-            localStorage.setItem('token', data.message);
-            const decoded = jwtDecode(data.message);
-
-            console.log(decoded.departamento);
-  
-            if (decoded.rol === "Minciencias") {
+            localStorage.setItem('token', data.token);
+            if (data.rol === "Minciencias") {
               this.$router.push('/minciencias');
-            } else if (decoded.rol === "Departamento") {
+            } else if (data.rol === "Departamento") {
               this.$router.push('/departamentos');
             }
           } else {

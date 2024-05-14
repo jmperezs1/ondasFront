@@ -70,14 +70,25 @@
         departamento: null
     }
   },methods: {
-    cerrarSesion() {
+    async cerrarSesion() {
+      const token = localStorage.getItem('token');
+      const id = jwtDecode(token).id;
       localStorage.removeItem('token');
       this.$router.push('/');
+      await fetch(`https://localhost:7192/api/tokens/delete/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
     }
   },
-  mounted() {
+  async mounted() {
     const token = localStorage.getItem('token');
-    this.departamento = jwtDecode(token).departamento;
+    const id = jwtDecode(token).id;
+    const departamento = await fetch (`https://localhost:7192/api/tokens/${id}/departamento?token=${token}`);
+    const json = await departamento.json();
+    this.departamento = json.departamento;
     }
   }
   </script>

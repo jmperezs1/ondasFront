@@ -474,6 +474,8 @@
 </template>
 
 <script>
+import { jwtDecode } from 'jwt-decode';
+
 
 
 export default {
@@ -540,8 +542,10 @@ export default {
     },
     methods: {
     async saveData() {
+        const token = localStorage.getItem('token');
+        const id = jwtDecode(token).id
         console.log(JSON.stringify(this.$data));
-        const response = await fetch('https://localhost:7192/api/Convocatorias', {
+        const response = await fetch('https://localhost:7192/api/Convocatorias/'+id+'/'+token, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

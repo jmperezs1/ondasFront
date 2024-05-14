@@ -161,7 +161,7 @@ export default {
         selectedDesagregacion2: null,
         selectedDepartamentos: [],
         anio2: null,
-        departamental : jwtDecode(localStorage.getItem('token')).rol === 'Departamento',
+        departamental : null,
         territorial: true
         };
     },
@@ -559,21 +559,31 @@ export default {
         },
     },
     async mounted() {
-      const token = jwtDecode(localStorage.getItem('token'));
-      if(token.rol === 'Departamento'){
-        this.selectedDepartamentos.push(token.departamento);
+      const token = localStorage.getItem('token');
+      const id = jwtDecode(token).id;
+      const rol = await fetch (`https://localhost:7192/api/tokens/${id}/?token=${token}`);
+      const resp = await rol.json();
+      const rolF = resp.rol;
+      if( rolF === 'Departamento'){
+        this.departamental = true;
+        const token = localStorage.getItem('token');
+        const id = jwtDecode(token).id;
+        const departamento = await fetch (`https://localhost:7192/api/tokens/${id}/departamento?token=${token}`);
+        const json = await departamento.json();
+        this.selectedDepartamentos.push(json.departamento);
         this.selectedDesagregacion2 = 'departamental';
         this.territorial = ["Cauca,Nariño,Valle del Cauca,Arauca,Antioquia,Norte de Santander,Chocó,Caquetá,Huila,Guaviare,Meta,Bolívar,Sucre,Putumayo,Cesar,La Guajira,Magdalena,Córdoba,Tolima"].includes(this.selectedDepartamentos[0])
+        const response = await fetch('https://localhost:7192/api/acompaniamientos/minmaxanio/'+this.selectedDepartamentos[0]);
+        const json2 = await response.json();
+        const minYear = json2.minAnio;
+        const maxYear = json2.maxAnio;
+        for (let year = minYear; year <= maxYear; year++) {
+          this.years.push(year);
+        }
       }
-      try {
-        let response;
-        if(token.rol === 'Departamento'){
-          this.departamental = true;
-           response = await fetch('https://localhost:7192/api/acompaniamientos/minmaxanio/'+token.departamento);
-        }
-        else{
-           response = await fetch('https://localhost:7192/api/acompaniamientos/minmaxanio');
-        }
+      else{
+          const  response = await fetch('https://localhost:7192/api/acompaniamientos/minmaxanio');
+        
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }
@@ -583,9 +593,7 @@ export default {
         for (let year = minYear; year <= maxYear; year++) {
           this.years.push(year);
         }
-        }catch(error){
-          console.error('Error fetching data:', error);
-        }
+      }
     },
     props: {
         id: {

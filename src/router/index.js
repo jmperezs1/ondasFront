@@ -142,25 +142,40 @@ const router = createRouter({
     routes
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
     const authMinciencias = ['/minciencias','/minciencias/convocatorias/ingreso', '/minciencias/convocatorias/consultas/periodo', '/minciencias/convocatorias/consultas/periodos',
         '/minciencias/acompanamiento/ingreso', '/minciencias/acompanamiento/consultas/periodo', '/minciencias/acompanamiento/consultas/periodos',
         '/minciencias/movilizacion/ingreso', '/minciencias/movilizacion/consultas/periodo', '/minciencias/movilizacion/consultas/periodos', '/minciencias/configuracion'];
-    const authDepartamento = ['/departamentos, /departamentos/convocatorias/ingreso', '/departamentos/convocatorias/consultas/periodo', '/departamentos/convocatorias/consultas/periodos',
+    const authDepartamento = ['/departamentos', '/departamentos/convocatorias/ingreso', '/departamentos/convocatorias/consultas/periodo', '/departamentos/convocatorias/consultas/periodos',
         '/departamentos/acompanamientos/ingreso', '/departamentos/acompanamientos/consultas/periodo', '/departamentos/acompanamientos/consultas/periodos',
         '/departamentos/movilizaciones/ingreso', '/departamentos/movilizaciones/consultas/periodo', '/departamentos/movilizaciones/consultas/periodos'
     ];
-    const token = localStorage.getItem('token');
+    
 
-    if (token) {
-        const decoded = jwtDecode(token);
+    if (!['/'].includes(to.path)) {
+        const token = localStorage.getItem('token');
+        
 
-        if (authMinciencias.includes(to.path) && decoded.rol !== 'Minciencias') {
+        try {
+            const id = jwtDecode(token).id;
+            const response = await fetch(`https://localhost:7192/api/tokens/${id}?token=${token}`);
+            const json = await response.json();
+            if (json.status === "success") {
+                console.log(json);
+                if (authMinciencias.includes(to.path) && json.rol !== 'Minciencias') {
+                    next('/');
+                } else if (authDepartamento.includes(to.path) && json.rol !== 'Departamento') {    
+                    next('/');
+                } else {
+                    next();
+                }
+            } else {
+                console.error('Failed to authenticate:', response.status);
+                next('/');
+            }
+        } catch (error) {
+            console.error('Failed to fetch:', error);
             next('/');
-        } else if (authDepartamento.includes(to.path) && decoded.rol !== 'Departamento') {
-            next('/');
-        } else {
-            next();
         }
     } else {
         if (authMinciencias.includes(to.path) || authDepartamento.includes(to.path)) {
@@ -170,5 +185,7 @@ router.beforeEach((to, from, next) => {
         }
     }
 });
+
+
 
 export default router;

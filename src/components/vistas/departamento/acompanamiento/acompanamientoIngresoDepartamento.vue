@@ -36,7 +36,7 @@ export default {
     data() {
         return {
             anio: null,
-            departamento: jwtDecode(localStorage.getItem('token')).departamento,
+            departamento: null,
             valido: '',
         }
     },
@@ -53,6 +53,13 @@ export default {
             }
             
         }
+    },
+    async mounted() {
+    const token = localStorage.getItem('token');
+    const id = jwtDecode(token).id;
+    const departamento = await fetch (`https://localhost:7192/api/tokens/${id}/departamento?token=${token}`);
+    const json = await departamento.json();
+    this.departamento = json.departamento;
     },
     computed: {
         years() {

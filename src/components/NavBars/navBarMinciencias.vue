@@ -62,12 +62,21 @@
   </template>
 
 <script>
+import {jwtDecode} from 'jwt-decode';
 export default {
     name: 'NavBarMinciencias',
     methods: {
-    cerrarSesion() {
+      async cerrarSesion() {
+      const token = localStorage.getItem('token');
+      const id = jwtDecode(token).id;
       localStorage.removeItem('token');
       this.$router.push('/');
+      await fetch(`https://localhost:7192/api/tokens/delete/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
     }
   }
 }
