@@ -7,7 +7,7 @@
         <div class="col-md-10">
           <div class="row">
             <div class="col-8 col-md-6">
-              <span>Bienvenido, Departamento X</span>
+              <span>Bienvenido, Departamento {{ departamento }}</span>
             </div>
             <div class="col-4 col-md-6 d-flex justify-content-end">
               <button class="btn me-2">Configuración</button>
@@ -17,7 +17,7 @@
           <hr>
           <div class="row">
             <div class="col-3 d-flex align-items-center justify-content-center">
-              <button class="btn">Inicio</button>
+              <a class="btn" href="/departamentos">Inicio</a>
             </div>
             <div class="col-3">
               <div class="dropdown">
@@ -25,8 +25,9 @@
                   Convocatoria
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a class="dropdown-item" href="#">Consultar información convocatoria</a></li>
-                  <li><a class="dropdown-item" href="#">Ingresar información convocatoria</a></li>
+                  <li><a class="dropdown-item" href="/departamentos/convocatorias/ingreso">Ingresar información convocatoria</a></li>
+                  <li><a class="dropdown-item" href="/departamentos/convocatorias/consultas/periodo">Exportar información de un año</a></li>
+                  <li><a  class="dropdown-item" href="/departamentos/convocatorias/consultas/periodos">Exportar información en un rango de años</a></li>
                 </ul>
               </div>
             </div>
@@ -59,9 +60,18 @@
   </template>
   
   <script>
+  import { jwtDecode } from 'jwt-decode';
   export default {
     name: 'NavBarDepartamento',
-    // Your component's logic here
+    data () {
+    return {
+        departamento: null
+    }
+  },
+  mounted() {
+    const token = localStorage.getItem('token');
+    this.departamento = jwtDecode(token).departamento;
+    }
   }
   </script>
   
@@ -69,7 +79,7 @@
   #NavBarDepartamento{
     margin-top: 30px;
     overflow-x: hidden; 
-    height: 200px
+    height: 230px
   }
 
   </style>
