@@ -11,7 +11,7 @@
             </div>
             <div class="col-4 col-md-6 d-flex justify-content-end">
               <button class="btn me-2">Configuración</button>
-              <button class="btn">Cerrar Sesión</button>
+              <button class="btn" @click="cerrarSesion">Cerrar Sesión</button>
             </div>
           </div>
           <hr>
@@ -49,8 +49,9 @@
                   Movilización
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                    <li><a class="dropdown-item" href="#">Consultar información movilización</a></li>
-                  <li><a class="dropdown-item" href="#">Ingresar información movilización</a></li>
+                  <li><a class="dropdown-item" href="/departamentos/movilizaciones/ingreso">Ingresar información movilización</a></li>
+                  <li><a class="dropdown-item" href='/departamentos/movilizaciones/consultas/periodo'>Exportar información de un año</a></li>
+                  <li><a  class="dropdown-item" href='/departamentos/movilizaciones/consultas/periodos'>Exportar información en un rango de años</a></li>
                 </ul>
               </div>
             </div>
@@ -67,6 +68,11 @@
     data () {
     return {
         departamento: null
+    }
+  },methods: {
+    cerrarSesion() {
+      localStorage.removeItem('token');
+      this.$router.push('/');
     }
   },
   mounted() {

@@ -18,6 +18,9 @@ import exportarConvocatoriasPeriodosDepartamento from '@/components/vistas/depar
 import acompanamientoIngresoDepartamento from '@/components/vistas/departamento/acompanamiento/acompanamientoIngresoDepartamento.vue';
 import exportarAcompanamientoDepartamento from '@/components/vistas/departamento/acompanamiento/exportarAcompanamientoDepartamento.vue';
 import exportarAcompaniamientosPeriodosDepartamento from '../components/vistas/departamento/acompanamiento/exportarAcompaniamientosPeriodosDepartamento.vue';
+import movilizacionIngresoDepartamento from '@/components/vistas/departamento/movilizacion/movilizacionIngresoDepartamento.vue';
+import exportarMovilizacionDepartamento from '@/components/vistas/departamento/movilizacion/exportarMovilizacionDepartamento.vue';
+import exportarMovilizacionesPeriodosDepartamento from '@/components/vistas/departamento/movilizacion/exportarMovilizacionesPeriodosDepartamento.vue';
 import { jwtDecode } from 'jwt-decode';
 
 const routes = [
@@ -115,6 +118,21 @@ const routes = [
         path: '/departamentos/acompanamientos/consultas/periodos',
         name: 'periodosAcompanamientoDepartamento',
         component: exportarAcompaniamientosPeriodosDepartamento
+    },
+    {
+        path: '/departamentos/movilizaciones/ingreso',
+        name: 'ingresoMovilizacionDepartamento',
+        component: movilizacionIngresoDepartamento
+    },
+    {
+        path: '/departamentos/movilizaciones/consultas/periodo',
+        name: 'periodoMovilizacionDepartamento',
+        component: exportarMovilizacionDepartamento
+    },
+    {
+        path: '/departamentos/movilizaciones/consultas/periodos',
+        name: 'periodosMovilizacionDepartamento',
+        component: exportarMovilizacionesPeriodosDepartamento
     }
    
 ];
@@ -129,7 +147,8 @@ router.beforeEach((to, from, next) => {
         '/minciencias/acompanamiento/ingreso', '/minciencias/acompanamiento/consultas/periodo', '/minciencias/acompanamiento/consultas/periodos',
         '/minciencias/movilizacion/ingreso', '/minciencias/movilizacion/consultas/periodo', '/minciencias/movilizacion/consultas/periodos', '/minciencias/configuracion'];
     const authDepartamento = ['/departamentos, /departamentos/convocatorias/ingreso', '/departamentos/convocatorias/consultas/periodo', '/departamentos/convocatorias/consultas/periodos',
-        '/departamentos/acompanamientos/ingreso', '/departamentos/acompanamientos/consultas/periodo', '/departamentos/acompanamientos/consultas/periodos'
+        '/departamentos/acompanamientos/ingreso', '/departamentos/acompanamientos/consultas/periodo', '/departamentos/acompanamientos/consultas/periodos',
+        '/departamentos/movilizaciones/ingreso', '/departamentos/movilizaciones/consultas/periodo', '/departamentos/movilizaciones/consultas/periodos'
     ];
     const token = localStorage.getItem('token');
 
