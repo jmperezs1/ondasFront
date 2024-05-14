@@ -1,22 +1,21 @@
 <template>
     <NavBarMinciencias/>
-    <ExportarMovilizacion :id="0"/>
+    <ExportarMovilizacion :id="1"/>
 </template>
 
 <script>
 import NavBarMinciencias from '@/components/NavBars/navBarMinciencias.vue';
-    import ExportarMovilizacion from '@/components/movilizacion/exportarMovilizacion.vue';
-export default {
+import ExportarMovilizacion from '@/components/movilizacion/exportarMovilizacion.vue';
 
-    name: 'ExportarMovilizacionMinciencias',
+export default {
+    name: 'ExportarMovilizacionesMinciencias',
     components: {
         NavBarMinciencias,
         ExportarMovilizacion,
     },
-    
 };
 </script>
 
 <style scoped>
-/* Your component's CSS styles go here */
+/* Your component-specific styles go here */
 </style>

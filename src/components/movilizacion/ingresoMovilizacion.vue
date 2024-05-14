@@ -91,7 +91,7 @@
                 <input type="number" class="form-control" id="num_vinculados_etnia" min="0" v-model.number="Num_Vinculados_Etnia" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Vinculados_Etnia<0 || Num_Vinculados_Etnia>Num_Vinculados_Ferias? 'red' : ''}">
             </div>
             <div class="col-md-3" v-if="Num_Vinculados_Etnia<0" style="color: red; margin-top: 10px; text-align: center">El número de etnia debe ser POSITIVO.</div>
-            <div class="col-md-3" v-if="Num_Vinculados_Etnia>Num_Vinculados_Ferias" style="color: red; margin-top: 10px; text-align: center">El número de etnia debe ser menor o igual número de niños.</div>
+            <div class="col-md-3" v-if="Num_Vinculados_Etnia>=Num_Vinculados_Ferias" style="color: red; margin-top: 10px; text-align: center">El número de etnia debe ser menor o igual número de niños.</div>
         </div>
         <div class="row" style="margin-top: 45px;" v-if="Num_Vinculados_Etnia>0">
             <div class="col-md-1" style="text-align: left;"></div>
@@ -102,7 +102,7 @@
                 <input type="number" class="form-control" id="num_vinculados_indigena" min="0" v-model.number="Num_Vinculados_Indigena" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Vinculados_Indigena<0 || Num_Vinculados_Indigena+Num_Vinculados_Gitano+Num_Vinculados_Raizal+Num_Vinculados_Afro+Num_Vinculados_Palenquero!=Num_Vinculados_Etnia? 'red' : ''}">
             </div>
             <div class="col-md-3" v-if="Num_Vinculados_Indigena<0" style="color: red; margin-top: 10px; text-align: center">El número de indigenas debe ser POSITIVO.</div>
-            <div class="col-md-3" v-if="Num_Vinculados_Etnia>Num_Vinculados_Ferias" style="color: red; margin-top: 10px; text-align: center">La suma de cada etnia debe ser igualal número de niños total que pertenecen a una etnia.</div>
+            <div class="col-md-3" v-if="Num_Vinculados_Etnia!=Num_Vinculados_Indigena+Num_Vinculados_Gitano+Num_Vinculados_Raizal+Num_Vinculados_Afro+Num_Vinculados_Palenquero" style="color: red; margin-top: 10px; text-align: center">La suma de cada etnia debe ser igualal número de niños total que pertenecen a una etnia.</div>
         </div>
         <div class="row" style="margin-top: 45px;" v-if="Num_Vinculados_Etnia>0">
             <div class="col-md-1" style="text-align: left;"></div>
@@ -147,7 +147,7 @@
         <div class="row" style="margin-top: 45px;" v-if="Num_Vinculados_Ferias>0">
             <div class="col-md-1" style="text-align: left;"></div>
             <div class="col-md-5" style="text-align: left;">
-                <label for="num_vinculados_discapacitado">Ingrese el número de niños, niñas y jóvenes vinculados al programa Ondas pertenecientes a una etnia que participan en ferias de ciencia, tecnología e innovación:</label>
+                <label for="num_vinculados_discapacitado">Ingrese el número de niños, niñas y jóvenes vinculados al programa Ondas discapacitados en ferias de ciencia, tecnología e innovación:</label>
             </div>
             <div class="col-md-3">
                 <input type="number" class="form-control" id="num_vinculados_discapacitado" min="0" v-model.number="Num_Vinculados_Discapacidad" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Vinculados_Discapacidad<0 || Num_Vinculados_Etnia>Num_Vinculados_Ferias? 'red' : ''}">

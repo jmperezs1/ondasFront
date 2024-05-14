@@ -10,14 +10,14 @@
               <span>Bienvenido, MinCiencias</span>
             </div>
             <div class="col-4 col-md-6 d-flex justify-content-end">
-              <button class="btn me-2">Configuración</button>
-              <button class="btn">Cerrar Sesión</button>
+              <a class="btn me-2" href="/minciencias/configuracion">Configuración</a>
+              <button class="btn" @click="cerrarSesion">Cerrar Sesión</button>
             </div>
           </div>
           <hr>
           <div class="row">
             <div class="col-3 d-flex align-items-center justify-content-center">
-              <button class="btn">Inicio</button>
+              <a class="btn" href="/minciencias">Inicio</a>
             </div>
             <div class="col-3">
               <div class="dropdown">
@@ -25,8 +25,9 @@
                   Convocatoria
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a class="dropdown-item" href="#">Consultar información convocatoria</a></li>
-                  <li><a class="dropdown-item" href="#">Ingresar información convocatoria</a></li>
+                  <li><a class="dropdown-item" href="/minciencias/convocatorias/ingreso">Ingresar información convocatoria</a></li>
+                  <li><a class="dropdown-item" href="/minciencias/convocatorias/consultas/periodo">Exportar información de un año convocatoria</a></li>
+                  <li><a class="dropdown-item" href="/minciencias/convocatorias/consultas/periodos">Exportar información en un rango de años convocatoria</a></li>
                 </ul>
               </div>
             </div>
@@ -36,8 +37,9 @@
                   Acompañamiento
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                    <li><a class="dropdown-item" href="#">Consultar información acompañamiento</a></li>
-                  <li><a class="dropdown-item" href="#">Ingresar información acompañamiento</a></li>
+                  <li><a class="dropdown-item" href="/minciencias/acompanamiento/ingreso">Ingresar información acompañamiento</a></li>
+                  <li><a class="dropdown-item" href="/minciencias/acompanamiento/consultas/periodo">Exportar información de un año</a></li>
+                  <li><a class="dropdown-item" href="/minciencias/acompanamiento/consultas/periodos">Exportar información en un rango de años</a></li>
                 </ul>
               </div>
             </div>
@@ -47,8 +49,9 @@
                   Movilización
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                    <li><a class="dropdown-item" href="#">Consultar información movilización</a></li>
-                  <li><a class="dropdown-item" href="#">Ingresar información movilización</a></li>
+                    <li><a class="dropdown-item" href="/minciencias/movilizacion/ingreso">Ingresar información movilización</a></li>
+                    <li><a class="dropdown-item" href="/minciencias/movilizacion/consultas/periodo">Exportar información de un año</a></li>
+                  <li><a class="dropdown-item" href="/minciencias/movilizacion/consultas/periodos">Exportar información en un rango de años</a></li>
                 </ul>
               </div>
             </div>
@@ -61,7 +64,12 @@
 <script>
 export default {
     name: 'NavBarMinciencias',
-    // Your component's logic goes here
+    methods: {
+    cerrarSesion() {
+      localStorage.removeItem('token');
+      this.$router.push('/');
+    }
+  }
 }
 </script>
 
@@ -69,6 +77,6 @@ export default {
   #NavBarMinCiencias{
     margin-top: 30px;
     overflow-x: hidden; 
-    height: 200px
+    height: 230px
   }
 </style>

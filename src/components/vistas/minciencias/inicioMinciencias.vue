@@ -12,8 +12,9 @@
       <div class="row h-100 align-items-center justify-content-start">
       <div class="col-12 col-md-10">
         <ul style="list-style-type: none;">
-          <li style="margin-bottom: 10px;"><a href="#">Consultar información sobre convocatoria del departamento</a></li>
-          <li style="margin-bottom: 10px;"><a href="#">Ingresar información sobre  convocatoria del departamento</a></li>
+          <li style="margin-bottom: 10px;"><a href="/minciencias/convocatorias/ingreso">Ingresar información sobre convocatoria de un departamento</a></li>
+          <li style="margin-bottom: 10px;"><a href="/minciencias/convocatorias/consultas/periodo">Exportar información de un año</a></li>
+          <li style="margin-bottom: 10px;"><a href="/minciencias/convocatorias/consultas/periodos">Exportar información en un rango de años</a></li>
         </ul>
       </div>
       </div>
@@ -32,8 +33,9 @@
       <div class="row h-100 align-items-center justify-content-start">
       <div class="col-12 col-md-10">
         <ul style="list-style-type: none;">
-          <li style="margin-bottom: 10px;"><a href="#">Consultar información sobre acompañamiento del departamento</a></li>
-          <li style="margin-bottom: 10px;"><a href="#">Ingresar información sobre acompañamiento del departamento</a></li>
+          <li style="margin-bottom: 10px;"><a href="/minciencias/acompanamiento/ingreso">Ingresar información sobre acompañamiento de un departamento</a></li>
+          <li style="margin-bottom: 10px;"><a href="/minciencias/acompanamiento/consultas/periodo">Exportar información de un año</a></li>
+          <li style="margin-bottom: 10px;"><a href="/minciencias/acompanamiento/consultas/periodos">Exportar información en un rango de años</a></li>
         </ul>
       </div>
       </div>
@@ -52,8 +54,9 @@
       <div class="row h-100 align-items-center justify-content-start">
       <div class="col-12 col-md-10">
         <ul style="list-style-type: none;">
-          <li style="margin-bottom: 10px;"><a href="#">Consultar información sobre movilización del departamento</a></li>
-          <li style="margin-bottom: 10px;"><a href="#">Ingresar información sobre movilización del departamento</a></li>
+            <li style="margin-bottom: 10px;"><a href="/minciencias/movilizacion/ingreso">Ingresar información movilización</a></li>
+            <li style="margin-bottom: 10px;"><a href="/minciencias/movilizacion/consultas/periodo">Exportar información de un año</a></li>
+            <li style="margin-bottom: 10px;"><a href="/minciencias/movilizacion/consultas/periodos">Exportar información en un rango de años</a></li>
         </ul>
       </div>
       </div>
