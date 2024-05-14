@@ -37,8 +37,9 @@
                   Acompañamiento
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                    <li><a class="dropdown-item" href="#">Consultar información acompañamiento</a></li>
-                  <li><a class="dropdown-item" href="#">Ingresar información acompañamiento</a></li>
+                  <li><a class="dropdown-item" href="/departamentos/acompanamientos/ingreso">Ingresar información Acompañamiento</a></li>
+                  <li><a class="dropdown-item" href="/departamentos/acompanamientos/consultas/periodo">Exportar información de un año</a></li>
+                  <li><a  class="dropdown-item" href="/departamentos/acompanamientos/consultas/periodos">Exportar información en un rango de años</a></li>
                 </ul>
               </div>
             </div>

@@ -33,8 +33,9 @@
       <div class="row h-100 align-items-center justify-content-start">
       <div class="col-12 col-md-10">
         <ul style="list-style-type: none;">
-          <li style="margin-bottom: 10px;"><a href="#">Consultar información sobre acompañamiento del departamento</a></li>
-          <li style="margin-bottom: 10px;"><a href="#">Ingresar información sobre acompañamiento del departamento</a></li>
+          <li style="margin-bottom: 10px;"><a href="/departamentos/acompanamientos/ingreso">Ingresar información sobre acompañamientos del departamento</a></li>
+          <li style="margin-bottom: 10px;"><a href="/departamentos/acompanamientos/consultas/periodo">Exportar información de un año</a></li>
+          <li style="margin-bottom: 10px;"><a href="/departamentos/acompanamientos/consultas/periodos">Exportar información en un rango de años</a></li>
         </ul>
       </div>
       </div>

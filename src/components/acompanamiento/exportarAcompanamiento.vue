@@ -50,7 +50,7 @@
         <div class="col-md-8">
           <select class="custom-select" id="desagregacion" v-model="selectedDesagregacion">
             <option selected>Seleccionar...</option>
-            <option value="nacional">Nacional</option>
+            <option v-if='!this.departamental' value="nacional">Nacional</option>
             <option value="departamental">Departamental</option>
             <option v-if="showGeneroOption" value="genero">Género</option>
             <option v-if="showGeneroOption" value="orientacion">Orientación sexual</option>
@@ -58,25 +58,25 @@
             <option v-if="showGeneroOption" value="reincorporacion">Población en reincorporación</option>
             <option v-if="showGeneroOption" value="etnia">Pueblos y comunidades étnicas</option>
             <option v-if="showGeneroOption" value="discapacidad">Población en discapacidad</option>
-            <option v-if="showGeneroOption" value="territorial">Territorial</option>
+            <option v-if="(!departamental && showGeneroOption) || (territorial && departamental) " value="territorial">Territorial</option>
           </select> 
         </div>
       </div>
-      <div class="row" v-if="showDesagregacion2" style="margin-top: 20px;">
+      <div class="row" v-if="showDesagregacion2 && !departamental" style="margin-top: 20px;">
         <div class="col-md-2">
           <label for="agrupar">Agrupar por:</label>
         </div>
         <div class="col-md-9 p-0" style ="margin-left: 10px">
           <select class="custom-select" id="desagregacion" v-model="selectedDesagregacion2">
             <option selected>Seleccionar...</option>
-            <option v-if="!showTerritorial" value="nacional">Nacional</option>
+            <option  v-if="!showTerritorial || !this.departamental" value="nacional">Nacional</option>
             <option v-if="!showTerritorial" value="departamental">Departamentos</option>
             <option v-if="showTerritorial" value="pdet">PDET</option>
             <option v-if="showTerritorial" value="zomac">ZOMAC</option>
           </select>
         </div>
       </div>
-      <div class="row" v-if="showDepartamentos" style="margin-top: 40px;">
+      <div class="row" v-if="showDepartamentos && !this.departamental" style="margin-top: 40px;">
         <div class="col-md-3">
           <h6>Departamentos:</h6>
           <div class="form-check">
@@ -125,10 +125,8 @@
 </template>
 
 <script>
+import {jwtDecode }from 'jwt-decode';
 export default {
-    components: {
-        
-    },
     name: 'ExportarAcompanamiento',
     data() {
         return {
@@ -162,7 +160,9 @@ export default {
         selectedDesagregacion: null,
         selectedDesagregacion2: null,
         selectedDepartamentos: [],
-        anio2: null
+        anio2: null,
+        departamental : jwtDecode(localStorage.getItem('token')).rol === 'Departamento',
+        territorial: true
         };
     },
     watch:{
@@ -233,13 +233,14 @@ export default {
         disSelect(){
           const hasAsesoresSelected = this.selectedIndicadores.includes("Número de asesores vinculados al programa");
           const hasOtherSelections = this.selectedIndicadores.some(indicador => indicador !== "Número de asesores vinculados al programa");
-          if(!hasAsesoresSelected && hasOtherSelections){
+          if(!this.departamental){if(!hasAsesoresSelected && hasOtherSelections){
             this.selectedDesagregacion2 = null;
             if((this.selectedDesagregacion === "genero" || this.selectedDesagregacion === "orientacion" || this.selectedDesagregacion === "conflicto_armado" || this.selectedDesagregacion === "reincorporacion" || this.selectedDesagregacion === "etnia" || this.selectedDesagregacion === "discapacidad"|| this.selectedDesagregacion === 'territorial') && !hasAsesoresSelected)
             {
               this.selectedDesagregacion = null;
             }
           }
+        }
         },
         async clickButton(){
           let response;
@@ -330,6 +331,25 @@ export default {
               else if(this.id === 1){
                 response = await fetch(`https://localhost:7192/api/acompaniamientos/filterAniosDepartamentos/${this.anio}/${this.anio2}?departamentos=${departamentos}&columnNames=${columnas}`);
               }
+                if (response.ok) {
+                    this.descarga(response, 1);
+                } else {
+                    // Handle the error if the response is not successful
+                    console.error('Failed to fetch data:', response.statusText);
+                }
+              }
+              else if(this.departamental && this.selectedDesagregacion == "territorial"){
+                var cadena='';
+                    
+                if(this.selectedIndicadores.includes("Número de asesores vinculados al programa")){
+                  cadena += 'Num_Asesores_Pdet,Num_Asesores';
+                }
+                if(this.id === 0){
+                  response = await fetch(`https://localhost:7192/api/Acompaniamiento/filterAnioDepartamento/${this.anio}?departamentos=${this.selectedDepartamentos[0]}&columnNames=${cadena}`);
+                }
+                else if (this.id === 1){
+                  response = await fetch(`https://localhost:7192/api/Acompaniamiento/filterAniosDepartamentos/${this.anio}/${this.anio2}?departamentos=${this.selectedDepartamentos[0]}&columnNames=${cadena}`);
+                }
                 if (response.ok) {
                     this.descarga(response, 1);
                 } else {
@@ -539,17 +559,30 @@ export default {
         },
     },
     async mounted() {
-        try{
-          const response = await fetch ("https://localhost:7192/api/acompaniamientos/minmaxanio");
-          if(!response.ok){
-            throw new Error("Error en la petición");
-          }
-          const json = await response.json();
-          const minYear = json.minAnio;
-          const maxYear = json.maxAnio;
-          for (let i = minYear; i <= maxYear; i++) {
-            this.years.push(i);
-          }
+      const token = jwtDecode(localStorage.getItem('token'));
+      if(token.rol === 'Departamento'){
+        this.selectedDepartamentos.push(token.departamento);
+        this.selectedDesagregacion2 = 'departamental';
+        this.territorial = ["Cauca,Nariño,Valle del Cauca,Arauca,Antioquia,Norte de Santander,Chocó,Caquetá,Huila,Guaviare,Meta,Bolívar,Sucre,Putumayo,Cesar,La Guajira,Magdalena,Córdoba,Tolima"].includes(this.selectedDepartamentos[0])
+      }
+      try {
+        let response;
+        if(token.rol === 'Departamento'){
+          this.departamental = true;
+           response = await fetch('https://localhost:7192/api/acompaniamientos/minmaxanio/'+token.departamento);
+        }
+        else{
+           response = await fetch('https://localhost:7192/api/acompaniamientos/minmaxanio');
+        }
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        const json = await response.json();
+        const minYear = json.minAnio;
+        const maxYear = json.maxAnio;
+        for (let year = minYear; year <= maxYear; year++) {
+          this.years.push(year);
+        }
         }catch(error){
           console.error('Error fetching data:', error);
         }

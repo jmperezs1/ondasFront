@@ -612,7 +612,14 @@ import { jwtDecode } from 'jwt-decode';
         this.territorial = ["Cauca,Nariño,Valle del Cauca,Arauca,Antioquia,Norte de Santander,Chocó,Caquetá,Huila,Guaviare,Meta,Bolívar,Sucre,Putumayo,Cesar,La Guajira,Magdalena,Córdoba,Tolima"].includes(this.selectedDepartamentos[0])
       }
       try {
-        const response = await fetch('https://localhost:7192/api/convocatorias/minmaxanio');
+        let response;
+        if(token.rol === 'Departamento'){
+          this.departamental = true;
+           response = await fetch('https://localhost:7192/api/convocatorias/minmaxanio/'+token.departamento);
+        }
+        else{
+           response = await fetch('https://localhost:7192/api/convocatorias/minmaxanio');
+        }
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }
@@ -622,6 +629,7 @@ import { jwtDecode } from 'jwt-decode';
         for (let year = minYear; year <= maxYear; year++) {
           this.years.push(year);
         }
+        
       } catch (error) {
         console.error('Error fetching data:', error);
       }
