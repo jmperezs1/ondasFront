@@ -82,7 +82,7 @@
                 <label for="num_entre_15_17">Ingrese el número de niños participantes entre 15 y 17:</label>
             </div>
             <div class="col-md-3">
-                <input type="number" class="form-control" id="num_entre_15_17" min="0" v-model.number="Num_Entre_15_17" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Entre_15_17<0|| !((this.Num_Entre_6_8 + this.Num_Entre_9_11 + this.Num_Entre_15_17 + this.Num_Entre_15_17 == this.Num_Vinculados) )? 'red' : ''}">
+                <input type="number" class="form-control" id="num_entre_15_17" min="0" v-model.number="Num_Entre_15_17" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Entre_15_17<0|| !((this.Num_Entre_6_8 + this.Num_Entre_9_11 + this.Num_Entre_12_14  + this.Num_Entre_15_17 == this.Num_Vinculados) )? 'red' : ''}">
             </div>
             <div class="col-md-3" v-if="Num_Entre_15_17<0" style="color: red; margin-top: 10px; text-align: center">El número de niños entre 15 y 17 debe ser POSITIVO.</div>
         </div>
@@ -541,20 +541,35 @@ export default {
         }
     },
     methods: {
-    async saveData() {
-        const token = localStorage.getItem('token');
-        const id = jwtDecode(token).id
-        console.log(JSON.stringify(this.$data));
-        const response = await fetch('https://localhost:7192/api/Convocatorias/'+id+'/'+token, {
+
+        async saveData() {
+    const token = localStorage.getItem('token');
+    const id = jwtDecode(token).id;
+
+    try {
+        const response = await fetch('https://localhost:7192/api/Convocatorias/' + id + '/' + token, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(this.$data)
         });
-        console.log(response);
+
+        if (response.ok) {
+            alert('¡Los datos se guardaron exitosamente!');
+        } else {
+            // If response is not ok, display error alert
+            alert('Error al guardar los datos. Por favor, inténtelo de nuevo.');
+        }
+
         return response.json();
-         }
+    } catch (error) {
+        // If there's an error during the fetch request, display error alert
+        console.error('Error:', error);
+        alert('Ocurrió un error al guardar los datos. Por favor, inténtelo de nuevo.');
+    }
+}
+
     },
     watch: {
     // Watch for changes in the props and update the data accordingly

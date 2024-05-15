@@ -93,11 +93,13 @@ export default {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        nombre: this.nombre,
-                        correo: this.correo,
-                        usuario: this.usuario,
-                        rol: this.rol,
-                        departamento: departamento
+                        UserID:0,
+                        Nombre: this.nombre,
+                        Correo: this.correo,
+                        Usuario: this.usuario,
+                        Rol: this.rol,
+                        Departamento: departamento,
+                        Clave: ''
                     }),
                 });
                 alert('Usuario creado con éxito');
