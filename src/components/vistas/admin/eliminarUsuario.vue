@@ -1,6 +1,6 @@
 <template>
     <navBarAdmin />
-    <h1>Eliminar Usuario</h1>
+    <h1 style="text-align: center;">Eliminar Usuario</h1>
     <div class="container">
         <div class="row" >
             <div class="col-md-4"></div>
@@ -8,6 +8,9 @@
                 <div class="form-group">
                     <label for="usuario">Usuario</label>
                     <input type="text" class="form-control" id="usuario" v-model="usuario" placeholder="Ingrese el usuario">
+                    <div style="text-align:center; margin-top: 50px">
+                        <button type="button" class="btn btn-primary" @click="hola()">Eliminar Usuario</button>
+                    </div>
                 </div>
             </div>
         </div> 
@@ -28,6 +31,9 @@ export default {
     },
     methods: {
         // Your methods here
+        hola(){
+            alert("Hola");
+        }
     },
     mounted() {
         // Code to run when the component is mounted
