@@ -25,10 +25,8 @@
                   Usuarios
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a class="dropdown-item" href="#">Crear usuario</a></li>
-                  <li><a class="dropdown-item" href="#">Buscar usuario</a></li>
-                  <li><a class="dropdown-item" href="#">Modificar usuario</a></li>
-                  <li><a class="dropdown-item" href="#">Eliminar usuario</a></li>
+                  <li><a class="dropdown-item" href="/admin/crearUsuario">Crear usuario</a></li>
+                  <li><a class="dropdown-item" href="/admin/eliminarUsuario">Eliminar usuario</a></li>
                 </ul>
               </div>
             </div>
@@ -49,6 +47,6 @@ export default {
 #NavBarAdmin {
     margin-top: 30px;
     overflow-x: hidden; 
-    height: 270px
+    height: 200px
 }
 </style>

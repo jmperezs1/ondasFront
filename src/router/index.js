@@ -21,6 +21,9 @@ import exportarAcompaniamientosPeriodosDepartamento from '../components/vistas/d
 import movilizacionIngresoDepartamento from '@/components/vistas/departamento/movilizacion/movilizacionIngresoDepartamento.vue';
 import exportarMovilizacionDepartamento from '@/components/vistas/departamento/movilizacion/exportarMovilizacionDepartamento.vue';
 import exportarMovilizacionesPeriodosDepartamento from '@/components/vistas/departamento/movilizacion/exportarMovilizacionesPeriodosDepartamento.vue';
+import inicioAdmin from '@/components/vistas/admin/inicioAdmin.vue';
+import crearUusario from '@/components/vistas/admin/crearUsuario.vue';
+import eliminarUsuario from '@/components/vistas/admin/eliminarUsuario.vue';
 import { jwtDecode } from 'jwt-decode';
 
 const routes = [
@@ -133,6 +136,22 @@ const routes = [
         path: '/departamentos/movilizaciones/consultas/periodos',
         name: 'periodosMovilizacionDepartamento',
         component: exportarMovilizacionesPeriodosDepartamento
+    },
+    {
+        path: '/admin',
+        name: 'inicioAdmin',
+        component: inicioAdmin
+    },
+    {
+        path:'/admin/crearUsuario',
+        name: 'crearUsuario',
+        component: crearUusario
+    },
+    {
+        path: '/admin/eliminarUsuario',
+        name: 'eliminarUsuario',
+        component: eliminarUsuario
+    
     }
    
 ];
@@ -150,6 +169,7 @@ router.beforeEach(async (to, from, next) => {
         '/departamentos/acompanamientos/ingreso', '/departamentos/acompanamientos/consultas/periodo', '/departamentos/acompanamientos/consultas/periodos',
         '/departamentos/movilizaciones/ingreso', '/departamentos/movilizaciones/consultas/periodo', '/departamentos/movilizaciones/consultas/periodos'
     ];
+    const authAdmin = ['/admin', '/admin/crearUsuario', '/admin/eliminarUsuario'];
     
 
     if (!['/'].includes(to.path)) {
@@ -166,6 +186,9 @@ router.beforeEach(async (to, from, next) => {
                     next('/');
                 } else if (authDepartamento.includes(to.path) && json.rol !== 'Departamento') {    
                     next('/');
+                }
+                else if(authAdmin.includes(to.path) && json.rol !== 'Admin'){
+                    next('/');
                 } else {
                     next();
                 }
@@ -178,7 +201,7 @@ router.beforeEach(async (to, from, next) => {
             next('/');
         }
     } else {
-        if (authMinciencias.includes(to.path) || authDepartamento.includes(to.path)) {
+        if (authMinciencias.includes(to.path) || authDepartamento.includes(to.path) || authAdmin.includes(to.path)) {
             next('/');
         } else {
             next(); 

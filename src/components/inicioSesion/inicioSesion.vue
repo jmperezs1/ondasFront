@@ -41,6 +41,9 @@
             } else if (data.rol === "Departamento") {
               this.$router.push('/departamentos');
             }
+            else if(data.rol === "Admin"){
+              this.$router.push('/admin');
+            }
           } else {
             console.error('Login failed', data);
           }

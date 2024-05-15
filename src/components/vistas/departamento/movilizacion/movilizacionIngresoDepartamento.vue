@@ -36,12 +36,14 @@ export default {
             anio: null,
             departamento: null,
             valido: '',
+            token: null,
+            userId: null,
         }
     },
     methods: {
         async verificarExistencia() {
             if (this.anio != null) {
-                const response = await fetch(`https://localhost:7192/api/movilizaciones/anio/${this.anio}/departamento/${this.departamento}`);
+                const response = await fetch(`https://localhost:7192/api/movilizaciones/anio/${this.anio}/departamento/${this.departamento}/${this.userId}/${this.token}`);
                 if (response.status === 404) {
                     this.valido = true;
                 }
@@ -60,9 +62,9 @@ export default {
         },
     },
     async mounted() {
-        const token = localStorage.getItem('token');
-        const id = jwtDecode(token).id;
-        const departamento = await fetch (`https://localhost:7192/api/tokens/${id}/departamento?token=${token}`);
+        this.token = localStorage.getItem('token');
+        this.userId = jwtDecode(this.token).id;
+        const departamento = await fetch (`https://localhost:7192/api/tokens/${this.userId}/departamento?token=${this.token}`);
         const json = await departamento.json();
         this.departamento = json.departamento;
     }

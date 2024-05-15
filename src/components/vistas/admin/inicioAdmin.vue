@@ -12,10 +12,8 @@
       <div class="row h-100 align-items-center justify-content-start">
       <div class="col-8 col-md-6">
         <ul style="list-style-type: none;">
-          <li style="margin-bottom: 10px;"><a href="#">Crear usuario</a></li>
-          <li style="margin-bottom: 10px;"><a href="#">Consultar usuario</a></li>
-          <li style="margin-bottom: 10px;"><a href="#">Modificar usuario</a></li>
-          <li style="margin-bottom: 10px;"><a href="#">Eliminar usuario</a></li>
+          <li style="margin-bottom: 10px;"><a href="/admin/crearUsuario">Crear usuario</a></li>
+          <li style="margin-bottom: 10px;"><a href="/admin/eliminarUsuario">Eliminar usuario</a></li>
         </ul>
       </div>
       </div>

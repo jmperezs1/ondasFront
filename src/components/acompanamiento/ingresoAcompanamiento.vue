@@ -343,6 +343,7 @@
 </template>
 
 <script>
+import { jwtDecode } from 'jwt-decode';
 export default {
     name: 'IngresoAcompanamiento',
     data() {
@@ -494,7 +495,9 @@ export default {
     },
     methods: {
         async saveData(){
-            const response = await fetch('https://localhost:7192/api/Acompaniamientos', {
+            const token = localStorage.getItem('token');
+            const id = jwtDecode(token).id
+            const response = await fetch('https://localhost:7192/api/Acompaniamientos/'+id+'/'+token, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

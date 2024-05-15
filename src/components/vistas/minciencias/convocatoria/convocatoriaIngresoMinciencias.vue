@@ -36,7 +36,7 @@
 <script>
 import NavBarMinciencias from '@/components/NavBars/navBarMinciencias.vue';
 import IngresoConvocatoria from '@/components/convocatoria/ingresoConvocatoria.vue';
-
+import { jwtDecode } from 'jwt-decode';
 export default {
     name: 'ConvocatoriaIngresoMinciencias',
     components: {
@@ -49,7 +49,16 @@ export default {
             anio: null,
             departamento: null,
             valido: '',
+            id: null,
+            token: null,
         }
+    },
+    async mounted() {
+    this.token = localStorage.getItem('token');
+    this.id = jwtDecode(this.token).id;
+    const departamento = await fetch (`https://localhost:7192/api/tokens/${this.id}/departamento?token=${this.token}`);
+    const json = await departamento.json();
+    this.departamento = json.departamento;
     },
     methods: {
         async verificarExistencia() {

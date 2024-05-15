@@ -37,6 +37,7 @@
 <script>
 import NavBarMinciencias from '@/components/NavBars/navBarMinciencias.vue'
 import IngresoAcompanamiento from '@/components/acompanamiento/ingresoAcompanamiento.vue'
+import { jwtDecode } from 'jwt-decode';
 export default {
     name: 'AcompanamientoIngresoMinciencias',
     components: {
@@ -83,10 +84,17 @@ export default {
                 valido: '',
         }
     },
+    async mounted() {
+    this.token = localStorage.getItem('token');
+    this.id = jwtDecode(this.token).id;
+    const departamento = await fetch (`https://localhost:7192/api/tokens/${this.id}/departamento?token=${this.token}`);
+    const json = await departamento.json();
+    this.departamento = json.departamento;
+    },
     methods: {
         async verificarExistencia() {
             if (this.anio != null && this.departamento != null) {
-                const response = await fetch(`https://localhost:7192/api/Acompaniamientos/anio/${this.anio}/departamento/${this.departamento}`);
+                const response = await fetch(`https://localhost:7192/api/Acompaniamientos/anio/${this.anio}/departamento/${this.departamento}/${this.userId}/${this.token}`);
                 if (response.status === 404) {
                     this.valido = true;
                 }
