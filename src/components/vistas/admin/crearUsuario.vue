@@ -60,7 +60,7 @@
 
 <script>
 import NavBarAdmin from '@/components/NavBars/navBarAdmin.vue'
-
+import {jwtDecode} from 'jwt-decode';
 export default {
     name: 'CrearUsuario',
     components: {
@@ -82,9 +82,24 @@ export default {
         };
     },
     methods: {
-        crearUsuario() {
+        async crearUsuario() {
             if (this.nombre && this.correo && this.usuario && this.rol && (this.rol !== 'Departamento' || this.departamento)) {
-                // Code to handle user creation
+                const departamento = this.rol === 'Departamento' ? this.departamento : '';
+                const token = localStorage.getItem('token');
+                const id = jwtDecode(token).id;
+                await fetch(`https://localhost:7192/api/autenticaciones/${id}/${token}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        nombre: this.nombre,
+                        correo: this.correo,
+                        usuario: this.usuario,
+                        rol: this.rol,
+                        departamento: departamento
+                    }),
+                });
                 alert('Usuario creado con éxito');
             } else {
                 alert('Por favor complete todos los campos requeridos');
