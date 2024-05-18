@@ -9,8 +9,7 @@
     </div>
     <div class="form-group" style="width: 540px; margin: 0% auto">
       <label for="inputNueva">Nueva Contraseña</label>
-      <input type="password" class="form-control" id="inputNueva" v-model="nueva" :class="{'border-danger': !isPasswordLongEnough}" placeholder="Ingrese su nueva contraseña">
-      <p v-if="!isPasswordLongEnough" style="color: red; margin-top: 5px;">La contraseña debe tener al menos 8 caracteres.</p>
+      <input type="password" class="form-control" id="inputNueva" v-model="nueva" placeholder="Ingrese la su nueva contraseña">
     </div>
     <div class="form-group" style="width: 540px; margin: 0% auto">
       <label for="inputConfirmacion">Confirmar Contraseña</label>
@@ -24,13 +23,12 @@
 
 
 
-
 <script>
 import NavBarMinCiencias from '@/components/NavBars/navBarMinciencias.vue'
 import { jwtDecode } from 'jwt-decode';
 
 export default {
-    name: 'ConfiguracionMinciencias',
+    name: 'configuracionDepartamento',
     components: {
         NavBarMinCiencias
     },
@@ -45,18 +43,11 @@ export default {
     computed: {
         passwordsMatch() {
             return this.nueva === this.confirmacion;
-        },
-        isPasswordLongEnough() {
-            return this.nueva.length >= 8;
         }
     },
     methods: {
 
         async confirmPasswordService(){
-            if (!this.isPasswordLongEnough) {
-                alert('La nueva contraseña debe tener al menos 8 caracteres.');
-                return;}
-            else{
             this.id = jwtDecode(this.token).id;
             const response = await fetch(`https://localhost:7192/api/autenticaciones/ConfirmarContrasenia/${this.temp}/${this.token}/${this.id}`);
             if(response.ok){
@@ -67,7 +58,6 @@ export default {
             else{
                 alert('La contraseña actual o temporal es incorrecta.');
             }
-        }
         },
 
         async saveData(){

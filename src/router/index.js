@@ -24,6 +24,9 @@ import exportarMovilizacionesPeriodosDepartamento from '@/components/vistas/depa
 import inicioAdmin from '@/components/vistas/admin/inicioAdmin.vue';
 import crearUusario from '@/components/vistas/admin/crearUsuario.vue';
 import eliminarUsuario from '@/components/vistas/admin/eliminarUsuario.vue';
+import configuracionAdmin from '@/components/vistas/admin/configuracionAdmin.vue';
+import configuracionDepartamento from '@/components/vistas/departamento/configuracionDepartamento.vue';
+import restablecerContrasenia from '@/components/inicioSesion/olvideContrasenia.vue';
 import { jwtDecode } from 'jwt-decode';
 
 const routes = [
@@ -152,6 +155,21 @@ const routes = [
         name: 'eliminarUsuario',
         component: eliminarUsuario
     
+    },
+    {
+        path: '/reset-password',
+        name: 'resetPassword',
+        component: restablecerContrasenia
+    },
+    {
+        path: '/admin/configuracion',
+        name: 'configuracionAdmin',
+        component: configuracionAdmin
+    },
+    {
+        path: '/departamentos/configuracion',
+        name: 'configuracionDepartamento',
+        component: configuracionDepartamento
     }
    
 ];

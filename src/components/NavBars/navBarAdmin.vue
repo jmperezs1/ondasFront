@@ -10,7 +10,7 @@
               <span>Bienvenido, Administrador de usuarios</span>
             </div>
             <div class="col-4 col-md-6 d-flex justify-content-end">
-              <button class="btn me-2">Configuración</button>
+              <button class="btn me-2" href='/admin/configuracion'>Configuración</button>
               <button class="btn">Cerrar Sesión</button>
             </div>
           </div>

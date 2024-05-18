@@ -32,23 +32,6 @@ import { jwtDecode } from 'jwt-decode';
       };
     },
     methods: {
-<<<<<<< HEAD
-        // Your methods here
-        hola(){
-            alert("Hola");
-        }
-    },
-    mounted() {
-        // Code to run when the component is mounted
-    },
-    // Other component options here
-};
-</script>
-
-<style scoped>
-/* Your component styles here */
-</style>
-=======
       async eliminarUsuario() {
         if (!this.usuario) {
           alert('Por favor ingrese el usuario a eliminar.');
@@ -88,4 +71,3 @@ import { jwtDecode } from 'jwt-decode';
   /* Add your component-specific styles here */
   </style>
   
->>>>>>> 351ec67b44855a59dd90fb18a6dc48e4c8f7adb0

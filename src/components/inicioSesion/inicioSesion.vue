@@ -10,8 +10,11 @@
       <label for="inputPassword" style="text-align: left; display: block; margin-bottom: 5px;">Contraseña</label>
       <input type="password" class="form-control" id="inputPassword" placeholder="Ingrese la contraseña">
     </div>
+    <div style="text-align: center; margin-top: 10px;">
+          <a href="/reset-password" style="color: #53C0D9;">Olvidé Contraseña</a>
+      </div>
     <div style="text-align: center;">
-      <button type="submit" class="btn" style="height: 40px; width: 331px; margin-top: 74px; background-color: #53C0D9;" @click="onLogin">Ingresar</button>
+      <button type="submit" class="btn" style="height: 40px; width: 331px; margin-top: 50px; background-color: #53C0D9;" @click="onLogin">Ingresar</button>
     </div>
   </template>
   
