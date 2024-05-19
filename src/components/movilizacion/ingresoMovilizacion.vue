@@ -224,6 +224,7 @@
 </template>
 
 <script>
+import { jwtDecode } from 'jwt-decode';
 export default {
     name: 'IngresoMovilizacion',
     data() {
@@ -264,21 +265,21 @@ export default {
         }
     },
     methods: {
-    async saveData() {
-
-        this.generateEncuentrosData();
-
-        console.log(this.$data.encuentros);
-
-        const response = await fetch('https://localhost:7192/api/Movilizaciones', {
+        async saveData() {
+        const token = localStorage.getItem('token');
+        const id = jwtDecode(token).id
+        const response = await fetch('https://localhost:7192/api/Movilizaciones/'+id+'/'+token, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(this.$data)
         });
-        return response.json();
-    },
+        if(response.ok){
+            window.location.reload(); // Refresh the page
+            alert('Datos guardados correctamente');
+        }
+        },
   generateEncuentrosData() {
     // Initialize an empty array to store the generated objects
     let generatedData = [];

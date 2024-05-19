@@ -20,7 +20,7 @@
     name: 'restablecerContrasenia',
     methods: {
       async onLogin() {
-        const username = document.getElementById('inputUser').value;
+        const username = document.getElementById('inputUser').value.toLowerCase();
         const email = document.getElementById('inputCorreo').value;
 
         try {

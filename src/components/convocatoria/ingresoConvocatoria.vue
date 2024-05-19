@@ -544,7 +544,6 @@ export default {
     async saveData() {
         const token = localStorage.getItem('token');
         const id = jwtDecode(token).id
-        console.log(JSON.stringify(this.$data));
         const response = await fetch('https://localhost:7192/api/Convocatorias/'+id+'/'+token, {
             method: 'POST',
             headers: {
@@ -552,9 +551,11 @@ export default {
             },
             body: JSON.stringify(this.$data)
         });
-        console.log(response);
-        return response.json();
-         }
+        if(response.ok){
+            window.location.reload(); // Refresh the page
+            alert('Datos guardados correctamente');
+        }
+        }
     },
     watch: {
     // Watch for changes in the props and update the data accordingly

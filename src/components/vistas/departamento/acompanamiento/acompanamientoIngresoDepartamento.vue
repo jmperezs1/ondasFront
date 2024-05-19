@@ -59,6 +59,7 @@ export default {
     async mounted() {
     this. token = localStorage.getItem('token');
     this.id = jwtDecode(this.token).id;
+
     const departamento = await fetch (`https://localhost:7192/api/tokens/${this.id}/departamento?token=${this.token}`);
     const json = await departamento.json();
     this.departamento = json.departamento;

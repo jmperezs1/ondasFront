@@ -23,11 +23,11 @@
     name: 'InicioSesion',
     methods: {
       async onLogin() {
-        const user = document.getElementById('inputUser').value;
+        const user = document.getElementById('inputUser').value.toLowerCase();
         const password = document.getElementById('inputPassword').value;
   
         try {
-          const response = await fetch('https://localhost:7192/api/autenticaciones/login', {
+          const response = await fetch('https://localhost:7192/api/Autenticaciones/login', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -48,10 +48,10 @@
               this.$router.push('/admin');
             }
           } else {
-            console.error('Login failed', data);
+            alert('Usuario o contraseña incorrectos');
           }
         } catch (error) {
-          console.error('An error occurred', error);
+          alert('Usuario o contraseña incorrectos');
         }
       }
     }
