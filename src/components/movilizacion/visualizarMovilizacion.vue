@@ -4,23 +4,23 @@
         <div class="row">
             <!-- Start Year Input -->
             <div class="col-md-2" style="text-align: center;">
-                <label for="start_year">Año de inicio:</label>
+                <label for="startYear">Año de inicio:</label>
             </div>
             <div class="col-md-3">
-                <input type="number" class="form-control" id="start_year" v-model.number="startYear" min="1900" max="2099" step="1" style="background-color: #D9D9D9; border: 0;" :style="{border: (startYear < 1900 || startYear > 2099) ? '1px solid red' : ''}">
+                <input type="number" class="form-control" @change="getDatos" id="startYear" v-model.number="startYear" min="1900" max="2099" step="1" style="background-color: #D9D9D9; border: 0;" :style="{border: (startYear < 1900 || startYear > 2099) ? '1px solid red' : ''}">
             </div>
         
             <!-- End Year Input -->
             <div class="col-md-2" style="text-align: center;">
-                <label for="end_year">Año de fin:</label>
+                <label for="endYear">Año de fin:</label>
             </div>
             <div class="col-md-3">
-                <input type="number" class="form-control" id="end_year" v-model.number="endYear" min="1900" max="2099" step="1" style="background-color: #D9D9D9; border: 0;" :style="{border: (endYear < 1900 || endYear > 2099) ? '1px solid red' : ''}">
+                <input type="number" class="form-control" @change="getDatos" id="endYear" v-model.number="endYear" min="1900" max="2099" step="1" style="background-color: #D9D9D9; border: 0;" :style="{border: (endYear < 1900 || endYear > 2099) ? '1px solid red' : ''}">
             </div>
         </div>
     </div>
 
-    <div class="row" v-if="!this.departamental" style="margin-top: 40px; margin-left: 60px;">
+    <div class="row" v-if="this.rolF ==  'Minciencias'  " style="margin-top: 40px; margin-left: 60px;">
         <div class="col-md-3">
           <h6>Departamentos:</h6>
           <div class="form-check">
@@ -60,9 +60,13 @@
         </div>
     </div>
 
-    <div class="row" v-if="this.getDatos" style="margin-top: 45px; margin-left: 60px;">
-        <h2>Informacion recolectada: </h2>
-        <div v-if="Num_Encuentros != null">
+    <div class="col-md-12 text-center" style="margin-bottom: 20px;">
+          <button type="button" @click="whenClicked" class="btn btn-primary">Buscar</button>
+    </div>
+
+    <div class="row" v-if="Num_Encuentros != null" style="margin-top: 45px; margin-left: 60px;">
+        <h2 style="margin-left: 150px;">Informacion recolectada: </h2>
+        <div>
             <div class="row" style="margin-top: 45px;">
                 <div class="col-md-1" style="text-align: left;"></div>
                 <div class="col-md-5" style="text-align: left;">
@@ -372,13 +376,14 @@
                 rolF: null, // Define la variable 'rolF'
                 departamento: null, // Define la variable 'departamento'
                 departamentos: null, // Define la variable 'departamentos'
+                selectedDepartamentos : [],
             };
         },
         methods: {
         async getData() {
             if(this.rolF === "Departamento"){
-                if(this.start_year == this.end_year){
-                    const response = await fetch(`https://localhost:7192/api/filterAnioDepartamentoVisualizar/${this.start_year}/${this.id}/${this.token}?departamentos=${this.departamento}`);
+                if(this.startYear == this.endYear){
+                    const response = await fetch(`https://localhost:7192/api/Movilizaciones/filterAnioDepartamentoVisualizar/${this.startYear}/${this.id}/${this.token}?departamentos=${this.departamento}`);
                     if(response.ok){
                         const data = await response.json();
                         this.Num_Encuentros = data.Num_Encuentros;
@@ -403,8 +408,8 @@
 
                     }
                 }
-                else if(this.end_year > this.start_year){
-                    const response = await fetch(`https://localhost:7192/api/filterAnioDepartamentoVisualizar/${this.start_year}/${this.end_year}/${this.id}/${this.token}?departamentos=${this.departamento}`);
+                else if(this.endYear > this.startYear){
+                    const response = await fetch(`https://localhost:7192/api/Movilizaciones/filterAniosDepartamentosVisualizar/${this.startYear}/${this.endYear}/${this.id}/${this.token}?departamentos=${this.departamento}`);
                         if(response.ok){
                         const data = await response.json();
                         this.Num_Encuentros = data.Num_Encuentros;
@@ -427,11 +432,21 @@
                         this.Num_Vinculados_Reincorporacion = data.Num_Vinculados_Reincorporacion;
                         this.Num_Vinculados_Zomac = data.Num_Vinculados_Zomac;
                 }
-            }
+            }}
+            else if (this.rolF == 'Minciencias'){
+                var cadena = ''
+                for(var i = 0; i < this.selectedDepartamentos.length; i++){
+                    if(i == 0){
+                        cadena += this.selectedDepartamentos[i];
+                    }
+                    else{
+                        cadena += ',' + this.selectedDepartamentos[i];
+                    }
+                }
 
-            else{
-                if(this.start_year == this.end_year){
-                    const response = await fetch(`https://localhost:7192/api/filterAnioDepartamentoVisualizar/${this.start_year}/${this.id}/${this.token}?departamentos=${this.departamentos}`);
+                if(this.startYear == this.endYear){
+                    console.log(this.selectedDepartamentos)
+                    const response = await fetch(`https://localhost:7192/api/Movilizaciones/filterAnioDepartamentoVisualizar/${this.startYear}/${this.id}/${this.token}?departamentos=${cadena}`);
                         if(response.ok){
                         const data = await response.json();
                         this.Num_Encuentros = data.Num_Encuentros;
@@ -455,34 +470,33 @@
                         this.Num_Vinculados_Zomac = data.Num_Vinculados_Zomac;
                 }
             }
-                else if(this.end_year > this.start_year){
-                    const response = await fetch(`https://localhost:7192/api/filterAniosDepartamentosVisualizar/${this.start_year}/${this.end_year}/${this.id}/${this.token}?departamentos=${this.departamentos}`);
-                    if(response.ok){
-                        const data = await response.json();
-                        this.Num_Encuentros = data.Num_Encuentros;
-                        this.Num_Grupos_Ganadores = data.Num_Grupos_Ganadores;
-                        this.Num_Premios_Grupos_Investigacion = data.Num_Premios_Grupos_Investigacion;
-                        this.Num_Proyectos_Ferias = data.Num_Proyectos_Ferias;
-                        this.Num_Proyectos_Internacionales = data.Num_Proyectos_Internacionales;
-                        this.Num_Talleres_Entidades_Coordinadoras = data.Num_Talleres_Entidades_Coordinadoras;
-                        this.Num_Vinculados_Afro = data.Num_Vinculados_Afro;
-                        this.Num_Vinculados_Conflicto_Armado = data.Num_Vinculados_Conflicto_Armado;
-                        this.Num_Vinculados_Discapacidad = data.Num_Vinculados_Discapacidad;
-                        this.Num_Vinculados_Etnia = data.Num_Vinculados_Etnia;
-                        this.Num_Vinculados_Ferias = data.Num_Vinculados_Ferias;
-                        this.Num_Vinculados_Gitano = data.Num_Vinculados_Gitano;
-                        this.Num_Vinculados_Indigena = data.Num_Vinculados_Indigena;
-                        this.Num_Vinculados_Internacionales = data.Num_Vinculados_Internacionales;
-                        this.Num_Vinculados_Palenquero = data.Num_Vinculados_Palenquero;
-                        this.Num_Vinculados_Pdet = data.Num_Vinculados_Pdet;
-                        this.Num_Vinculados_Raizal = data.Num_Vinculados_Raizal;
-                        this.Num_Vinculados_Reincorporacion = data.Num_Vinculados_Reincorporacion;
-                        this.Num_Vinculados_Zomac = data.Num_Vinculados_Zomac;
+            else if(this.endYear > this.startYear){
+                const response = await fetch(`https://localhost:7192/api/Movilizaciones/filterAniosDepartamentosVisualizar/${this.startYear}/${this.endYear}/${this.id}/${this.token}?departamentos=${cadena}`);
+                if(response.ok){
+                    const data = await response.json();
+                    this.Num_Encuentros = data.Num_Encuentros;
+                    this.Num_Grupos_Ganadores = data.Num_Grupos_Ganadores;
+                    this.Num_Premios_Grupos_Investigacion = data.Num_Premios_Grupos_Investigacion;
+                    this.Num_Proyectos_Ferias = data.Num_Proyectos_Ferias;
+                    this.Num_Proyectos_Internacionales = data.Num_Proyectos_Internacionales;
+                    this.Num_Talleres_Entidades_Coordinadoras = data.Num_Talleres_Entidades_Coordinadoras;
+                    this.Num_Vinculados_Afro = data.Num_Vinculados_Afro;
+                    this.Num_Vinculados_Conflicto_Armado = data.Num_Vinculados_Conflicto_Armado;
+                    this.Num_Vinculados_Discapacidad = data.Num_Vinculados_Discapacidad;
+                    this.Num_Vinculados_Etnia = data.Num_Vinculados_Etnia;
+                    this.Num_Vinculados_Ferias = data.Num_Vinculados_Ferias;
+                    this.Num_Vinculados_Gitano = data.Num_Vinculados_Gitano;
+                    this.Num_Vinculados_Indigena = data.Num_Vinculados_Indigena;
+                    this.Num_Vinculados_Internacionales = data.Num_Vinculados_Internacionales;
+                    this.Num_Vinculados_Palenquero = data.Num_Vinculados_Palenquero;
+                    this.Num_Vinculados_Pdet = data.Num_Vinculados_Pdet;
+                    this.Num_Vinculados_Raizal = data.Num_Vinculados_Raizal;
+                    this.Num_Vinculados_Reincorporacion = data.Num_Vinculados_Reincorporacion;
+                    this.Num_Vinculados_Zomac = data.Num_Vinculados_Zomac;
                     }
                 }
             }
                 
-            }
         },
         selectAllDepartamentos() {
           if (this.selectedDepartamentos.length === this.listDepartamentos.length) {
@@ -493,15 +507,32 @@
               this.selectedDepartamentos = [...this.listDepartamentos];
             }
         },
+        getDatos(){
+            if(this.startYear != null && this.endYear != null && this.rolF == 'Departamento'){
+                        this.getData();
+                        return true;
+                }
+            return false;
+        },
+        whenClicked(){
+            if(this.startYear != null && this.endYear != null && this.rolF == 'Minciencias'){
+                        this.getData();
+                        return true;
+                }
+            return false;
+        }  
+
     },  
     computed: {
-        getDatos(){
-            if(this.startYear != null && this.endYear != null && this.startYear >= this.endYear){
-                this.getData();
-                return true;
-            }
-            return false;
-        }   
+        firstColumnDepartamentos() {
+        return this.listDepartamentos.slice(0, this.listDepartamentos.length / 3);
+      },
+      secondColumnDepartamentos() {
+        return this.listDepartamentos.slice(this.listDepartamentos.length / 3, 2 * this.listDepartamentos.length / 3);
+      },
+      thirdColumnDepartamentos() {
+        return this.listDepartamentos.slice(2 * this.listDepartamentos.length / 3);
+      }
     },
     async mounted() {
 
@@ -510,7 +541,6 @@
         const rol = await fetch (`https://localhost:7192/api/tokens/${this.id}/?token=${this.token}`);
         const resp = await rol.json();
         this.rolF = resp.rol; // Asigna el valor a 'rolF' correctamente
-        console.log(this.rolF)
         if(this.rolF === "Departamento"){
             this.departamental = true;
             const departamentoData = await fetch (`https://localhost:7192/api/tokens/${this.id}/departamento?token=${this.token}`);

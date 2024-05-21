@@ -28,6 +28,7 @@ import configuracionAdmin from '@/components/vistas/admin/configuracionAdmin.vue
 import configuracionDepartamento from '@/components/vistas/departamento/configuracionDepartamento.vue';
 import restablecerContrasenia from '@/components/inicioSesion/olvideContrasenia.vue';
 import VisualizarMovilizacionDepartamento from '@/components/vistas/departamento/movilizacion/visualizarMovilizacionDepartamento.vue';
+import VisualizarMovilizacionMinciencias from '@/components/vistas/minciencias/movilizacion/visualizarMovilizacionMinciencias.vue'
 import { jwtDecode } from 'jwt-decode';
 
 const routes = [
@@ -176,6 +177,11 @@ const routes = [
         path: '/departamentos/movilizaciones/visualizacion',
         name: 'visualizacionMovilizacionDepartamento',
         component: VisualizarMovilizacionDepartamento
+    },
+    {
+        path: '/minciencias/movilizaciones/visualizacion',
+        name: 'visualizarMovilizacionMinciencias',
+        component: VisualizarMovilizacionMinciencias
     }
 
    

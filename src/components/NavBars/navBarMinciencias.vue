@@ -51,7 +51,8 @@
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                     <li><a class="dropdown-item" href="/minciencias/movilizacion/ingreso">Ingresar información movilización</a></li>
                     <li><a class="dropdown-item" href="/minciencias/movilizacion/consultas/periodo">Exportar información de un año</a></li>
-                  <li><a class="dropdown-item" href="/minciencias/movilizacion/consultas/periodos">Exportar información en un rango de años</a></li>
+                    <li><a class="dropdown-item" href="/minciencias/movilizacion/consultas/periodos">Exportar información en un rango de años</a></li>
+                    <li><a class="dropdown-item" href="/minciencias/movilizaciones/visualizacion">Visualizar movilizaciones</a></li>
                 </ul>
               </div>
             </div>
