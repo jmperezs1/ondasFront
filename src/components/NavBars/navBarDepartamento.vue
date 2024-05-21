@@ -48,10 +48,11 @@
                 <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
                   Movilización
                 </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2"  >
                   <li><a class="dropdown-item" href="/departamentos/movilizaciones/ingreso">Ingresar información movilización</a></li>
                   <li><a class="dropdown-item" href='/departamentos/movilizaciones/consultas/periodo'>Exportar información de un año</a></li>
                   <li><a  class="dropdown-item" href='/departamentos/movilizaciones/consultas/periodos'>Exportar información en un rango de años</a></li>
+                  <li><a  class="dropdown-item" href='/departamentos/movilizaciones/visualizacion'>Visualizar movilizaciones</a></li>
                 </ul>
               </div>
             </div>
@@ -97,7 +98,7 @@
   #NavBarDepartamento{
     margin-top: 30px;
     overflow-x: hidden; 
-    height: 230px
+    height: 260px
   }
 
   </style>

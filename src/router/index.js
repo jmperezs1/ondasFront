@@ -27,7 +27,7 @@ import eliminarUsuario from '@/components/vistas/admin/eliminarUsuario.vue';
 import configuracionAdmin from '@/components/vistas/admin/configuracionAdmin.vue';
 import configuracionDepartamento from '@/components/vistas/departamento/configuracionDepartamento.vue';
 import restablecerContrasenia from '@/components/inicioSesion/olvideContrasenia.vue';
-import visualizacionMinciencias from '@/components/vistas/minciencias/movilizacion/consultaMovilizacionMinciencias.vue';
+import VisualizarMovilizacionDepartamento from '@/components/vistas/departamento/movilizacion/visualizarMovilizacionDepartamento.vue';
 import { jwtDecode } from 'jwt-decode';
 
 const routes = [
@@ -173,9 +173,9 @@ const routes = [
         component: configuracionDepartamento
     },
     {
-        path: '/minciencias/movilizaciones/visualizacion',
-        name: 'visualizacionMinciencias',
-        component: visualizacionMinciencias
+        path: '/departamentos/movilizaciones/visualizacion',
+        name: 'visualizacionMovilizacionDepartamento',
+        component: VisualizarMovilizacionDepartamento
     }
 
    
