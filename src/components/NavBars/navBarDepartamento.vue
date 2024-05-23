@@ -28,6 +28,7 @@
                   <li><a class="dropdown-item" href="/departamentos/convocatorias/ingreso">Ingresar información convocatoria</a></li>
                   <li><a class="dropdown-item" href="/departamentos/convocatorias/consultas/periodo">Exportar información de un año</a></li>
                   <li><a  class="dropdown-item" href="/departamentos/convocatorias/consultas/periodos">Exportar información en un rango de años</a></li>
+                  <li><a  class="dropdown-item" href='/departamentos/convocatorias/visualizacion'>Visualizar convocatorias</a></li>
                 </ul>
               </div>
             </div>
@@ -40,6 +41,7 @@
                   <li><a class="dropdown-item" href="/departamentos/acompanamientos/ingreso">Ingresar información Acompañamiento</a></li>
                   <li><a class="dropdown-item" href="/departamentos/acompanamientos/consultas/periodo">Exportar información de un año</a></li>
                   <li><a  class="dropdown-item" href="/departamentos/acompanamientos/consultas/periodos">Exportar información en un rango de años</a></li>
+                  <li><a class="dropdown-item" href="'/departamentos/acompanamientos/visualizacion'">Visualizar acompañamientos</a></li>
                 </ul>
               </div>
             </div>
@@ -98,7 +100,7 @@
   #NavBarDepartamento{
     margin-top: 30px;
     overflow-x: hidden; 
-    height: 260px
+    height: 290px
   }
 
   </style>

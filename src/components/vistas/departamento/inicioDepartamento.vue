@@ -15,6 +15,7 @@
           <li style="margin-bottom: 10px;"><a href="/departamentos/convocatorias/ingreso">Ingresar información sobre convocatoria del departamento</a></li>
           <li style="margin-bottom: 10px;"><a href="/departamentos/convocatorias/consultas/periodo">Exportar información de un año</a></li>
           <li style="margin-bottom: 10px;"><a href="/departamentos/convocatorias/consultas/periodos">Exportar información en un rango de años</a></li>
+          <li style="margin-bottom: 10px;"><a href='/departamentos/convocatorias/visualizacion'>Visualizar convocatorias</a></li>
         </ul>
       </div>
       </div>
@@ -36,6 +37,7 @@
           <li style="margin-bottom: 10px;"><a href="/departamentos/acompanamientos/ingreso">Ingresar información sobre acompañamientos del departamento</a></li>
           <li style="margin-bottom: 10px;"><a href="/departamentos/acompanamientos/consultas/periodo">Exportar información de un año</a></li>
           <li style="margin-bottom: 10px;"><a href="/departamentos/acompanamientos/consultas/periodos">Exportar información en un rango de años</a></li>
+          <li style="margin-bottom: 10px;"><a href="'/departamentos/acompanamientos/visualizacion'">Visualizar acompañamientos</a></li>
         </ul>
       </div>
       </div>
@@ -57,6 +59,7 @@
           <li style="margin-bottom: 10px;"><a href="/departamentos/movilizaciones/ingreso">Ingresar información sobre movilización del departamento</a></li>
           <li style="margin-bottom: 10px;"><a href='/departamentos/movilizaciones/consultas/periodo'>Exportar información de un año</a></li>
           <li style="margin-bottom: 10px;"><a href='/departamentos/movilizaciones/consultas/periodos'>Exportar información en un rango de años</a></li>
+          <li style="margin-bottom: 10px;"><a href='/departamentos/movilizaciones/visualizacion'>Visualizar movilizaciones</a></li>
         </ul>
       </div>
       </div>

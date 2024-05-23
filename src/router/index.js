@@ -29,6 +29,10 @@ import configuracionDepartamento from '@/components/vistas/departamento/configur
 import restablecerContrasenia from '@/components/inicioSesion/olvideContrasenia.vue';
 import VisualizarMovilizacionDepartamento from '@/components/vistas/departamento/movilizacion/visualizarMovilizacionDepartamento.vue';
 import VisualizarMovilizacionMinciencias from '@/components/vistas/minciencias/movilizacion/visualizarMovilizacionMinciencias.vue'
+import VisualizarAcompaniamientoMinciencias from '@/components/vistas/minciencias/acompanamiento/visualizarAcompaniamientoMinciencias.vue'
+import VisualizarAcompaniamientoDepartamento from '@/components/vistas/departamento/acompanamiento/visualizarAcompaniamientoDepartamento.vue'
+import VisualizarConvocatoriaMinciencias from '@/components/vistas/minciencias/convocatoria/visualizarConvocatoriaMinciencias.vue'
+import VisualizarConvocatoriaDepartamento from '@/components/vistas/departamento/convocatoria/visualizarConvocatoriaDepartamento.vue'
 import { jwtDecode } from 'jwt-decode';
 
 const routes = [
@@ -182,7 +186,28 @@ const routes = [
         path: '/minciencias/movilizaciones/visualizacion',
         name: 'visualizarMovilizacionMinciencias',
         component: VisualizarMovilizacionMinciencias
+    },
+    {
+        path: '/minciencias/acompaniamientos/visualizacion',
+        name: 'visualizarAcompaniamientoMinciencias',
+        component: VisualizarAcompaniamientoMinciencias
+    },
+    {
+        path: '/departamentos/acompanamientos/visualizacion',
+        name: 'visualizacionAcompanamientoDepartamento',
+        component: VisualizarAcompaniamientoDepartamento
+    },
+    {
+        path: '/minciencias/convocatorias/visualizacion',
+        name: 'visualizacionConvocatoriaMinciencias',
+        component: VisualizarConvocatoriaMinciencias
+    },
+    {
+        path: '/departamentos/convocatorias/visualizacion',
+        name: 'visualizacionConvocatoriaDepartamento',
+        component: VisualizarConvocatoriaDepartamento
     }
+
 
    
 ];
@@ -204,8 +229,10 @@ router.beforeEach(async (to, from, next) => {
     
 
     if (!['/'].includes(to.path)) {
-        const token = localStorage.getItem('token');
-        
+        if(to.path === '/reset-password'){
+            next()
+        }else{
+            const token = localStorage.getItem('token');   
 
         try {
             const id = jwtDecode(token).id;
@@ -231,6 +258,7 @@ router.beforeEach(async (to, from, next) => {
             console.error('Failed to fetch:', error);
             next('/');
         }
+    }
     } else {
         if (authMinciencias.includes(to.path) || authDepartamento.includes(to.path) || authAdmin.includes(to.path)) {
             next('/');

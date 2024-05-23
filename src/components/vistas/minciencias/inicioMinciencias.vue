@@ -15,6 +15,7 @@
           <li style="margin-bottom: 10px;"><a href="/minciencias/convocatorias/ingreso">Ingresar información sobre convocatoria de un departamento</a></li>
           <li style="margin-bottom: 10px;"><a href="/minciencias/convocatorias/consultas/periodo">Exportar información de un año</a></li>
           <li style="margin-bottom: 10px;"><a href="/minciencias/convocatorias/consultas/periodos">Exportar información en un rango de años</a></li>
+          <li style="margin-bottom: 10px;"><a href="/minciencias/convocatorias/visualizacion">Visualizar convocatorias</a></li>
         </ul>
       </div>
       </div>
@@ -36,6 +37,7 @@
           <li style="margin-bottom: 10px;"><a href="/minciencias/acompanamiento/ingreso">Ingresar información sobre acompañamiento de un departamento</a></li>
           <li style="margin-bottom: 10px;"><a href="/minciencias/acompanamiento/consultas/periodo">Exportar información de un año</a></li>
           <li style="margin-bottom: 10px;"><a href="/minciencias/acompanamiento/consultas/periodos">Exportar información en un rango de años</a></li>
+          <li style="margin-bottom: 10px;"><a href="/minciencias/acompaniamientos/visualizacion">Visualizar acompañamientos</a></li>
         </ul>
       </div>
       </div>
@@ -57,6 +59,7 @@
             <li style="margin-bottom: 10px;"><a href="/minciencias/movilizacion/ingreso">Ingresar información movilización</a></li>
             <li style="margin-bottom: 10px;"><a href="/minciencias/movilizacion/consultas/periodo">Exportar información de un año</a></li>
             <li style="margin-bottom: 10px;"><a href="/minciencias/movilizacion/consultas/periodos">Exportar información en un rango de años</a></li>
+            <li style="margin-bottom: 10px;"><a href="/minciencias/movilizaciones/visualizacion">Visualizar movilizaciones</a></li>
         </ul>
       </div>
       </div>

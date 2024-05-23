@@ -1,5 +1,5 @@
 <template>
-    <NavBarMinCiencias />
+    <NavBarDepartamento />
     <div style="text-align: center">
       <h1 style="margin-top: 50px; margin-bottom: 50px;">Cambio de Contraseña</h1>
     </div>
@@ -9,7 +9,8 @@
     </div>
     <div class="form-group" style="width: 540px; margin: 0% auto">
       <label for="inputNueva">Nueva Contraseña</label>
-      <input type="password" class="form-control" id="inputNueva" v-model="nueva" placeholder="Ingrese la su nueva contraseña">
+      <input type="password" class="form-control" id="inputNueva" v-model="nueva" :class="{'border-danger': !validPasswordLength}" placeholder="Ingrese su nueva contraseña">
+      <p v-if="!validPasswordLength" style="color: red; margin-top: 5px;">La contraseña debe tener al menos 8 caracteres.</p>
     </div>
     <div class="form-group" style="width: 540px; margin: 0% auto">
       <label for="inputConfirmacion">Confirmar Contraseña</label>
@@ -17,25 +18,24 @@
       <p v-if="!passwordsMatch" style="color: red; margin-top: 5px;">Las contraseñas no coinciden.</p>
     </div>
     <div style="text-align: center;">
-      <button type="submit" class="btn" style="height: 40px; width: 331px; margin-top: 74px; background-color: #53C0D9;" @click="confirmPasswordService">Cambiar contraseña</button>
+      <button type="submit" class="btn" style="height: 40px; width: 331px; margin-top: 74px; background-color: #53C0D9;" @click="confirmPasswordService" :disabled="!validPasswordLength || !passwordsMatch">Cambiar contraseña</button>
     </div>
 </template>
 
-
-
 <script>
-import NavBarMinCiencias from '@/components/NavBars/navBarMinciencias.vue'
+import NavBarDepartamento from '@/components/NavBars/navBarDepartamento.vue';
 import { jwtDecode } from 'jwt-decode';
 
 export default {
     name: 'configuracionDepartamento',
     components: {
-        NavBarMinCiencias
+        NavBarDepartamento
     },
-    // Your component's logic goes here
     data() {
         return {
             temp: '',
+            nueva: '',
+            confirmacion: '',
             token: localStorage.getItem('token'),
             id: 0,
         };
@@ -43,15 +43,17 @@ export default {
     computed: {
         passwordsMatch() {
             return this.nueva === this.confirmacion;
+        },
+        validPasswordLength() {
+            return this.nueva.length >= 8;
         }
     },
     methods: {
-
         async confirmPasswordService(){
             this.id = jwtDecode(this.token).id;
             const response = await fetch(`https://localhost:7192/api/autenticaciones/ConfirmarContrasenia/${this.temp}/${this.token}/${this.id}`);
             if(response.ok){
-                if(this.passwordsMatch){
+                if(this.passwordsMatch && this.validPasswordLength){
                     this.saveData();
                 }
             }
@@ -59,9 +61,7 @@ export default {
                 alert('La contraseña actual o temporal es incorrecta.');
             }
         },
-
         async saveData(){
-
             const response = await fetch(`https://localhost:7192/api/autenticaciones/CambioContrasenia/${this.token}/${this.id}/${this.nueva}`, {
                 method: 'POST',
             });
@@ -84,11 +84,8 @@ export default {
                 alert('Contraseña cambiada con éxito.');
             }
         }
-
     }
-
 }
-
 </script>
 
 <style scoped>
@@ -96,4 +93,3 @@ export default {
   border: 2px solid red;
 }
 </style>
-
