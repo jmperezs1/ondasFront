@@ -1,5 +1,5 @@
 <template>
-    <NavBarMinCiencias />
+    <NavBarAdmin />
     <div style="text-align: center">
       <h1 style="margin-top: 50px; margin-bottom: 50px;">Cambio de Contraseña</h1>
     </div>
@@ -24,13 +24,13 @@
 
 
 <script>
-import NavBarMinCiencias from '@/components/NavBars/navBarMinciencias.vue'
+import NavBarAdmin from '@/components/NavBars/navBarAdmin.vue';
 import { jwtDecode } from 'jwt-decode';
 
 export default {
     name: 'configuracionAdmin',
     components: {
-        NavBarMinCiencias
+        NavBarAdmin
     },
     // Your component's logic goes here
     data() {

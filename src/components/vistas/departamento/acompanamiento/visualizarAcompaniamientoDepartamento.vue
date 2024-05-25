@@ -7,7 +7,7 @@
 import NavBarDepartamento from '@/components/NavBars/navBarDepartamento.vue';
 import VisualizarAcompaniamiento from '@/components/acompanamiento/visualizarAcompaniamiento.vue';
 export default {
-    name: 'VisualizarMovilizacionMinciencias',
+    name: 'VisualizarMovilizacionDepartamento',
     components: {
         NavBarDepartamento,
         VisualizarAcompaniamiento,
