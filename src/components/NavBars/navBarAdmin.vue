@@ -10,14 +10,14 @@
               <span>Bienvenido, Administrador de usuarios</span>
             </div>
             <div class="col-4 col-md-6 d-flex justify-content-end">
-              <button class="btn me-2" href='/admin/configuracion'>Configuración</button>
-              <button class="btn">Cerrar Sesión</button>
+              <a class="btn me-2" href='/admin/configuracion'>Configuración</a>
+              <button class="btn" @click="cerrarSesion">Cerrar Sesión</button>
             </div>
           </div>
           <hr>
           <div class="row">
             <div class="col-6 d-flex align-items-center justify-content-center">
-              <button class="btn">Inicio</button>
+              <a class="btn" href="/admin">Inicio</a>
             </div>
             <div class="col-3">
               <div class="dropdown">
@@ -37,9 +37,23 @@
   </template>
 
 <script>
+import { jwtDecode } from 'jwt-decode';
 export default {
     name: 'NavBarAdmin',
-    // Your component's logic here
+    methods: {
+      async cerrarSesion() {
+      const token = localStorage.getItem('token');
+      const id = jwtDecode(token).id;
+      localStorage.removeItem('token');
+      this.$router.push('/');
+      await fetch(`https://localhost:7192/api/tokens/delete/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+    }
+  }
 }
 </script>
 

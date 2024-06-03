@@ -10,7 +10,7 @@
               <span>Bienvenido, Departamento {{ departamento }}</span>
             </div>
             <div class="col-4 col-md-6 d-flex justify-content-end">
-              <button class="btn me-2">Configuración</button>
+              <a class="btn me-2" href="/departamentos/configuracion">Configuración</a>
               <button class="btn" @click="cerrarSesion">Cerrar Sesión</button>
             </div>
           </div>

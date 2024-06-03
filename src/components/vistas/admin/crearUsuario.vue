@@ -106,6 +106,9 @@ export default {
                 if(response.ok){
                     alert('Usuario creado con éxito');
                 }
+                else{
+                    alert('Error al crear el usuario, el correo o el usuario ya existen en la base de datos');
+                }
             } else {
                 alert('Por favor complete todos los campos requeridos');
             }
