@@ -6,14 +6,13 @@
                 <button class="btn btn-danger" @click="confirmAndDelete">Eliminar</button>
             </div>
         </div>
-        
     </div>
 </template>
 
 <script>
 import { jwtDecode } from 'jwt-decode';
 export default {
-    name: 'EliminarConvocatoria',
+    name: 'EliminarAcompanamiento',
     data() {
         return {
             Anio: null,
@@ -52,7 +51,7 @@ export default {
         async eliminarConvocatoria() {
             const token = localStorage.getItem('token');
             const id = jwtDecode(token).id;
-            const response = await fetch(`https://localhost:7192/api/convocatorias/anio/${this.anio}/departamento/${this.departamento}/${id}/${token}`, {
+            const response = await fetch(`https://localhost:7192/api/acompaniamientos/anio/${this.anio}/departamento/${this.departamento}/${id}/${token}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -72,9 +71,9 @@ export default {
             }
         }
     },
-};
+}
 </script>
 
 <style scoped>
-/* Your component-specific styles go here */
+/* Your component styles here */
 </style>
