@@ -393,6 +393,11 @@ export default {
         departamento: {
             type: String,
             required: true
+        },
+        identificador:{
+            type: Boolean,
+            require: false,
+            default: false
         }
     },
     watch: {
@@ -495,21 +500,85 @@ export default {
     },
     methods: {
         async saveData() {
-        const token = localStorage.getItem('token');
-        const id = jwtDecode(token).id
-        const response = await fetch('https://localhost:7192/api/Acompaniamientos/'+id+'/'+token, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(this.$data)
-        });
-        if(response.ok){
-            window.location.reload(); // Refresh the page
-            alert('Datos guardados correctamente');
+            if(!this.identificador){
+                const token = localStorage.getItem('token');
+                const id = jwtDecode(token).id
+                const response = await fetch('https://localhost:7192/api/Acompaniamientos/'+id+'/'+token, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(this.$data)
+                });
+                if(response.ok){
+                    window.location.reload(); // Refresh the page
+                    alert('Datos guardados correctamente');
+                }
+                else{
+                    alert('Error al guardar los datos');
+                }
+            }
+            else{
+                const token = localStorage.getItem('token');
+                const id = jwtDecode(token).id
+                const response = await fetch('https://localhost:7192/api/Acompaniamientos/anio/'+this.anio+'/departamento/'+this.departamento+'/'+id+'/'+token, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(this.$data)
+                });
+                if(response.ok){
+                    window.location.reload(); // Refresh the page
+                    alert('Datos guardados correctamente');
+                }
+                else{
+                    alert('Error al guardar los datos');
+                }
         }
+    },
+    async mounted() {
+        if(this.identificador){
+            const token = localStorage.getItem('token');
+            const id = jwtDecode(token).id
+            const response = await fetch(`https://localhost:7192/api/acompaniamientos/anio/${this.anio}/departamento/${this.departamento}/${id}/${token}`);
+            const data = await response.json();
+            this.Num_asesores = data[0].num_Asesores || 0;
+            this.Num_asesorias = data[0].num_Asesorias || 0;
+            this.Num_grupos_asesorados = data[0].num_Grupos_Asesorados || 0;
+            this.Num_promedio_asesorias = data[0].num_Promedio_Asesorias || 0;
+            this.Num_grupos_por_asesor = data[0].num_Grupos_Por_Asesor || 0;
+            this.Num_talleres = data[0].num_Talleres || 0;
+            this.Num_docentes_vinculados = data[0].num_Docentes_Vinculados || 0;
+            this.Num_promedio_horas_docentes = data[0].num_Promedio_Horas_Docentes || 0;
+            this.Num_promedio_horas_jovenes = data[0].num_Promedio_Horas_Jovenes || 0;
+            this.Duracion_proyectos = data[0].duracion_Proyectos || 0;
+            this.Pct_vinculados = data[0].pct_Vinculados || 0;
+            this.Monto_financiacion = data[0].monto_Financiacion || 0;
+            this.Monto_promedio_proyecto = data[0].monto_Promedio_Proyecto || 0;
+            this.Monto_promedio_por_joven = data[0].monto_Promedio_Por_Joven || 0;
+            this.Num_asesores_hombre = data[0].num_Asesores_Hombre || 0;
+            this.Num_asesores_mujer = data[0].num_Asesores_Mujer || 0;
+            this.Num_asesores_intersexual = data[0].num_Asesores_Intersexual || 0;
+            this.Num_asesores_Orientacion_Homo = data[0].num_Asesores_Orientacion_Homo || 0;
+            this.Num_asesores_Orientacion_Hetero = data[0].num_Asesores_Orientacion_Hetero || 0;
+            this.Num_asesores_Orientacion_Bi = data[0].num_Asesores_Orientacion_Bi || 0;
+            this.Num_asesores_Orientacion_Otro = data[0].num_Asesores_Orientacion_Otro || 0;
+            this.Num_asesores_Conflicto_Armado = data[0].num_Asesores_Conflicto_Armado || 0;
+            this.Num_asesores_Reincorporacion = data[0].num_Asesores_Reincorporacion || 0;
+            this.Num_asesores_Etnia = data[0].num_Asesores_Etnia || 0;
+            this.Num_asesores_Pdet = data[0].num_Asesores_Pdet || 0;
+            this.Num_asesores_Zomac = data[0].num_Asesores_Zomac || 0;
+            this.Num_asesores_Discapacidad = data[0].num_Asesores_Discapacidad || 0;
+            this.Num_asesores_Indigena = data[0].num_Asesores_Indigena || 0;
+            this.Num_asesores_Gitano = data[0].num_Asesores_Gitano || 0;
+            this.Num_asesores_Raizal = data[0].num_Asesores_Raizal || 0;
+            this.Num_asesores_Palenquero = data[0].num_Asesores_Palenquero || 0;
+            this.Num_asesores_Afro = data[0].num_Asesores_Afro || 0;
+            }
         }
-}};
+    }
+};
 </script>
 
 <style scoped>

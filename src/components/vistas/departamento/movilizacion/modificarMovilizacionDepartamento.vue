@@ -14,7 +14,7 @@
                 </select>
             </div>
         </div>
-        <IngresoAcompanamiento v-if="valido" :anio="anio" :departamento="departamento" :identificador="true"/>
+        <IngresoMovilizacion v-if="valido" :anio="anio" :departamento="departamento" :identificador="true"/>
         <div v-else-if="valido === false" class="alert alert-danger" role="alert" style="margin-top: 40px;">
             Ya existe una convocatoria para el año {{ anio }} en el departamento de {{ departamento }}
         </div>
@@ -22,14 +22,14 @@
 </template>
 
 <script>
-    import NavBarDepartamento from '@/components/NavBars/navBarDepartamento.vue';
-    import IngresoAcompanamiento from '@/components/acompanamiento/ingresoAcompanamiento.vue';
-    import { jwtDecode } from 'jwt-decode';
+import NavBarDepartamento from '@/components/NavBars/navBarDepartamento.vue';
+import IngresoMovilizacion from '@/components/movilizacion/ingresoMovilizacion.vue';
+import { jwtDecode } from 'jwt-decode';
 export default {
-    name: 'ModificarAcompanamientoDepartamento',
+    name: 'ModificarMovilizacionDepartamento',
     components: {
         NavBarDepartamento,
-        IngresoAcompanamiento,
+        IngresoMovilizacion,
     },
     data() {
         return {
@@ -47,7 +47,7 @@ export default {
     const departamento = await fetch (`https://localhost:7192/api/tokens/${this.id}/departamento?token=${this.token}`);
     const json = await departamento.json();
     this.departamento = json.departamento;
-    const yearsResponse = await fetch(`https://localhost:7192/api/acompaniamientos/anios/departamento/${this.departamento}/${this.id}/${this.token}`);
+    const yearsResponse = await fetch(`https://localhost:7192/api/movilizaciones/anios/departamento/${this.departamento}/${this.id}/${this.token}`);
       if (yearsResponse.ok) {
         this.years = await yearsResponse.json();
     }
@@ -55,7 +55,7 @@ export default {
     methods: {
         async verificarExistencia() {
             if (this.anio != null) {
-                const response = await fetch(`https://localhost:7192/api/acompaniamientos/anio/${this.anio}/departamento/${this.departamento}/${this.id}/${this.token}`);
+                const response = await fetch(`https://localhost:7192/api/movilizaciones/anio/${this.anio}/departamento/${this.departamento}/${this.id}/${this.token}`);
                 if (response.ok) {
                     this.valido = true;
                 }
@@ -70,5 +70,5 @@ export default {
 </script>
 
 <style scoped>
-/* Your component-specific styles here */
+/* Your component-specific styles go here */
 </style>

@@ -692,7 +692,6 @@ export default {
         }
   },
     async mounted() {
-        console.log(this.identificador)
         if(this.identificador){
             const token = localStorage.getItem('token');
             const id = jwtDecode(token).id

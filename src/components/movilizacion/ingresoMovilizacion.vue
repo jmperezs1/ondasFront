@@ -15,7 +15,7 @@
                 <label for="num_encuentros">Ingrese el número de encuentros realizados:</label>
             </div>
             <div class="col-md-3">
-                <input type="number" class="form-control" id="num_encuentros" min="0" v-model.number="Num_Encuentros" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Encuentros<0 ? 'red' : ''}">
+                <input type="number" class="form-control" id="num_encuentros" min="0" v-model.number="Num_Encuentros" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Encuentros<0 ? 'red' : ''}" @change="updateEncuentros">
             </div>
             <div class="col-md-3" v-if="Num_Encuentros<0" style="color: red; margin-top: 10px; text-align: center">El número de encuentros debe ser POSITIVO.</div>
         </div>
@@ -265,10 +265,19 @@ export default {
         }
     },
     methods: {
+        updateEncuentros() {
+                if (this.encuentros.length > this.Num_Encuentros) {
+                    this.encuentros.splice(this.Num_Encuentros);
+                }
+                if(this.Num_Encuentros == 0){
+                    this.Num_Participantes_Encuentros = 0;
+                }
+            },
         async saveData() {
         const token = localStorage.getItem('token');
         const id = jwtDecode(token).id
         this.generateEncuentrosData();
+        if(this.identificador){
         const response = await fetch('https://localhost:7192/api/Movilizaciones/'+id+'/'+token, {
             method: 'POST',
             headers: {
@@ -279,8 +288,30 @@ export default {
         if(response.ok){
             window.location.reload(); // Refresh the page
             alert('Datos guardados correctamente');
+            }
+        else{
+            alert('Error al guardar los datos');
+            }
         }
-        },
+        else{
+            console.log(JSON.stringify(this.$data))
+            const response = await fetch('https://localhost:7192/api/movilizaciones/anio/'+this.anio+'/departamento/'+this.departamento+'/'+id+'/'+token, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(this.$data)
+        });
+        if(response.ok){
+            window.location.reload(); // Refresh the page
+            alert('Datos guardados correctamente');
+            }
+        else{
+            alert('Error al guardar los datos');
+            }
+
+        }
+    },
   generateEncuentrosData() {
     // Initialize an empty array to store the generated objects
     let generatedData = [];
@@ -401,6 +432,33 @@ computed: {
                 ];
             return departamentos.includes(this.Departamento);
         }
+    },
+    async mounted() {
+        const token = localStorage.getItem('token');
+        const id = jwtDecode(token).id
+        const movilizacion = await fetch('https://localhost:7192/api/Movilizaciones/anio/'+this.anio+'/departamento/'+this.departamento+'/'+id+'/'+token);
+        const movilizacionData = await movilizacion.json();
+        this.Num_Talleres_Entidades_Coordinadoras = movilizacionData[0].num_Talleres_Entidades_Coordinadoras;
+        this.Num_Encuentros = movilizacionData[0].num_Encuentros;
+        this.Num_Participantes_Encuentros = movilizacionData[0].num_Participantes_Encuentros;
+        this.Num_Premios_Grupos_Investigacion = movilizacionData[0].num_Premios_Grupos_Investigacion;
+        this.Num_Vinculados_Ferias = movilizacionData[0].num_Vinculados_Ferias;
+        this.Num_Vinculados_Internacionales = movilizacionData[0].num_Vinculados_Internacionales;
+        this.Num_Proyectos_Internacionales = movilizacionData[0].num_Proyectos_Internacionales;
+        this.Num_Grupos_Ganadores = movilizacionData[0].num_Grupos_Ganadores;
+        this.Num_Proyectos_Ferias = movilizacionData[0].num_Proyectos_Ferias;
+        this.Num_Vinculados_Conflicto_Armado = movilizacionData[0].num_Vinculados_Conflicto_Armado;
+        this.Num_Vinculados_Reincorporacion = movilizacionData[0].num_Vinculados_Reincorporacion;
+        this.Num_Vinculados_Etnia = movilizacionData[0].num_Vinculados_Etnia;
+        this.Num_Vinculados_Pdet = movilizacionData[0].num_Vinculados_Pdet;
+        this.Num_Vinculados_Zomac = movilizacionData[0].num_Vinculados_Zomac;
+        this.Num_Vinculados_Indigena = movilizacionData[0].num_Vinculados_Indigena;
+        this.Num_Vinculados_Gitano = movilizacionData[0].num_Vinculados_Gitano;
+        this.Num_Vinculados_Raizal = movilizacionData[0].num_Vinculados_Raizal;
+        this.Num_Vinculados_Palenquero = movilizacionData[0].num_Vinculados_Palenquero;
+        this.Num_Vinculados_Afro = movilizacionData[0].num_Vinculados_Afro;
+        this.Num_Vinculados_Discapacidad = movilizacionData[0].num_Vinculados_Discapacidad;
+        this.encuentros = movilizacionData[0].encuentros.map(encuentro => encuentro.num_Personas);
     }
 };
 
