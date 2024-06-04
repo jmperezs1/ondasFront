@@ -538,23 +538,51 @@ export default {
         departamento: {
             type: String,
             required: true
+        },
+        identificador:{
+            type: Boolean,
+            require: false,
+            default: false
         }
     },
     methods: {
     async saveData() {
         const token = localStorage.getItem('token');
         const id = jwtDecode(token).id
-        const response = await fetch('https://localhost:7192/api/Convocatorias/'+id+'/'+token, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(this.$data)
-        });
-        if(response.ok){
-            window.location.reload(); // Refresh the page
-            alert('Datos guardados correctamente');
+        if(!this.identificador){
+            const response = await fetch('https://localhost:7192/api/Convocatorias/'+id+'/'+token, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(this.$data)
+            });
+            if(response.ok){
+                window.location.reload(); // Refresh the page
+                alert('Datos guardados correctamente');
+            }
+            else{
+                alert('Error al guardar los datos');
+            }
+            }
+        else{
+            const response = await fetch('https://localhost:7192/api/Convocatorias/anio/'+this.anio+'/departamento/'+this.departamento+'/'+id+'/'+token, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(this.$data)
+            });
+            console.log( JSON.stringify(this.$data))
+            if(response.ok){
+                window.location.reload(); // Refresh the page
+                alert('Datos guardados correctamente');
+            }
+            else{
+                alert('Error al guardar los datos');
+            }
         }
+
         }
     },
     watch: {
@@ -662,8 +690,62 @@ export default {
                 ];
             return departamentos.includes(this.Departamento);
         }
-
   },
+    async mounted() {
+        console.log(this.identificador)
+        if(this.identificador){
+            const token = localStorage.getItem('token');
+            const id = jwtDecode(token).id
+            const response = await fetch(`https://localhost:7192/api/Convocatorias/anio/${this.anio}/departamento/${this.departamento}/${id}/${token}`);
+            const data = await response.json();
+            this.Num_Convocatorias = data[0].num_Convocatorias || 0;
+            this.Num_Grupos_Investigacion_Aplican = data[0].num_Grupos_Investigacion_Aplican || 0;
+            this.Num_Instituciones_Educativas_Aplican = data[0].num_Instituciones_Educativas_Aplican || 0;
+            this.Num_Vinculados = data[0].num_Vinculados || 0;
+            this.Num_Docentes = data[0].num_Docentes || 0;
+            this.Num_Grupos_Investigacion = data[0].num_Grupos_Investigacion || 0;
+            this.Num_Instituciones_Educativas_Vinculadas = data[0].num_Instituciones_Educativas_Vinculadas || 0;
+            this.Num_Proyectos = data[0].num_Proyectos || 0;
+            this.Num_Entre_6_8 = data[0].num_Entre_6_8 || 0;
+            this.Num_Entre_9_11 = data[0].num_Entre_9_11 || 0;
+            this.Num_Entre_12_14 = data[0].num_Entre_12_14 || 0;
+            this.Num_Entre_15_17 = data[0].num_Entre_15_17 || 0;
+            this.Num_Ninos_M = data[0].num_Ninos_M || 0;
+            this.Num_Ninos_F = data[0].num_Ninos_F || 0;
+            this.Num_Ninos_I = data[0].num_Ninos_I || 0;
+            this.Num_Ninios_Conflicto_Armado = data[0].num_Ninios_Conflicto_Armado || 0;
+            this.Num_Ninios_Reincorporacion = data[0].num_Ninios_Reincorporacion || 0;
+            this.Num_Ninios_Etnia = data[0].num_Ninios_Etnia || 0;
+            this.Num_Ninios_Pdet = data[0].num_Ninios_Pdet || 0;
+            this.Num_Ninios_Zomac = data[0].num_Ninios_Zomac || 0;
+            this.Num_Ninios_Discapacidad = data[0].num_Ninios_Discapacidad || 0;
+            this.Num_Ninios_Indigena = data[0].num_Ninios_Indigena || 0;
+            this.Num_Ninios_Gitano = data[0].num_Ninios_Gitano || 0;
+            this.Num_Ninios_Raizal = data[0].num_Ninios_Raizal || 0;
+            this.Num_Ninios_Palenquero = data[0].num_Ninios_Palenquero || 0;
+            this.Num_Ninios_Afro = data[0].num_Ninios_Afro || 0;
+            this.Num_Docentes_Masculino_Vinculados = data[0].num_Docentes_Masculino_Vinculados || 0;
+            this.Num_Docentes_Femenino_Vinculados = data[0].num_Docentes_Femenino_Vinculados || 0;
+            this.Num_Docentes_Intersexual_Vinculados = data[0].num_Docentes_Intersexual_Vinculados || 0;
+            this.Num_Docentes_Orientacion_Homo = data[0].num_Docentes_Orientacion_Homo || 0;
+            this.Num_Docentes_Orientacion_Hetero = data[0].num_Docentes_Orientacion_Hetero || 0;
+            this.Num_Docentes_Orientacion_Bi = data[0].num_Docentes_Orientacion_Bi || 0;
+            this.Num_Docentes_Orientacion_Otro = data[0].num_Docentes_Orientacion_Otro || 0;
+            this.Num_Docentes_Conflicto_Armado = data[0].num_Docentes_Conflicto_Armado || 0;
+            this.Num_Docentes_Reincorporacion = data[0].num_Docentes_Reincorporacion || 0;
+            this.Num_Docentes_Etnia = data[0].num_Docentes_Etnia || 0;
+            this.Num_Docentes_Pdet = data[0].num_Docentes_Pdet || 0;
+            this.Num_Docentes_Zomac = data[0].num_Docentes_Zomac || 0;
+            this.Num_Docentes_Discapacidad = data[0].num_Docentes_Discapacidad || 0;
+            this.Num_Docentes_Indigena = data[0].num_Docentes_Indigena || 0;
+            this.Num_Docentes_Gitano = data[0].num_Docentes_Gitano || 0;
+            this.Num_Docentes_Raizal = data[0].num_Docentes_Raizal || 0;
+            this.Num_Docentes_Palenquero = data[0].num_Docentes_Palenquero || 0;
+            this.Num_Docentes_Afro = data[0].num_Docentes_Afro || 0;
+
+
+        }
+    }
 };
 
 </script>
