@@ -537,7 +537,10 @@ export default {
                 }
         }
     },
+    },
     async mounted() {
+        console.log(this.anio)
+        console.log(this.identificador)
         if(this.identificador){
             const token = localStorage.getItem('token');
             const id = jwtDecode(token).id
@@ -577,7 +580,6 @@ export default {
             this.Num_asesores_Afro = data[0].num_Asesores_Afro || 0;
             }
         }
-    }
 };
 </script>
 
