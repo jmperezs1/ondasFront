@@ -34,7 +34,8 @@ import VisualizarAcompaniamientoDepartamento from '@/components/vistas/departame
 import VisualizarConvocatoriaMinciencias from '@/components/vistas/minciencias/convocatoria/visualizarConvocatoriaMinciencias.vue'
 import VisualizarConvocatoriaDepartamento from '@/components/vistas/departamento/convocatoria/visualizarConvocatoriaDepartamento.vue'
 import EliminarConvocatoriaDepartamento from '@/components/vistas/departamento/convocatoria/eliminarConvocatoriaDepartamento.vue'
-import EliminarAcompanamientoDepartamento from '@/components/vistas/departamento/acompanamiento/eliminarAcompanamientoDepartamento.vue'
+import EliminarAcompanamientoDepartamento from '@/components/vistas/departamento/acompanamiento/eliminarAcompanamientoDepartamento.vue';
+import EliminarMovilizacionDepartamento from '@/components/vistas/departamento/movilizacion/eliminarMovilizacionDepartamento.vue';
 import { jwtDecode } from 'jwt-decode';
 
 const routes = [
@@ -218,6 +219,12 @@ const routes = [
         path: '/departamentos/acompanamientos/eliminar',
         name: 'eliminarAcompanamientoDepartamento',
         component: EliminarAcompanamientoDepartamento
+    },
+    {
+        path: '/departamentos/movilizaciones/eliminar',
+        name: 'eliminarMovilizacionDepartamento',
+        component: EliminarMovilizacionDepartamento
+    
     }
 
 
@@ -236,7 +243,7 @@ router.beforeEach(async (to, from, next) => {
     const authDepartamento = ['/departamentos', '/departamentos/convocatorias/ingreso', '/departamentos/convocatorias/consultas/periodo', '/departamentos/convocatorias/consultas/periodos',
         '/departamentos/acompanamientos/ingreso', '/departamentos/acompanamientos/consultas/periodo', '/departamentos/acompanamientos/consultas/periodos',
         '/departamentos/movilizaciones/ingreso', '/departamentos/movilizaciones/consultas/periodo', '/departamentos/movilizaciones/consultas/periodos', '/departamentos/configuracion', '/departamentos/movilizaciones/visualizacion', '/departamentos/acompanamientos/visualizacion', '/departamentos/convocatorias/visualizacion', '/departamentos/convocatorias/eliminar',
-        '/departamentos/acompanamientos/eliminar'
+        '/departamentos/acompanamientos/eliminar', '/departamentos/movilizaciones/eliminar'
     ];
     const authAdmin = ['/admin', '/admin/crearUsuario', '/admin/eliminarUsuario'];
     

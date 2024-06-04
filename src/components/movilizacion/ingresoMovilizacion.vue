@@ -268,6 +268,7 @@ export default {
         async saveData() {
         const token = localStorage.getItem('token');
         const id = jwtDecode(token).id
+        this.generateEncuentrosData();
         const response = await fetch('https://localhost:7192/api/Movilizaciones/'+id+'/'+token, {
             method: 'POST',
             headers: {
