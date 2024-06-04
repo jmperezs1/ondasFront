@@ -36,6 +36,9 @@ import VisualizarConvocatoriaDepartamento from '@/components/vistas/departamento
 import EliminarConvocatoriaDepartamento from '@/components/vistas/departamento/convocatoria/eliminarConvocatoriaDepartamento.vue'
 import EliminarAcompanamientoDepartamento from '@/components/vistas/departamento/acompanamiento/eliminarAcompanamientoDepartamento.vue';
 import EliminarMovilizacionDepartamento from '@/components/vistas/departamento/movilizacion/eliminarMovilizacionDepartamento.vue';
+import EliminarConvocatoriaMinciencias from '@/components/vistas/minciencias/convocatoria/eliminarConvocatoriaMinciencias.vue';
+import EliminarAcompanamientoMinciencias from '@/components/vistas/minciencias/acompanamiento/eliminarAcompanamientoMinciencias.vue';
+import eliminarMovilizacionMinciencias from '@/components/vistas/minciencias/movilizacion/eliminarMovilizacionMinciencias.vue';
 import { jwtDecode } from 'jwt-decode';
 
 const routes = [
@@ -191,7 +194,7 @@ const routes = [
         component: VisualizarMovilizacionMinciencias
     },
     {
-        path: '/minciencias/acompaniamientos/visualizacion',
+        path: '/minciencias/acompanamiento/visualizacion',
         name: 'visualizarAcompaniamientoMinciencias',
         component: VisualizarAcompaniamientoMinciencias
     },
@@ -225,6 +228,21 @@ const routes = [
         name: 'eliminarMovilizacionDepartamento',
         component: EliminarMovilizacionDepartamento
     
+    },
+    {
+        path: '/minciencias/convocatorias/eliminar',
+        name: 'eliminarConvocatoriaMinciencias',
+        component: EliminarConvocatoriaMinciencias
+    },
+    {
+        path: '/minciencias/acompanamiento/eliminar',
+        name: 'eliminarAcompanamientoMinciencias',
+        component: EliminarAcompanamientoMinciencias
+    },
+    {
+        path: '/minciencias/movilizacion/eliminar',
+        name: 'eliminarMovilizacionMinciencias',
+        component: eliminarMovilizacionMinciencias
     }
 
 
@@ -239,7 +257,9 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
     const authMinciencias = ['/minciencias','/minciencias/convocatorias/ingreso', '/minciencias/convocatorias/consultas/periodo', '/minciencias/convocatorias/consultas/periodos',
         '/minciencias/acompanamiento/ingreso', '/minciencias/acompanamiento/consultas/periodo', '/minciencias/acompanamiento/consultas/periodos',
-        '/minciencias/movilizacion/ingreso', '/minciencias/movilizacion/consultas/periodo', '/minciencias/movilizacion/consultas/periodos', '/minciencias/configuracion'];
+        '/minciencias/movilizacion/ingreso', '/minciencias/movilizacion/consultas/periodo', '/minciencias/movilizacion/consultas/periodos', '/minciencias/configuracion',
+        '/minciencias/movilizacion/visualizacion', '/minciencias/acompaniamiento/visualizacion', '/minciencias/convocatorias/visualizacion', '/minciencias/convocatorias/eliminar',
+        '/minciencias/acompanamiento/eliminar', '/minciencias/movilizacion/eliminar'];
     const authDepartamento = ['/departamentos', '/departamentos/convocatorias/ingreso', '/departamentos/convocatorias/consultas/periodo', '/departamentos/convocatorias/consultas/periodos',
         '/departamentos/acompanamientos/ingreso', '/departamentos/acompanamientos/consultas/periodo', '/departamentos/acompanamientos/consultas/periodos',
         '/departamentos/movilizaciones/ingreso', '/departamentos/movilizaciones/consultas/periodo', '/departamentos/movilizaciones/consultas/periodos', '/departamentos/configuracion', '/departamentos/movilizaciones/visualizacion', '/departamentos/acompanamientos/visualizacion', '/departamentos/convocatorias/visualizacion', '/departamentos/convocatorias/eliminar',

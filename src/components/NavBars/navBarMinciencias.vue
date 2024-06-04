@@ -41,7 +41,7 @@
                   <li><a class="dropdown-item" href="/minciencias/acompanamiento/ingreso">Ingresar información acompañamiento</a></li>
                   <li><a class="dropdown-item" href="/minciencias/acompanamiento/consultas/periodo">Exportar información de un año</a></li>
                   <li><a class="dropdown-item" href="/minciencias/acompanamiento/consultas/periodos">Exportar información en un rango de años</a></li>
-                  <li><a class="dropdown-item" href="/minciencias/acompaniamientos/visualizacion">Visualizar acompañamientos</a></li>
+                  <li><a class="dropdown-item" href="/minciencias/acompanamiento/visualizacion">Visualizar acompañamientos</a></li>
                 </ul>
               </div>
             </div>
