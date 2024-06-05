@@ -21,7 +21,7 @@
             </div>
             <div class="col-3">
               <div class="dropdown">
-                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown">
                   Convocatoria
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -34,7 +34,7 @@
             </div>
             <div class="col-3">
               <div class="dropdown">
-                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown">
                   Acompañamiento
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
@@ -47,7 +47,7 @@
             </div>
             <div class="col-3">
               <div class="dropdown">
-                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown">
                   Movilización
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
@@ -88,7 +88,5 @@ export default {
 <style >
   #NavBarMinCiencias{
     margin-top: 30px;
-    overflow-x: hidden; 
-    height: 290px
   }
 </style>
