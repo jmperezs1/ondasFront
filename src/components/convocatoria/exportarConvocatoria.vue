@@ -1,15 +1,13 @@
 <template>
+    <h1 style="text-align: center; margin-top: 40px" v-if="id==0">Exportar convocatoria en un año</h1>
+    <h1 style="text-align: center; margin-top: 40px" v-if="id==1">Exportar convocatoria en un rango de años</h1>
     <div class="container mt-3">
-      <div class="row">
-        <div class="col-md-12">
-          <h3 class="text-center">Aplicar filtros</h3>
-        </div>
-      </div>
-      <div class="row" style="margin-top: 20px;">
+      <div class="row" style="margin-top: 40px;">
+      <div class="col-md-2"></div>
         <div class="col-md-3">
-          <h6>Seleccione los indicadores:</h6>
+          <h6>Seleccione los indicadores de interés:</h6>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-7">
           <ul class="list-unstyled">
             <li v-for="(indicador, index) in listIndicadores" :key="index">
               <div class="form-check">
@@ -22,8 +20,8 @@
       </div>
       <div class="row mb-3" style="margin-top: 20px;" >
         <div class="col-md-2">
-          <label for="anio" v-if="this.id == 0">Año:</label>
-          <label for="anio" v-if="this.id == 1">Primer Año:</label>
+          <label for="anio" v-if="this.id == 0">Seleccione el año de interés:</label>
+          <label for="anio" v-if="this.id == 1">Seleccione el primer Año:</label>
         </div>
         <div class="col-md-9">
           <select class="custom-select" id="anio" v-model="anio"> 
@@ -34,7 +32,7 @@
       </div>
         <div class="row mb-3" style="margin-top: 20px;" v-if="this.id == 1">
         <div class="col-md-2">
-          <label for="anio2" >Segundo año:</label>
+          <label for="anio2" >Seleccione el segundo año:</label>
         </div>
         <div class="col-md-9">
           <select class="custom-select" id="anio2" v-model="anio2"> 

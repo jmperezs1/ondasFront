@@ -21,11 +21,13 @@
             </div>
             <div class="col-3">
               <div class="dropdown">
-                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown">
                   Convocatoria
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                   <li><a class="dropdown-item" href="/departamentos/convocatorias/ingreso">Ingresar información convocatoria</a></li>
+                  <li><a class="dropdown-item" href="/departamentos/convocatorias/modificar">Modificar información de un año</a></li>
+                  <li><a class="dropdown-item" href="/departamentos/convocatorias/eliminar">Eliminar información de un año</a></li>
                   <li><a class="dropdown-item" href="/departamentos/convocatorias/consultas/periodo">Exportar información de un año</a></li>
                   <li><a  class="dropdown-item" href="/departamentos/convocatorias/consultas/periodos">Exportar información en un rango de años</a></li>
                   <li><a  class="dropdown-item" href='/departamentos/convocatorias/visualizacion'>Visualizar convocatorias</a></li>
@@ -34,24 +36,28 @@
             </div>
             <div class="col-3">
               <div class="dropdown">
-                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown">
                   Acompañamiento
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                   <li><a class="dropdown-item" href="/departamentos/acompanamientos/ingreso">Ingresar información Acompañamiento</a></li>
+                  <li><a class="dropdown-item" href="/departamentos/acompanamientos/modificar">Modificar información de un año</a></li>
+                  <li><a class="dropdown-item" href="/departamentos/acompanamientos/eliminar">Eliminar información de un año</a></li>
                   <li><a class="dropdown-item" href="/departamentos/acompanamientos/consultas/periodo">Exportar información de un año</a></li>
                   <li><a  class="dropdown-item" href="/departamentos/acompanamientos/consultas/periodos">Exportar información en un rango de años</a></li>
-                  <li><a class="dropdown-item" href="'/departamentos/acompanamientos/visualizacion'">Visualizar acompañamientos</a></li>
+                  <li><a class="dropdown-item" href="/departamentos/acompanamientos/visualizacion">Visualizar acompañamientos</a></li>
                 </ul>
               </div>
             </div>
             <div class="col-3">
               <div class="dropdown">
-                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown">
                   Movilización
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2"  >
                   <li><a class="dropdown-item" href="/departamentos/movilizaciones/ingreso">Ingresar información movilización</a></li>
+                  <li><a class="dropdown-item" href="/departamentos/movilizaciones/modificar">Modificar información de un año</a></li>
+                  <li><a class="dropdown-item" href="/departamentos/movilizaciones/eliminar">Eliminar información de un año</a></li>
                   <li><a class="dropdown-item" href='/departamentos/movilizaciones/consultas/periodo'>Exportar información de un año</a></li>
                   <li><a  class="dropdown-item" href='/departamentos/movilizaciones/consultas/periodos'>Exportar información en un rango de años</a></li>
                   <li><a  class="dropdown-item" href='/departamentos/movilizaciones/visualizacion'>Visualizar movilizaciones</a></li>
@@ -99,8 +105,6 @@
   <style>
   #NavBarDepartamento{
     margin-top: 30px;
-    overflow-x: hidden; 
-    height: 290px
   }
 
   </style>

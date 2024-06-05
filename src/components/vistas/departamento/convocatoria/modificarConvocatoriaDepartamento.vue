@@ -1,6 +1,6 @@
 <template>
     <navBarDepartamento/>
-    <h1 style="text-align: center;">Ingreso de indicadores convocatoria del departamento</h1>
+    <h1 style="text-align: center; margin-top: 40px;">Modificar indicadores de convocatoria del departamento</h1>
     <div class="container">
         <div class="row" style="margin-top: 56px;">
             <div class="col-md-1" style="text-align: left;"></div>
@@ -8,15 +8,15 @@
                     <label for="anio">Ingrese el año:</label>
             </div>
             <div class="col-md-2 p-0">
-                <select class="custom-select" id="anio" v-model="anio" @change="verificarExistencia" style="width: 100%; background-color: #D9D9D9; border: 0cap;">
-                    <option selected>Seleccionar...</option>
+                <select class="custom-select" id="anio" v-model="anio" @change="verificarExistencia">
+                    <option selected value="seleccionar">Seleccionar...</option>
                     <option v-for="year in years" :key="year" :value="year">{{ year }}</option>
                 </select>
             </div>
         </div>
         <IngresoConvocatoria v-if="valido" :anio="anio" :departamento="departamento" :identificador="true"/>
-        <div v-else-if="valido === false" class="alert alert-danger" role="alert" style="margin-top: 40px;">
-            Ya existe una convocatoria para el año {{ anio }} en el departamento de {{ departamento }}
+        <div v-else-if="anio=='seleccionar'" class="alert alert-success" role="alert" style="margin-top: 40px;">
+            Por favor seleccione un año para modificar la convocatoria
         </div>
     </div>
 </template>
@@ -33,7 +33,7 @@ export default {
     },
     data() {
         return {
-            anio: null,
+            anio: "seleccionar",
             departamento: null,
             valido: '',
             id: null,
