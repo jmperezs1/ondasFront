@@ -262,7 +262,12 @@ export default {
         departamento: {
             type: String,
             required: true
-        }
+        },
+        identificador: {
+            type: Boolean,
+            required: false,
+            default: false
+        }   
     },
     methods: {
         updateEncuentros() {
@@ -434,31 +439,33 @@ computed: {
         }
     },
     async mounted() {
-        const token = localStorage.getItem('token');
-        const id = jwtDecode(token).id
-        const movilizacion = await fetch('https://localhost:7192/api/Movilizaciones/anio/'+this.anio+'/departamento/'+this.departamento+'/'+id+'/'+token);
-        const movilizacionData = await movilizacion.json();
-        this.Num_Talleres_Entidades_Coordinadoras = movilizacionData[0].num_Talleres_Entidades_Coordinadoras;
-        this.Num_Encuentros = movilizacionData[0].num_Encuentros;
-        this.Num_Participantes_Encuentros = movilizacionData[0].num_Participantes_Encuentros;
-        this.Num_Premios_Grupos_Investigacion = movilizacionData[0].num_Premios_Grupos_Investigacion;
-        this.Num_Vinculados_Ferias = movilizacionData[0].num_Vinculados_Ferias;
-        this.Num_Vinculados_Internacionales = movilizacionData[0].num_Vinculados_Internacionales;
-        this.Num_Proyectos_Internacionales = movilizacionData[0].num_Proyectos_Internacionales;
-        this.Num_Grupos_Ganadores = movilizacionData[0].num_Grupos_Ganadores;
-        this.Num_Proyectos_Ferias = movilizacionData[0].num_Proyectos_Ferias;
-        this.Num_Vinculados_Conflicto_Armado = movilizacionData[0].num_Vinculados_Conflicto_Armado;
-        this.Num_Vinculados_Reincorporacion = movilizacionData[0].num_Vinculados_Reincorporacion;
-        this.Num_Vinculados_Etnia = movilizacionData[0].num_Vinculados_Etnia;
-        this.Num_Vinculados_Pdet = movilizacionData[0].num_Vinculados_Pdet;
-        this.Num_Vinculados_Zomac = movilizacionData[0].num_Vinculados_Zomac;
-        this.Num_Vinculados_Indigena = movilizacionData[0].num_Vinculados_Indigena;
-        this.Num_Vinculados_Gitano = movilizacionData[0].num_Vinculados_Gitano;
-        this.Num_Vinculados_Raizal = movilizacionData[0].num_Vinculados_Raizal;
-        this.Num_Vinculados_Palenquero = movilizacionData[0].num_Vinculados_Palenquero;
-        this.Num_Vinculados_Afro = movilizacionData[0].num_Vinculados_Afro;
-        this.Num_Vinculados_Discapacidad = movilizacionData[0].num_Vinculados_Discapacidad;
-        this.encuentros = movilizacionData[0].encuentros.map(encuentro => encuentro.num_Personas);
+        if(this.identificador){
+            const token = localStorage.getItem('token');
+            const id = jwtDecode(token).id
+            const movilizacion = await fetch('https://localhost:7192/api/Movilizaciones/anio/'+this.anio+'/departamento/'+this.departamento+'/'+id+'/'+token);
+            const movilizacionData = await movilizacion.json();
+            this.Num_Talleres_Entidades_Coordinadoras = movilizacionData[0].num_Talleres_Entidades_Coordinadoras;
+            this.Num_Encuentros = movilizacionData[0].num_Encuentros;
+            this.Num_Participantes_Encuentros = movilizacionData[0].num_Participantes_Encuentros;
+            this.Num_Premios_Grupos_Investigacion = movilizacionData[0].num_Premios_Grupos_Investigacion;
+            this.Num_Vinculados_Ferias = movilizacionData[0].num_Vinculados_Ferias;
+            this.Num_Vinculados_Internacionales = movilizacionData[0].num_Vinculados_Internacionales;
+            this.Num_Proyectos_Internacionales = movilizacionData[0].num_Proyectos_Internacionales;
+            this.Num_Grupos_Ganadores = movilizacionData[0].num_Grupos_Ganadores;
+            this.Num_Proyectos_Ferias = movilizacionData[0].num_Proyectos_Ferias;
+            this.Num_Vinculados_Conflicto_Armado = movilizacionData[0].num_Vinculados_Conflicto_Armado;
+            this.Num_Vinculados_Reincorporacion = movilizacionData[0].num_Vinculados_Reincorporacion;
+            this.Num_Vinculados_Etnia = movilizacionData[0].num_Vinculados_Etnia;
+            this.Num_Vinculados_Pdet = movilizacionData[0].num_Vinculados_Pdet;
+            this.Num_Vinculados_Zomac = movilizacionData[0].num_Vinculados_Zomac;
+            this.Num_Vinculados_Indigena = movilizacionData[0].num_Vinculados_Indigena;
+            this.Num_Vinculados_Gitano = movilizacionData[0].num_Vinculados_Gitano;
+            this.Num_Vinculados_Raizal = movilizacionData[0].num_Vinculados_Raizal;
+            this.Num_Vinculados_Palenquero = movilizacionData[0].num_Vinculados_Palenquero;
+            this.Num_Vinculados_Afro = movilizacionData[0].num_Vinculados_Afro;
+            this.Num_Vinculados_Discapacidad = movilizacionData[0].num_Vinculados_Discapacidad;
+            this.encuentros = movilizacionData[0].encuentros.map(encuentro => encuentro.num_Personas);
+        }
     }
 };
 

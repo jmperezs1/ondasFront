@@ -96,10 +96,10 @@
                         <a href="/departamentos/movilizaciones/ingreso"  class="btn">Ingresar información sobre movilización del departamento</a>
                       </li>
                       <li style="margin-bottom: 10px;">
-                        <a href="/departamentos/movilizaciones/modificar" class="btn">Modificar información un acompañmiento</a>
+                        <a href="/departamentos/movilizaciones/modificar" class="btn">Modificar información una movilización</a>
                       </li>
                       <li style="margin-bottom: 10px;">
-                        <a href="/departamentos/movilizaciones/eliminar" class="btn">Eliminar información un acompañmiento</a>
+                        <a href="/departamentos/movilizaciones/eliminar" class="btn">Eliminar información una movilización</a>
                       </li>
                       <li style="margin-bottom: 10px;">
                         <a href='/departamentos/movilizaciones/consultas/periodo' class="btn">Exportar información de un año</a>

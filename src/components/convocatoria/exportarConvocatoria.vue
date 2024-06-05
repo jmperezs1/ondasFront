@@ -19,11 +19,12 @@
         </div>
       </div>
       <div class="row mb-3" style="margin-top: 20px;" >
-        <div class="col-md-2">
-          <label for="anio" v-if="this.id == 0">Seleccione el año de interés:</label>
-          <label for="anio" v-if="this.id == 1">Seleccione el primer Año:</label>
+        <div class="col-md-2"></div>
+        <div class="col-md-3">
+          <label for="anio" v-if="this.id == 0"><h6>Seleccione el año de interés:</h6></label>
+          <label for="anio" v-if="this.id == 1"><h6>Seleccione el primer año:</h6></label>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-7">
           <select class="custom-select" id="anio" v-model="anio"> 
             <option selected>Seleccionar...</option>
             <option  v-for="year in years" :key="year">{{ year }}</option>
@@ -31,10 +32,11 @@
         </div>
       </div>
         <div class="row mb-3" style="margin-top: 20px;" v-if="this.id == 1">
-        <div class="col-md-2">
-          <label for="anio2" >Seleccione el segundo año:</label>
+        <div class="col-md-2"></div>
+        <div class="col-md-3">
+          <label for="anio2" ><h6>Seleccione el segundo año:</h6></label>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-7">
           <select class="custom-select" id="anio2" v-model="anio2"> 
             <option selected>Seleccionar...</option>
             <option  v-for="year in years" :key="year">{{ year }}</option>
@@ -42,10 +44,11 @@
         </div>
       </div>
       <div class="row mb-3">
-        <div class="col-md-2">
-          <label for="desagregacion">Desagregación:</label>
+        <div class="col-md-2"></div>
+        <div class="col-md-3">
+          <label for="desagregacion"><h6>Desagregación:</h6></label>
         </div>
-        <div class="col-md-8" >
+        <div class="col-md-7" >
           <select class="custom-select" id="desagregacion" v-model="selectedDesagregacion">
             <option selected>Seleccionar...</option>
             <option v-if="!this.departamental" value="nacional">Nacional</option>
@@ -62,10 +65,11 @@
         </div>
       </div>
       <div class="row" v-if="showDesagregacion2 && !departamental">
-        <div class="col-md-2">
-          <label for="agrupar">Agrupar por:</label>
+        <div class="col-md-2"></div>
+        <div class="col-md-3">
+          <label for="agrupar"><h6>Agrupar por:</h6></label>
         </div>
-        <div class="col-md-9 p-0" style ="margin-left: 10px">
+        <div class="col-md-7 p-0" style ="margin-left: 10px">
           <select class="custom-select" id="desagregacion" v-model="selectedDesagregacion2">
             <option selected>Seleccionar...</option>
             <option v-if="!showTerritorial || !this.departamental" value="nacional">Nacional</option>

@@ -1,15 +1,13 @@
 <template>
+  <h1 style="text-align: center; margin-top: 40px" v-if="id==0">Exportar acompañamiento en un año</h1>
+  <h1 style="text-align: center; margin-top: 40px" v-if="id==1">Exportar acompañamiento en un rango de años</h1>
     <div class="container mt-3">
-        <div class="row">
-            <div class="col-md-12">
-                <h3 class="text-center">Aplicar filtros</h3>
-            </div>
-        </div>
-        <div class="row" style="margin-top: 20px;">
+        <div class="row" style="margin-top: 40px;">
+        <div class="col-md-2"></div>
         <div class="col-md-3">
           <h6>Seleccione los indicadores:</h6>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-7">
           <ul class="list-unstyled">
             <li v-for="(indicador, index) in listIndicadores" :key="index">
               <div class="form-check">
@@ -21,11 +19,12 @@
         </div>
       </div>
       <div class="row" style="margin-top: 20px;">
-        <div class="col-md-2">
-          <label for="anio" v-if="this.id == 0">Año:</label>
-          <label for="anio" v-if="this.id == 1">Primer Año:</label>
+        <div class="col-md-2"></div>
+        <div class="col-md-3">
+          <label for="anio" v-if="this.id == 0"><h6>Seleccione el año de interés:</h6></label>
+          <label for="anio" v-if="this.id == 1"><h6>Seleccione el primer año:</h6></label>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-7">
           <select class = "custom-select" id="anio" v-model="anio">
               <option selected>Seleccionar...</option>
               <option v-for="year in years" :key="year" :value="year">{{ year }}</option>
@@ -33,10 +32,11 @@
         </div>
       </div>
       <div class="row mb-3" style="margin-top: 20px;" v-if="this.id == 1">
-        <div class="col-md-2">
-          <label for="anio2" >Segundo año:</label>
+        <div class="col-md-2"></div>
+        <div class="col-md-3">
+          <label for="anio2" ><h6>Seleccione el segundo año:</h6></label>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-7">
           <select class="custom-select" id="anio2" v-model="anio2"> 
             <option selected>Seleccionar...</option>
             <option  v-for="year in years" :key="year">{{ year }}</option>
@@ -44,10 +44,11 @@
         </div>
       </div>
       <div class="row" style="margin-top: 20px;">
-        <div class="col-md-2">
-          <label for="desagregacion">Desagregación:</label>
+        <div class="col-md-2"></div>
+        <div class="col-md-3">
+          <label for="desagregacion"><h6>Desagregación:</h6></label>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-7">
           <select class="custom-select" id="desagregacion" v-model="selectedDesagregacion">
             <option selected>Seleccionar...</option>
             <option v-if='!this.departamental' value="nacional">Nacional</option>
@@ -63,10 +64,11 @@
         </div>
       </div>
       <div class="row" v-if="showDesagregacion2 && !departamental" style="margin-top: 20px;">
-        <div class="col-md-2">
-          <label for="agrupar">Agrupar por:</label>
+        <div class="col-md-2"></div>
+        <div class="col-md-3">
+          <label for="agrupar"><h6>Agrupar por:</h6></label>
         </div>
-        <div class="col-md-9 p-0" style ="margin-left: 10px">
+        <div class="col-md-7 p-0" style ="margin-left: 10px">
           <select class="custom-select" id="desagregacion" v-model="selectedDesagregacion2">
             <option selected>Seleccionar...</option>
             <option  v-if="!showTerritorial || !this.departamental" value="nacional">Nacional</option>

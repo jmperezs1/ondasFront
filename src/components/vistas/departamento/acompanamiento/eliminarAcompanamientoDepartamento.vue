@@ -1,6 +1,6 @@
 <template>
     <NavBarDepartamento/>
-    <h1 style="text-align: center;">Eliminar Acompañamiento</h1>
+    <h1 style="text-align: center; margin-top: 40px;">Eliminar Acompañamiento</h1>
     <div class="container">
         <div class="row" style="margin-top: 56px;">
             <div class="col-md-1" style="text-align: left;"></div>
@@ -8,11 +8,14 @@
                     <label for="anio">Ingrese el año:</label>
             </div>
             <div class="col-md-2 p-0">
-                <select class="custom-select" id="anio" v-model="anio" @change="verificarExistencia" style="width: 100%; background-color: #D9D9D9; border: 0cap;">
-                    <option selected>Seleccionar...</option>
+                <select class="custom-select" id="anio" v-model="anio" @change="verificarExistencia">
+                    <option selected value="seleccionar">Seleccionar...</option>
                     <option v-for="year in years" :key="year" :value="year">{{ year }}</option>
                 </select>
             </div>
+        </div>
+        <div v-if="anio=='seleccionar'" class="alert alert-success" role="alert" style="margin-top: 40px;">
+            Por favor seleccione un año para eliminar el acompañamiento
         </div>
     </div>
     <EliminarAcompanamiento v-if="valido" :anio="anio" :departamento="departamento" />
@@ -30,7 +33,7 @@ export default {
     },
     data() {
         return {
-            anio: null,
+            anio: "seleccionar",
             departamento: null,
             valido: '',
             id: null,
