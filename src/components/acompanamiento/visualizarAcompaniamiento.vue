@@ -1,13 +1,13 @@
 <template>
-
+    <h1 style="margin-top: 40px; text-align: center;">Visualizar Acompañamiento</h1>
     <div>
-        <div class="row">
+        <div class="row" style="margin-top: 40px">
             <!-- Start Year Input -->
             <div class="col-md-2" style="text-align: center;">
                 <label for="startYear">Año de inicio:</label>
             </div>
             <div class="col-md-3">
-                <input type="number" class="form-control" @change="getDatos" id="startYear" v-model.number="startYear" min="1900" max="2099" step="1" style="background-color: #D9D9D9; border: 0;" :style="{border: (startYear < 1900 || startYear > 2099) ? '1px solid red' : ''}">
+                <input type="number" placeholder="Ingrese el año de inicio" class="form-control" @change="getDatos" id="startYear" v-model.number="startYear" min="1900" max="2099" step="1" style=" border: 0;" :style="{border: (startYear < 1900 || startYear > 2099) ? '1px solid red' : ''}">
             </div>
         
             <!-- End Year Input -->
@@ -15,7 +15,7 @@
                 <label for="endYear">Año de fin:</label>
             </div>
             <div class="col-md-3">
-                <input type="number" class="form-control" @change="getDatos" id="endYear" v-model.number="endYear" min="1900" max="2099" step="1" style="background-color: #D9D9D9; border: 0;" :style="{border: (endYear < 1900 || endYear > 2099) ? '1px solid red' : ''}">
+                <input type="number" placeholder="Ingrese el año de inicio" class="form-control" @change="getDatos" id="endYear" v-model.number="endYear" min="1900" max="2099" step="1" style=" border: 0;" :style="{border: (endYear < 1900 || endYear > 2099) ? '1px solid red' : ''}">
             </div>
         </div>
     </div>
@@ -60,7 +60,7 @@
         </div>
     </div>
 
-    <div class="col-md-12 text-center" v-if="this.rolF ==  'Minciencias'" style="margin-bottom: 20px;">
+    <div class="col-md-12 text-center" style="margin-top: 40px; margin-bottom: 20px;">
           <button type="button" @click="whenClicked" class="btn btn-primary">Buscar</button>
     </div>
 
