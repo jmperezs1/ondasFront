@@ -1,6 +1,6 @@
 <template>
     <NavBarMinciencias/>
-    <h1 style="text-align: center;">Ingreso de indicadores de movilización del departamento</h1>
+    <h1 style="text-align: center; margin-top: 40px;">Modificar indicadores de movilización del departamento</h1>
     <div class="container">
         <div class="row" style="margin-top: 45px;">
             <div class="col-md-1" style="text-align: left;"></div>
@@ -8,8 +8,8 @@
                     <label for="anio">Ingrese el departamento:</label>
             </div>
             <div class="col-md-2 p-0">
-                <select class="custom-select" id="departamento" v-model="departamento" @change="fetchYears" style="width: 100%; background-color: #D9D9D9; border: 0cap;">
-                    <option selected>Seleccionar...</option>
+                <select class="custom-select" id="departamento" v-model="departamento" @change="fetchYears">
+                    <option selected value="seleccionar">Seleccionar...</option>
                     <option v-for="(departamento, index) in listDepartamentos" :key="index" :value="departamento">{{ departamento }}</option>
                 </select>
             </div>
@@ -20,8 +20,8 @@
                     <label for="anio">Ingrese el año:</label>
             </div>
             <div class="col-md-2 p-0">
-                <select class="custom-select" id="anio" v-model="anio" @change="verificarExistencia" style="width: 100%; background-color: #D9D9D9; border: 0cap;">
-                    <option selected>Seleccionar...</option>
+                <select class="custom-select" id="anio" v-model="anio" @change="verificarExistencia">
+                    <option selected value="seleccionar">Seleccionar...</option>
                     <option v-for="year in years" :key="year" :value="year">{{ year }}</option>
                 </select>
             </div>
@@ -29,6 +29,15 @@
         <IngresoMovilizacion v-if="valido" :anio="anio" :departamento="departamento" :identificacion="true" />
         <div v-else-if="valido === false" class="alert alert-danger" role="alert" style="margin-top: 40px;">
             Ya existe una movilización para el año {{ anio }} en el departamento de {{ departamento }}
+        </div>
+        <div v-else-if="anio=='seleccionar' && departamento!='seleccionar'" class="alert alert-success" role="alert" style="margin-top: 40px;">
+            Por favor seleccione un año para ingresar la movilización
+        </div>
+        <div v-else-if="anio!='seleccionar' && departamento=='seleccionar'" class="alert alert-success" role="alert" style="margin-top: 40px;">
+            Por favor seleccione un departamento para ingresar la movilización
+        </div>
+        <div v-else-if="anio=='seleccionar' && departamento=='seleccionar'" class="alert alert-success" role="alert" style="margin-top: 40px;">
+            Por favor seleccione un año y un departamento para ingresar la movilización
         </div>
     </div>
 </template>
@@ -78,8 +87,8 @@ export default {
                             "Valle del Cauca",    
                             "Vaupés",    
                             "Vichada"],
-            anio: null,
-            departamento: null,
+            anio: 'seleccionar',
+            departamento: 'seleccionar',
             valido: '',
             id: null,
             token: null,
@@ -103,7 +112,7 @@ export default {
             }
         },
         async verificarExistencia() {
-            if (this.anio != null && this.departamento != null) {
+            if (this.anio != 'seleccionar' && this.departamento != 'seleccionar') {
                     this.valido = true;
                 }
                 else {

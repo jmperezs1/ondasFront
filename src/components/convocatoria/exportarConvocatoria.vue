@@ -69,7 +69,7 @@
         <div class="col-md-3">
           <label for="agrupar"><h6>Agrupar por:</h6></label>
         </div>
-        <div class="col-md-7 p-0" style ="margin-left: 10px">
+        <div class="col-md-6 p-0" style ="margin-left: 10px">
           <select class="custom-select" id="desagregacion" v-model="selectedDesagregacion2">
             <option selected>Seleccionar...</option>
             <option v-if="!showTerritorial || !this.departamental" value="nacional">Nacional</option>

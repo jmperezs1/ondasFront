@@ -26,6 +26,8 @@
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                   <li><a class="dropdown-item" href="/minciencias/convocatorias/ingreso">Ingresar información convocatoria</a></li>
+                  <li><a class="dropdown-item" href="/minciencias/convocatorias/modificar">Modificar información de un año convocatoria</a></li>
+                  <li><a class="dropdown-item" href="/minciencias/convocatorias/eliminar">Eliminar información de un año convocatoria</a></li>
                   <li><a class="dropdown-item" href="/minciencias/convocatorias/consultas/periodo">Exportar información de un año convocatoria</a></li>
                   <li><a class="dropdown-item" href="/minciencias/convocatorias/consultas/periodos">Exportar información en un rango de años convocatoria</a></li>
                   <li><a class="dropdown-item" href="/minciencias/convocatorias/visualizacion">Visualizar convocatorias</a></li>
@@ -39,6 +41,8 @@
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                   <li><a class="dropdown-item" href="/minciencias/acompanamiento/ingreso">Ingresar información acompañamiento</a></li>
+                  <li><a class="dropdown-item" href="/minciencias/acompanamiento/modificar">Modificar información de un año</a></li>
+                  <li><a class="dropdown-item" href="/minciencias/acompanamiento/eliminar">Eliminar información de un año</a></li>
                   <li><a class="dropdown-item" href="/minciencias/acompanamiento/consultas/periodo">Exportar información de un año</a></li>
                   <li><a class="dropdown-item" href="/minciencias/acompanamiento/consultas/periodos">Exportar información en un rango de años</a></li>
                   <li><a class="dropdown-item" href="/minciencias/acompanamiento/visualizacion">Visualizar acompañamientos</a></li>
@@ -52,6 +56,8 @@
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                     <li><a class="dropdown-item" href="/minciencias/movilizacion/ingreso">Ingresar información movilización</a></li>
+                    <li><a class="dropdown-item" href="/minciencias/movilizacion/modificar">Modificar información de un año</a></li>
+                    <li><a class="dropdown-item" href="/minciencias/movilizacion/eliminar">Eliminar información de un año</a></li>
                     <li><a class="dropdown-item" href="/minciencias/movilizacion/consultas/periodo">Exportar información de un año</a></li>
                     <li><a class="dropdown-item" href="/minciencias/movilizacion/consultas/periodos">Exportar información en un rango de años</a></li>
                     <li><a class="dropdown-item" href="/minciencias/movilizaciones/visualizacion">Visualizar movilizaciones</a></li>

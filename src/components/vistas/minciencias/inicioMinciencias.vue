@@ -107,7 +107,7 @@
                         <a href='/minciencias/movilizacion/consultas/periodos' class="btn">Exportar información en un rango de años</a>
                       </li>
                       <li style="margin-bottom: 10px;">
-                        <a href='/minciencias/movilizacion/visualizacion' class="btn">Visualizar movilizaciones</a>
+                        <a href='/minciencias/movilizaciones/visualizacion' class="btn">Visualizar movilizaciones</a>
                       </li>
                     </ul>
                   </div>
