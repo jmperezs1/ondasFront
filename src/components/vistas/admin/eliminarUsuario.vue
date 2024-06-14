@@ -41,7 +41,7 @@ import { jwtDecode } from 'jwt-decode';
         try {
         
             this.id = jwtDecode(this.token).id;
-          const response = await fetch(`https://localhost:7192/api/autenticaciones/${this.id}/${this.token}/${this.usuario}`, {
+          const response = await fetch(`${this.$baseRoute}/autenticaciones/${this.id}/${this.token}/${this.usuario}`, {
             method: 'DELETE',
             headers: {
               'Content-Type': 'application/json',

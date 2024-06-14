@@ -52,7 +52,7 @@ export default {
         async eliminarConvocatoria() {
             const token = localStorage.getItem('token');
             const id = jwtDecode(token).id;
-            const response = await fetch(`https://localhost:7192/api/convocatorias/anio/${this.anio}/departamento/${this.departamento}/${id}/${token}`, {
+            const response = await fetch(`${this.$baseRoute}/convocatorias/anio/${this.anio}/departamento/${this.departamento}/${id}/${token}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

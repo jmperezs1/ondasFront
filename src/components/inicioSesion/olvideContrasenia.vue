@@ -24,7 +24,7 @@
         const email = document.getElementById('inputCorreo').value;
 
         try {
-          const response = await fetch(`https://localhost:7192/api/autenticaciones/RestablecerContrasenia/${username}/${email}`, {
+          const response = await fetch(`${this.$baseRoute}/autenticaciones/RestablecerContrasenia/${username}/${email}`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'

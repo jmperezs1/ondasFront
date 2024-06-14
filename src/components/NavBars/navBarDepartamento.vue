@@ -84,7 +84,7 @@
       const id = jwtDecode(token).id;
       localStorage.removeItem('token');
       this.$router.push('/');
-      await fetch(`https://localhost:7192/api/tokens/delete/${id}`, {
+      await fetch(`${this.$baseRoute}/tokens/delete/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -95,7 +95,7 @@
   async mounted() {
     const token = localStorage.getItem('token');
     const id = jwtDecode(token).id;
-    const departamento = await fetch (`https://localhost:7192/api/tokens/${id}/departamento?token=${token}`);
+    const departamento = await fetch (`${this.$baseRoute}/tokens/${id}/departamento?token=${token}`);
     const json = await departamento.json();
     this.departamento = json.departamento;
     }

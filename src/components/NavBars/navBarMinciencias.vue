@@ -80,7 +80,7 @@ export default {
       const id = jwtDecode(token).id;
       localStorage.removeItem('token');
       this.$router.push('/');
-      await fetch(`https://localhost:7192/api/tokens/delete/${id}`, {
+      await fetch(`${this.$baseRoute}/tokens/delete/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

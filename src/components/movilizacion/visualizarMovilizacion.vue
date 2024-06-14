@@ -383,7 +383,7 @@
         async getData() {
             if(this.rolF === "Departamento"){
                 if(this.startYear == this.endYear){
-                    const response = await fetch(`https://localhost:7192/api/Movilizaciones/filterAnioDepartamentoVisualizar/${this.startYear}/${this.id}/${this.token}?departamentos=${this.departamento}`);
+                    const response = await fetch(`${this.$baseRoute}/Movilizaciones/filterAnioDepartamentoVisualizar/${this.startYear}/${this.id}/${this.token}?departamentos=${this.departamento}`);
                     if(response.ok){
                         const data = await response.json();
                         this.Num_Encuentros = data.Num_Encuentros;
@@ -409,7 +409,7 @@
                     }
                 }
                 else if(this.endYear > this.startYear){
-                    const response = await fetch(`https://localhost:7192/api/Movilizaciones/filterAniosDepartamentosVisualizar/${this.startYear}/${this.endYear}/${this.id}/${this.token}?departamentos=${this.departamento}`);
+                    const response = await fetch(`${this.$baseRoute}/Movilizaciones/filterAniosDepartamentosVisualizar/${this.startYear}/${this.endYear}/${this.id}/${this.token}?departamentos=${this.departamento}`);
                         if(response.ok){
                         const data = await response.json();
                         this.Num_Encuentros = data.Num_Encuentros;
@@ -446,7 +446,7 @@
 
                 if(this.startYear == this.endYear){
                     console.log(this.selectedDepartamentos)
-                    const response = await fetch(`https://localhost:7192/api/Movilizaciones/filterAnioDepartamentoVisualizar/${this.startYear}/${this.id}/${this.token}?departamentos=${cadena}`);
+                    const response = await fetch(`${this.$baseRoute}/Movilizaciones/filterAnioDepartamentoVisualizar/${this.startYear}/${this.id}/${this.token}?departamentos=${cadena}`);
                         if(response.ok){
                         const data = await response.json();
                         this.Num_Encuentros = data.Num_Encuentros;
@@ -471,7 +471,7 @@
                 }
             }
             else if(this.endYear > this.startYear){
-                const response = await fetch(`https://localhost:7192/api/Movilizaciones/filterAniosDepartamentosVisualizar/${this.startYear}/${this.endYear}/${this.id}/${this.token}?departamentos=${cadena}`);
+                const response = await fetch(`${this.$baseRoute}/Movilizaciones/filterAniosDepartamentosVisualizar/${this.startYear}/${this.endYear}/${this.id}/${this.token}?departamentos=${cadena}`);
                 if(response.ok){
                     const data = await response.json();
                     this.Num_Encuentros = data.Num_Encuentros;
@@ -538,12 +538,12 @@
 
         this.token = localStorage.getItem('token');
         this.id = jwtDecode(this.token).id;
-        const rol = await fetch (`https://localhost:7192/api/tokens/${this.id}/?token=${this.token}`);
+        const rol = await fetch (`${this.$baseRoute}/tokens/${this.id}/?token=${this.token}`);
         const resp = await rol.json();
         this.rolF = resp.rol; // Asigna el valor a 'rolF' correctamente
         if(this.rolF === "Departamento"){
             this.departamental = true;
-            const departamentoData = await fetch (`https://localhost:7192/api/tokens/${this.id}/departamento?token=${this.token}`);
+            const departamentoData = await fetch (`${this.$baseRoute}/tokens/${this.id}/departamento?token=${this.token}`);
             const departamentoJson = await departamentoData.json();
             this.departamento = departamentoJson.departamento; // Asegúrate de asignar correctamente 'departamento'
         }

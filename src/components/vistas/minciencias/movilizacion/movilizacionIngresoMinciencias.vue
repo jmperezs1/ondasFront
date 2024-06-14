@@ -101,7 +101,7 @@ export default {
     methods: {
         async verificarExistencia() {
             if (this.anio != 'selecionar' && this.departamento !='seleccionar') {
-                const response = await fetch(`https://localhost:7192/api/movilizaciones/anio/${this.anio}/departamento/${this.departamento}/${this.id}/${this.token}`);
+                const response = await fetch(`${this.$baseRoute}/movilizaciones/anio/${this.anio}/departamento/${this.departamento}/${this.id}/${this.token}`);
                 if (response.status === 404) {
                     this.valido = true;
                 }

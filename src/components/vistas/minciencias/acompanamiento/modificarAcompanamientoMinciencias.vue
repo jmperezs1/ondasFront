@@ -99,7 +99,7 @@ export default {
     methods: {
         async fetchYears() {
             if (this.departamento !== null) {
-                const response = await fetch(`https://localhost:7192/api/Acompaniamientos/anios/departamento/${this.departamento}/${this.id}/${this.token}`);
+                const response = await fetch(`${this.$baseRoute}/Acompaniamientos/anios/departamento/${this.departamento}/${this.id}/${this.token}`);
                 if (response.ok) {
                     this.years = await response.json();
                 }
