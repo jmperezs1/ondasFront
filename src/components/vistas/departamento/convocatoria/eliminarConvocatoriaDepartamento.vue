@@ -46,10 +46,10 @@ export default {
     async mounted() {
     this.token = localStorage.getItem('token');
     this.id = jwtDecode(this.token).id;
-    const departamento = await fetch (`https://localhost:7192/api/tokens/${this.id}/departamento?token=${this.token}`);
+    const departamento = await fetch (`${this.$baseRoute}/tokens/${this.id}/departamento?token=${this.token}`);
     const json = await departamento.json();
     this.departamento = json.departamento;
-    const yearsResponse = await fetch(`https://localhost:7192/api/Convocatorias/anios/departamento/${this.departamento}/${this.id}/${this.token}`);
+    const yearsResponse = await fetch(`${this.$baseRoute}/Convocatorias/anios/departamento/${this.departamento}/${this.id}/${this.token}`);
       if (yearsResponse.ok) {
         this.years = await yearsResponse.json();
     }

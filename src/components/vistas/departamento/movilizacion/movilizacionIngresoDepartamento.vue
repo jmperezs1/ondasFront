@@ -46,7 +46,7 @@ export default {
     methods: {
         async verificarExistencia() {
             if (this.anio != null) {
-                const response = await fetch(`https://localhost:7192/api/movilizaciones/anio/${this.anio}/departamento/${this.departamento}/${this.userId}/${this.token}`);
+                const response = await fetch(`${this.$baseRoute}/movilizaciones/anio/${this.anio}/departamento/${this.departamento}/${this.userId}/${this.token}`);
                 if (response.status === 404) {
                     this.valido = true;
                 }
@@ -67,7 +67,7 @@ export default {
     async mounted() {
         this.token = localStorage.getItem('token');
         this.userId = jwtDecode(this.token).id;
-        const departamento = await fetch (`https://localhost:7192/api/tokens/${this.userId}/departamento?token=${this.token}`);
+        const departamento = await fetch (`${this.$baseRoute}/tokens/${this.userId}/departamento?token=${this.token}`);
         const json = await departamento.json();
         this.departamento = json.departamento;
     }

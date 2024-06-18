@@ -229,10 +229,10 @@ export default {
                 const cadena = this.seleccionIndicadores();
                 console.log(cadena);
                 if(this.id === 0){
-                  response = await fetch(`https://localhost:7192/api/movilizaciones/filterGroupByAnio/${this.anio}/${this.userId}/${this.token}?columnNames=${cadena}`);
+                  response = await fetch(`${this.$baseRoute}/movilizaciones/filterGroupByAnio/${this.anio}/${this.userId}/${this.token}?columnNames=${cadena}`);
                 }
                 else if (this.id === 1){
-                  response = await fetch(`https://localhost:7192/api/movilizaciones/filterGroupByAnios/${this.anio}/${this.anio2}/${this.userId}/${this.token}?columnNames=${cadena}`);
+                  response = await fetch(`${this.$baseRoute}/movilizaciones/filterGroupByAnios/${this.anio}/${this.anio2}/${this.userId}/${this.token}?columnNames=${cadena}`);
                 }
                 if (response.ok) {
                   this.descarga(response, 0);
@@ -245,10 +245,10 @@ export default {
                 const departamentos = this.seleccionDepartamental();
                 const columnas = this.seleccionIndicadores();
                 if(this.id === 0){
-                  response = await fetch(`https://localhost:7192/api/movilizaciones/filterAnioDepartamento/${this.anio}/${this.userId}/${this.token}?departamentos=${departamentos}&columnNames=${columnas}`);
+                  response = await fetch(`${this.$baseRoute}/movilizaciones/filterAnioDepartamento/${this.anio}/${this.userId}/${this.token}?departamentos=${departamentos}&columnNames=${columnas}`);
                 }
                 else if (this.id === 1){
-                  response = await fetch(`https://localhost:7192/api/movilizaciones/filterAniosDepartamentos/${this.anio}/${this.anio2}/${this.userId}/${this.token}?departamentos=${departamentos}&columnNames=${columnas}`);
+                  response = await fetch(`${this.$baseRoute}/movilizaciones/filterAniosDepartamentos/${this.anio}/${this.anio2}/${this.userId}/${this.token}?departamentos=${departamentos}&columnNames=${columnas}`);
                 }
               if (response.ok) {
                   this.descarga(response, 1);
@@ -261,10 +261,10 @@ export default {
                 if(this.selectedDesagregacion2 === "nacional"){
                 const cadena = this.seleccionAgrupamiento();
                 if(this.id === 0){
-                  response = await fetch(`https://localhost:7192/api/movilizaciones/filterGroupByAnio/${this.anio}/${this.userId}/${this.token}?columnNames=${cadena}`);
+                  response = await fetch(`${this.$baseRoute}/movilizaciones/filterGroupByAnio/${this.anio}/${this.userId}/${this.token}?columnNames=${cadena}`);
                 }
                 else if (this.id === 1){
-                  response = await fetch(`https://localhost:7192/api/movilizaciones/filterGroupByAnios/${this.anio}/${this.anio2}/${this.userId}/${this.token}?columnNames=${cadena}`);
+                  response = await fetch(`${this.$baseRoute}/movilizaciones/filterGroupByAnios/${this.anio}/${this.anio2}/${this.userId}/${this.token}?columnNames=${cadena}`);
                 }
                 if (response.ok) {
                   this.descarga(response, 0);
@@ -277,10 +277,10 @@ export default {
                 const departamentos = this.seleccionDepartamental();
                 const columnas = this.seleccionAgrupamiento();
                 if(this.id === 0){
-                  response = await fetch(`https://localhost:7192/api/movilizaciones/filterAnioDepartamento/${this.anio}/${this.userId}/${this.token}?departamentos=${departamentos}&columnNames=${columnas}`);
+                  response = await fetch(`${this.$baseRoute}/movilizaciones/filterAnioDepartamento/${this.anio}/${this.userId}/${this.token}?departamentos=${departamentos}&columnNames=${columnas}`);
                 }
                 else if (this.id === 1){
-                  response = await fetch(`https://localhost:7192/api/movilizaciones/filterAniosDepartamentos/${this.anio}/${this.anio2}/${this.userId}/${this.token}?departamentos=${departamentos}&columnNames=${columnas}`);
+                  response = await fetch(`${this.$baseRoute}/movilizaciones/filterAniosDepartamentos/${this.anio}/${this.anio2}/${this.userId}/${this.token}?departamentos=${departamentos}&columnNames=${columnas}`);
                 }
                 if (response.ok) {
                     this.descarga(response, 1);
@@ -293,10 +293,10 @@ export default {
                 const departamentos = "Cauca,Nariño,Valle del Cauca,Arauca,Antioquia,Norte de Santander,Chocó,Caquetá,Huila,Guaviare,Meta,Bolívar,Sucre,Putumayo,Cesar,La Guajira,Magdalena,Córdoba,Tolima";
                 const columnas = this.seleccionPdet();
                 if(this.id === 0){
-                  response = await fetch(`https://localhost:7192/api/movilizaciones/filterAnioDepartamento/${this.anio}/${this.userId}/${this.token}?departamentos=${departamentos}&columnNames=${columnas}`);
+                  response = await fetch(`${this.$baseRoute}/movilizaciones/filterAnioDepartamento/${this.anio}/${this.userId}/${this.token}?departamentos=${departamentos}&columnNames=${columnas}`);
                 }
                 else if (this.id === 1){
-                  response = await fetch(`https://localhost:7192/api/movilizaciones/filterAniosDepartamentos/${this.anio}/${this.anio2}/${this.userId}/${this.token}?departamentos=${departamentos}&columnNames=${columnas}`);
+                  response = await fetch(`${this.$baseRoute}/movilizaciones/filterAniosDepartamentos/${this.anio}/${this.anio2}/${this.userId}/${this.token}?departamentos=${departamentos}&columnNames=${columnas}`);
                 }
                 if (response.ok) {
                     this.descarga(response, 1);
@@ -309,10 +309,10 @@ export default {
                 const departamentos = "Antioquia,Arauca,Bolívar,Boyacá,Caldas,Caquetá,Casanare,Cauca,Cesar,Chocó,Córdoba,Cundinamarca,Guaviare,Huila,La Guajira,Magdalena,Meta,Nariño,Norte de Santander,Putumayo,Quindío,Risaralda,Santander,Sucre,Tolima,Valle del Cauca,Vaupés,Vichada";
                 const columnas = this.seleccionZomac();
                 if(this.id === 0){
-                  response = await fetch(`https://localhost:7192/api/movilizaciones/filterAnioDepartamento/${this.anio}/${this.userId}/${this.token}?departamentos=${departamentos}&columnNames=${columnas}`);
+                  response = await fetch(`${this.$baseRoute}/movilizaciones/filterAnioDepartamento/${this.anio}/${this.userId}/${this.token}?departamentos=${departamentos}&columnNames=${columnas}`);
                 }
                 else if (this.id === 1){
-                  response = await fetch(`https://localhost:7192/api/movilizaciones/filterAniosDepartamentos/${this.anio}/${this.anio2}/${this.userId}/${this.token}?departamentos=${departamentos}&columnNames=${columnas}`);
+                  response = await fetch(`${this.$baseRoute}/movilizaciones/filterAniosDepartamentos/${this.anio}/${this.anio2}/${this.userId}/${this.token}?departamentos=${departamentos}&columnNames=${columnas}`);
                 }
                 if (response.ok) {
                     this.descarga(response, 1);
@@ -324,10 +324,10 @@ export default {
               else if(this.departamental && this.selectedDesagregacion == "territorial"){
                 var cadena='Num_Vinculados_Pdet,Num_Vinculados_Ferias,Num_Vinculados_Zomac,Num_Vinculados_Ferias';
                 if(this.id === 0){
-                  response = await fetch(`https://localhost:7192/api/Convocatorias/filterAnioDepartamento/${this.anio}/${this.userId}/${this.token}?departamentos=${this.selectedDepartamentos[0]}&columnNames=${cadena}`);
+                  response = await fetch(`${this.$baseRoute}/Convocatorias/filterAnioDepartamento/${this.anio}/${this.userId}/${this.token}?departamentos=${this.selectedDepartamentos[0]}&columnNames=${cadena}`);
                 }
                 else if (this.id === 1){
-                  response = await fetch(`https://localhost:7192/api/Convocatorias/filterAniosDepartamentos/${this.anio}/${this.anio2}/${this.userId}/${this.token}?departamentos=${this.selectedDepartamentos[0]}&columnNames=${cadena}`);
+                  response = await fetch(`${this.$baseRoute}/Convocatorias/filterAniosDepartamentos/${this.anio}/${this.anio2}/${this.userId}/${this.token}?departamentos=${this.selectedDepartamentos[0]}&columnNames=${cadena}`);
                 }
                 if (response.ok) {
                     this.descarga(response, 1);
@@ -494,17 +494,17 @@ export default {
     async mounted() {
       this.token = localStorage.getItem('token');
       this.userId = jwtDecode(this.token).id;
-      const rol = await fetch (`https://localhost:7192/api/tokens/${this.userId}/?token=${this.token}`);
+      const rol = await fetch (`${this.$baseRoute}/tokens/${this.userId}/?token=${this.token}`);
       const resp = await rol.json();
       const rolF = resp.rol;
       if( rolF === 'Departamento'){
         this.departamental = true;
-        const departamento = await fetch (`https://localhost:7192/api/tokens/${this.userId}/departamento?token=${this.token}`);
+        const departamento = await fetch (`${this.$baseRoute}/tokens/${this.userId}/departamento?token=${this.token}`);
         const json = await departamento.json();
         this.selectedDepartamentos.push(json.departamento);
         this.selectedDesagregacion2 = 'departamental';
         this.territorial = ["Cauca,Nariño,Valle del Cauca,Arauca,Antioquia,Norte de Santander,Chocó,Caquetá,Huila,Guaviare,Meta,Bolívar,Sucre,Putumayo,Cesar,La Guajira,Magdalena,Córdoba,Tolima"].includes(this.selectedDepartamentos[0])
-        const response = await fetch(`https://localhost:7192/api/movilizaciones/minmaxanio/${this.selectedDepartamentos[0]}/${this.userId}/${this.token}`);
+        const response = await fetch(`${this.$baseRoute}/movilizaciones/minmaxanio/${this.selectedDepartamentos[0]}/${this.userId}/${this.token}`);
         const json2 = await response.json();
         const minYear = json2.minAnio;
         const maxYear = json2.maxAnio;
@@ -513,7 +513,7 @@ export default {
         }
       }
       else{
-          const  response = await fetch(`https://localhost:7192/api/movilizaciones/minmaxanio/${this.userId}/${this.token}`);
+          const  response = await fetch(`${this.$baseRoute}/movilizaciones/minmaxanio/${this.userId}/${this.token}`);
         
         if (!response.ok) {
           throw new Error('Failed to fetch data');

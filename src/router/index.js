@@ -286,6 +286,7 @@ const routes = [
    
 ];
 
+const baseRoute = 'https://localhost:7192/api';
 const router = createRouter({
     history: createWebHistory(),
     routes
@@ -315,7 +316,7 @@ router.beforeEach(async (to, from, next) => {
 
         try {
             const id = jwtDecode(token).id;
-            const response = await fetch(`https://localhost:7192/api/tokens/${id}?token=${token}`);
+            const response = await fetch(`${baseRoute}/tokens/${id}?token=${token}`);
             const json = await response.json();
             if (json.status === "success") {
                 console.log(json);

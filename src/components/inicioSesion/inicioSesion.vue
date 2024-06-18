@@ -27,7 +27,7 @@
         const password = document.getElementById('inputPassword').value;
   
         try {
-          const response = await fetch('https://localhost:7192/api/Autenticaciones/login', {
+          const response = await fetch(`${this.$baseRoute}/Autenticaciones/login`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'

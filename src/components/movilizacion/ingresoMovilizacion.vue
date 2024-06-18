@@ -5,7 +5,7 @@
                 <label for="num_talleres_entidades_coordinadoras">Ingrese el número de talleres, conferencias, foros realizados por las entidades coordinadoras, paralelos a los procesos de capacitación de maestros:</label>
             </div>
             <div class="col-md-3">
-                <input type="number" class="form-control" id="num_talleres_entidades_coordinadoras" min="0" v-model.number="Num_Talleres_Entidades_Coordinadoras" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Talleres_Entidades_Coordinadoras<0 ? 'red' : ''}">
+                <input type="number" class="form-control" id="num_talleres_entidades_coordinadoras" min="0" v-model.number="Num_Talleres_Entidades_Coordinadoras" @keydown="preventDecimal" @paste="preventPaste" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Talleres_Entidades_Coordinadoras<0 ? 'red' : ''}">
             </div>
             <div class="col-md-3" v-if="Num_Talleres_Entidades_Coordinadoras<0" style="color: red; margin-top: 10px; text-align: center">El número de talleres debe ser POSITIVO.</div>
         </div>
@@ -15,7 +15,7 @@
                 <label for="num_encuentros">Ingrese el número de encuentros realizados:</label>
             </div>
             <div class="col-md-3">
-                <input type="number" class="form-control" id="num_encuentros" min="0" v-model.number="Num_Encuentros" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Encuentros<0 ? 'red' : ''}" @change="updateEncuentros">
+                <input type="number" class="form-control" id="num_encuentros" min="0" v-model.number="Num_Encuentros" @keydown="preventDecimal" @paste="preventPaste" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Encuentros<0 ? 'red' : ''}" @change="updateEncuentros">
             </div>
             <div class="col-md-3" v-if="Num_Encuentros<0" style="color: red; margin-top: 10px; text-align: center">El número de encuentros debe ser POSITIVO.</div>
         </div>
@@ -25,7 +25,7 @@
                 <label for="num_participantes_encuentros">Ingrese el número total de participantes en los encuentros:</label>
             </div>
             <div class="col-md-3">
-                <input type="number" class="form-control" id="num_participantes_encuentros" min="0" v-model.number="Num_Participantes_Encuentros" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Participantes_Encuentros<0 ? 'red' : ''}">
+                <input type="number" class="form-control" id="num_participantes_encuentros" min="0" v-model.number="Num_Participantes_Encuentros" @keydown="preventDecimal" @paste="preventPaste" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Participantes_Encuentros<0 ? 'red' : ''}">
             </div>
             <div class="col-md-3" v-if="Num_Participantes_Encuentros<0" style="color: red; margin-top: 10px; text-align: center">El número de participantes debe ser POSITIVO.</div>
         </div>
@@ -36,7 +36,7 @@
                     <label :for=index>Ingrese el número de participantes en el encuentro {{ index }}:</label>
                 </div>
                 <div class="col-md-3">
-                    <input type="number" class="form-control" :id=index min="0" v-model="encuentros[index - 1]" style="background-color: #D9D9D9; border: 0;">
+                    <input type="number" class="form-control" :id=index min="0" v-model="encuentros[index - 1]" @keydown="preventDecimal" @paste="preventPaste" style="background-color: #D9D9D9; border: 0;">
                 </div>
             </div>
         </div>
@@ -46,7 +46,7 @@
                 <label for="num_premios_grupos_investigacion">Ingrese el número de premios recibidos por los grupos de investigación vinculados al programa Ondas:</label>
             </div>
             <div class="col-md-3">
-                <input type="number" class="form-control" id="num_premios_grupos_investigacion" min="0" v-model.number="Num_Premios_Grupos_Investigacion" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Premios_Grupos_Investigacion<0 ? 'red' : ''}">
+                <input type="number" class="form-control" id="num_premios_grupos_investigacion" min="0" v-model.number="Num_Premios_Grupos_Investigacion" @keydown="preventDecimal" @paste="preventPaste" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Premios_Grupos_Investigacion<0 ? 'red' : ''}">
             </div>
             <div class="col-md-3" v-if="Num_Premios_Grupos_Investigacion<0" style="color: red; margin-top: 10px; text-align: center">El número de premios debe ser POSITIVO.</div>
         </div>
@@ -56,101 +56,101 @@
                 <label for="num_vinculados_ferias">Ingrese el número de niños, niñas y jóvenes vinculados al programa Ondas que participan en ferias de ciencia, tecnología e innovación </label>
             </div>
             <div class="col-md-3">
-                <input type="number" class="form-control" id="num_vinculados_ferias" min="0" v-model.number="Num_Vinculados_Ferias" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Vinculados_Ferias<0 ? 'red' : ''}">
+                <input type="number" class="form-control" id="num_vinculados_ferias" min="0" v-model.number="Num_Vinculados_Ferias" @keydown="preventDecimal" @paste="preventPaste" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Vinculados_Ferias<0 ? 'red' : ''}">
             </div>
             <div class="col-md-3" v-if="Num_Vinculados_Ferias<0" style="color: red; margin-top: 10px; text-align: center">El número de niños debe ser POSITIVO.</div>
         </div>
         <div class="row" style="margin-top: 45px;" v-if="Num_Vinculados_Ferias>0">
-            <div class="col-md-1" style="text-align: left;"></div>
+            <div class="col-md-2" style="text-align: left;"></div>
             <div class="col-md-5" style="text-align: left;">
                 <label for="num_vinculados_conflicto">Ingrese el número de niños, niñas y jóvenes vinculados al programa Ondas victimas del conflicto armado que participan en ferias de ciencia, tecnología e innovación:</label>
             </div>
-            <div class="col-md-3">
-                <input type="number" class="form-control" id="num_vinculados_conflicto" min="0" v-model.number="Num_Vinculados_Conflicto_Armado" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Vinculados_Conflicto_Armado<0 || Num_Vinculados_Conflicto_Armado>Num_Vinculados_Ferias? 'red' : ''}">
+            <div class="col-md-2">
+                <input type="number" class="form-control" id="num_vinculados_conflicto" min="0" v-model.number="Num_Vinculados_Conflicto_Armado" @keydown="preventDecimal" @paste="preventPaste" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Vinculados_Conflicto_Armado<0 || Num_Vinculados_Conflicto_Armado>Num_Vinculados_Ferias? 'red' : ''}">
             </div>
             <div class="col-md-3" v-if="Num_Vinculados_Conflicto_Armado<0" style="color: red; margin-top: 10px; text-align: center">El número de victimas del conflicto debe ser POSITIVO.</div>
             <div class="col-md-3" v-if="Num_Vinculados_Conflicto_Armado>Num_Vinculados_Ferias" style="color: red; margin-top: 10px; text-align: center">El número de victimas debe ser menor o igual al total de niños.</div>
         </div>
         <div class="row" style="margin-top: 45px;" v-if="Num_Vinculados_Ferias>0">
-            <div class="col-md-1" style="text-align: left;"></div>
+            <div class="col-md-2" style="text-align: left;"></div>
             <div class="col-md-5" style="text-align: left;">
                 <label for="num_vinculados_reincorporacion">Ingrese el número de niños, niñas y jóvenes vinculados al programa Ondas en reincorporación que participan en ferias de ciencia, tecnología e innovación:</label>
             </div>
-            <div class="col-md-3">
-                <input type="number" class="form-control" id="num_vinculados_reincorporacion" min="0" v-model.number="Num_Vinculados_Reincorporacion" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Vinculados_Reincorporacion<0 || Num_Vinculados_Reincorporacion>Num_Vinculados_Ferias? 'red' : ''}">
+            <div class="col-md-2">
+                <input type="number" class="form-control" id="num_vinculados_reincorporacion" min="0" v-model.number="Num_Vinculados_Reincorporacion" @keydown="preventDecimal" @paste="preventPaste" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Vinculados_Reincorporacion<0 || Num_Vinculados_Reincorporacion>Num_Vinculados_Ferias? 'red' : ''}">
             </div>
             <div class="col-md-3" v-if="Num_Vinculados_Reincorporacion<0" style="color: red; margin-top: 10px; text-align: center">El número de reincorporados debe ser POSITIVO.</div>
             <div class="col-md-3" v-if="Num_Vinculados_Reincorporacion>Num_Vinculados_Ferias" style="color: red; margin-top: 10px; text-align: center">El número de reincorporados debe ser menor o igual al número total de niños.</div>
         </div>
         <div class="row" style="margin-top: 45px;" v-if="Num_Vinculados_Ferias>0">
-            <div class="col-md-1" style="text-align: left;"></div>
+            <div class="col-md-2" style="text-align: left;"></div>
             <div class="col-md-5" style="text-align: left;">
                 <label for="num_vinculados_etnia">Ingrese el número de niños, niñas y jóvenes vinculados al programa Ondas pertenecientes a una etnia que participan en ferias de ciencia, tecnología e innovación:</label>
             </div>
-            <div class="col-md-3">
-                <input type="number" class="form-control" id="num_vinculados_etnia" min="0" v-model.number="Num_Vinculados_Etnia" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Vinculados_Etnia<0 || Num_Vinculados_Etnia>Num_Vinculados_Ferias? 'red' : ''}">
+            <div class="col-md-2">
+                <input type="number" class="form-control" id="num_vinculados_etnia" min="0" v-model.number="Num_Vinculados_Etnia" @keydown="preventDecimal" @paste="preventPaste" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Vinculados_Etnia<0 || Num_Vinculados_Etnia>Num_Vinculados_Ferias? 'red' : ''}">
             </div>
             <div class="col-md-3" v-if="Num_Vinculados_Etnia<0" style="color: red; margin-top: 10px; text-align: center">El número de etnia debe ser POSITIVO.</div>
             <div class="col-md-3" v-if="Num_Vinculados_Etnia>=Num_Vinculados_Ferias" style="color: red; margin-top: 10px; text-align: center">El número de etnia debe ser menor o igual número de niños.</div>
         </div>
         <div class="row" style="margin-top: 45px;" v-if="Num_Vinculados_Etnia>0">
-            <div class="col-md-1" style="text-align: left;"></div>
+            <div class="col-md-3" style="text-align: left;"></div>
             <div class="col-md-5" style="text-align: left;">
                 <label for="num_vinculados_indigena">Ingrese el número de niños, niñas y jóvenes vinculados al programa Ondas pertenecientes a la etnia Indigena que participan en ferias de ciencia, tecnología e innovación:</label>
             </div>
-            <div class="col-md-3">
-                <input type="number" class="form-control" id="num_vinculados_indigena" min="0" v-model.number="Num_Vinculados_Indigena" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Vinculados_Indigena<0 || Num_Vinculados_Indigena+Num_Vinculados_Gitano+Num_Vinculados_Raizal+Num_Vinculados_Afro+Num_Vinculados_Palenquero!=Num_Vinculados_Etnia? 'red' : ''}">
+            <div class="col-md-2">
+                <input type="number" class="form-control" id="num_vinculados_indigena" min="0" v-model.number="Num_Vinculados_Indigena" @keydown="preventDecimal" @paste="preventPaste" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Vinculados_Indigena<0 || Num_Vinculados_Indigena+Num_Vinculados_Gitano+Num_Vinculados_Raizal+Num_Vinculados_Afro+Num_Vinculados_Palenquero!=Num_Vinculados_Etnia? 'red' : ''}">
             </div>
-            <div class="col-md-3" v-if="Num_Vinculados_Indigena<0" style="color: red; margin-top: 10px; text-align: center">El número de indigenas debe ser POSITIVO.</div>
-            <div class="col-md-3" v-if="Num_Vinculados_Etnia!=Num_Vinculados_Indigena+Num_Vinculados_Gitano+Num_Vinculados_Raizal+Num_Vinculados_Afro+Num_Vinculados_Palenquero" style="color: red; margin-top: 10px; text-align: center">La suma de cada etnia debe ser igualal número de niños total que pertenecen a una etnia.</div>
+            <div class="col-md-2" v-if="Num_Vinculados_Indigena<0" style="color: red; margin-top: 10px; text-align: center">El número de indigenas debe ser POSITIVO.</div>
+            <div class="col-md-2" v-if="Num_Vinculados_Etnia!=Num_Vinculados_Indigena+Num_Vinculados_Gitano+Num_Vinculados_Raizal+Num_Vinculados_Afro+Num_Vinculados_Palenquero" style="color: red; margin-top: 10px; text-align: center">La suma de cada etnia debe ser igualal número de niños total que pertenecen a una etnia.</div>
         </div>
         <div class="row" style="margin-top: 45px;" v-if="Num_Vinculados_Etnia>0">
-            <div class="col-md-1" style="text-align: left;"></div>
+            <div class="col-md-3" style="text-align: left;"></div>
             <div class="col-md-5" style="text-align: left;">
                 <label for="num_vinculados_gitano">Ingrese el número de niños, niñas y jóvenes vinculados al programa Ondas pertenecientes a la etnia Gitano que participan en ferias de ciencia, tecnología e innovación:</label>
             </div>
-            <div class="col-md-3">
-                <input type="number" class="form-control" id="num_vinculados_gitano" min="0" v-model.number="Num_Vinculados_Gitano" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Vinculados_Gitano<0 || Num_Vinculados_Indigena+Num_Vinculados_Gitano+Num_Vinculados_Raizal+Num_Vinculados_Afro+Num_Vinculados_Palenquero!=Num_Vinculados_Etnia? 'red' : ''}">
+            <div class="col-md-2">
+                <input type="number" class="form-control" id="num_vinculados_gitano" min="0" v-model.number="Num_Vinculados_Gitano" @keydown="preventDecimal" @paste="preventPaste" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Vinculados_Gitano<0 || Num_Vinculados_Indigena+Num_Vinculados_Gitano+Num_Vinculados_Raizal+Num_Vinculados_Afro+Num_Vinculados_Palenquero!=Num_Vinculados_Etnia? 'red' : ''}">
             </div>
-            <div class="col-md-3" v-if="Num_Vinculados_Gitano<0" style="color: red; margin-top: 10px; text-align: center">El número de gitanos debe ser POSITIVO.</div>
+            <div class="col-md-2" v-if="Num_Vinculados_Gitano<0" style="color: red; margin-top: 10px; text-align: center">El número de gitanos debe ser POSITIVO.</div>
         </div>
         <div class="row" style="margin-top: 45px;" v-if="Num_Vinculados_Etnia>0">
-            <div class="col-md-1" style="text-align: left;"></div>
+            <div class="col-md-3" style="text-align: left;"></div>
             <div class="col-md-5" style="text-align: left;">
                 <label for="num_vinculados_raizal">Ingrese el número de niños, niñas y jóvenes vinculados al programa Ondas pertenecientes a la etnia Raizal que participan en ferias de ciencia, tecnología e innovación:</label>
             </div>
-            <div class="col-md-3">
-                <input type="number" class="form-control" id="num_vinculados_raizal" min="0" v-model.number="Num_Vinculados_Raizal" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Vinculados_Raizal<0 || Num_Vinculados_Indigena+Num_Vinculados_Gitano+Num_Vinculados_Raizal+Num_Vinculados_Afro+Num_Vinculados_Palenquero!=Num_Vinculados_Etnia? 'red' : ''}">
+            <div class="col-md-2">
+                <input type="number" class="form-control" id="num_vinculados_raizal" min="0" v-model.number="Num_Vinculados_Raizal" @keydown="preventDecimal" @paste="preventPaste" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Vinculados_Raizal<0 || Num_Vinculados_Indigena+Num_Vinculados_Gitano+Num_Vinculados_Raizal+Num_Vinculados_Afro+Num_Vinculados_Palenquero!=Num_Vinculados_Etnia? 'red' : ''}">
             </div>
-            <div class="col-md-3" v-if="Num_Vinculados_Raizal<0" style="color: red; margin-top: 10px; text-align: center">El número de raizales debe ser POSITIVO.</div>
+            <div class="col-md-2" v-if="Num_Vinculados_Raizal<0" style="color: red; margin-top: 10px; text-align: center">El número de raizales debe ser POSITIVO.</div>
         </div>
         <div class="row" style="margin-top: 45px;" v-if="Num_Vinculados_Etnia>0">
-            <div class="col-md-1" style="text-align: left;"></div>
+            <div class="col-md-3" style="text-align: left;"></div>
             <div class="col-md-5" style="text-align: left;">
                 <label for="num_vinculados_afro">Ingrese el número de niños, niñas y jóvenes vinculados al programa Ondas pertenecientes a la etnia Afro que participan en ferias de ciencia, tecnología e innovación:</label>
             </div>
-            <div class="col-md-3">
-                <input type="number" class="form-control" id="num_vinculados_afro" min="0" v-model.number="Num_Vinculados_Afro" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Vinculados_Afro<0 || Num_Vinculados_Indigena+Num_Vinculados_Gitano+Num_Vinculados_Raizal+Num_Vinculados_Afro+Num_Vinculados_Palenquero!=Num_Vinculados_Etnia? 'red' : ''}">
+            <div class="col-md-2">
+                <input type="number" class="form-control" id="num_vinculados_afro" min="0" v-model.number="Num_Vinculados_Afro" @keydown="preventDecimal" @paste="preventPaste" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Vinculados_Afro<0 || Num_Vinculados_Indigena+Num_Vinculados_Gitano+Num_Vinculados_Raizal+Num_Vinculados_Afro+Num_Vinculados_Palenquero!=Num_Vinculados_Etnia? 'red' : ''}">
             </div>
-            <div class="col-md-3" v-if="Num_Vinculados_Afro<0" style="color: red; margin-top: 10px; text-align: center">El número de afro debe ser POSITIVO.</div>
+            <div class="col-md-2" v-if="Num_Vinculados_Afro<0" style="color: red; margin-top: 10px; text-align: center">El número de afro debe ser POSITIVO.</div>
         </div>
         <div class="row" style="margin-top: 45px;" v-if="Num_Vinculados_Etnia>0">
-            <div class="col-md-1" style="text-align: left;"></div>
+            <div class="col-md-3" style="text-align: left;"></div>
             <div class="col-md-5" style="text-align: left;">
                 <label for="num_vinculados_palenquero">Ingrese el número de niños, niñas y jóvenes vinculados al programa Ondas pertenecientes a la etnia Palenquero que participan en ferias de ciencia, tecnología e innovación:</label>
             </div>
-            <div class="col-md-3">
-                <input type="number" class="form-control" id="num_vinculados_palenquero" min="0" v-model.number="Num_Vinculados_Palenquero" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Vinculados_Palenquero<0 || Num_Vinculados_Indigena+Num_Vinculados_Gitano+Num_Vinculados_Raizal+Num_Vinculados_Afro+Num_Vinculados_Palenquero!=Num_Vinculados_Etnia? 'red' : ''}">
+            <div class="col-md-2">
+                <input type="number" class="form-control" id="num_vinculados_palenquero" min="0" v-model.number="Num_Vinculados_Palenquero" @keydown="preventDecimal" @paste="preventPaste" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Vinculados_Palenquero<0 || Num_Vinculados_Indigena+Num_Vinculados_Gitano+Num_Vinculados_Raizal+Num_Vinculados_Afro+Num_Vinculados_Palenquero!=Num_Vinculados_Etnia? 'red' : ''}">
             </div>
-            <div class="col-md-3" v-if="Num_Vinculados_Afro<0" style="color: red; margin-top: 10px; text-align: center">El número de palenquero debe ser POSITIVO.</div>
+            <div class="col-md-2" v-if="Num_Vinculados_Afro<0" style="color: red; margin-top: 10px; text-align: center">El número de palenquero debe ser POSITIVO.</div>
         </div>
         <div class="row" style="margin-top: 45px;" v-if="Num_Vinculados_Ferias>0">
-            <div class="col-md-1" style="text-align: left;"></div>
+            <div class="col-md-2" style="text-align: left;"></div>
             <div class="col-md-5" style="text-align: left;">
                 <label for="num_vinculados_discapacitado">Ingrese el número de niños, niñas y jóvenes vinculados al programa Ondas discapacitados en ferias de ciencia, tecnología e innovación:</label>
             </div>
-            <div class="col-md-3">
-                <input type="number" class="form-control" id="num_vinculados_discapacitado" min="0" v-model.number="Num_Vinculados_Discapacidad" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Vinculados_Discapacidad<0 || Num_Vinculados_Etnia>Num_Vinculados_Ferias? 'red' : ''}">
+            <div class="col-md-2">
+                <input type="number" class="form-control" id="num_vinculados_discapacitado" min="0" v-model.number="Num_Vinculados_Discapacidad" @keydown="preventDecimal" @paste="preventPaste" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Vinculados_Discapacidad<0 || Num_Vinculados_Discapacidad>Num_Vinculados_Ferias? 'red' : ''}">
             </div>
             <div class="col-md-3" v-if="Num_Vinculados_Discapacidad<0" style="color: red; margin-top: 10px; text-align: center">El número de discapacitados debe ser POSITIVO.</div>
             <div class="col-md-3" v-if="Num_Vinculados_Discapacidad>Num_Vinculados_Ferias" style="color: red; margin-top: 10px; text-align: center">El número de discapacitados debe ser menor o igual al total de niños.</div>
@@ -162,7 +162,7 @@
                 <label for="num_vinculados_pdet">Ingrese el número de niños participantes que cuyo municipio de nacimiento es PDET:</label>
             </div>
             <div class="col-md-3">
-                <input type="number" class="form-control" id="num_vinculados_pdet" v-model.number="Num_Vinculados_Pdet" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor:   this.Num_Vinculados_Pdet > this.Num_Vinculados_Ferias || this.Num_Vinculados_Pdet<0 ? 'red' : ''}">
+                <input type="number" class="form-control" id="num_vinculados_pdet" v-model.number="Num_Vinculados_Pdet" @keydown="preventDecimal" @paste="preventPaste" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor:   this.Num_Vinculados_Pdet > this.Num_Vinculados_Ferias || this.Num_Vinculados_Pdet<0 ? 'red' : ''}">
             </div>
             <div class="col-md-3" v-if="Num_Vinculados_Pdet<0" style="color: red; margin-top: 10px; text-align: center">El número de niños PDET debe ser POSITIVO.</div>
             <div class="col-md-3" v-if="this.Num_Vinculados_Pdet > this.Num_Vinculados_Ferias" style="color: red; margin-top: 10px; text-align: center">El número de niños PDET debe ser menor o igual al número total de niños.</div>
@@ -173,7 +173,7 @@
                 <label for="num_vinculados_zomac">Ingrese el número de niños participantes que cuyo municipio de nacimiento es ZOMAC:</label>
             </div>
             <div class="col-md-3">
-                <input type="number" class="form-control" id="num_vinculados_zomac" v-model.number="Num_Vinculados_Zomac" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor:   this.Num_Vinculados_Zomac > this.Num_Vinculados_Ferias || this.Num_Vinculados_Zomac<0 ? 'red' : ''}">
+                <input type="number" class="form-control" id="num_vinculados_zomac" v-model.number="Num_Vinculados_Zomac" @keydown="preventDecimal" @paste="preventPaste" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor:   this.Num_Vinculados_Zomac > this.Num_Vinculados_Ferias || this.Num_Vinculados_Zomac<0 ? 'red' : ''}">
             </div>
             <div class="col-md-3" v-if="Num_Vinculados_Zomac<0" style="color: red; margin-top: 10px; text-align: center">El número de niños ZOMAC debe ser POSITIVO.</div>
             <div class="col-md-3" v-if="this.Num_Vinculados_Zomac > this.Num_Vinculados_Ferias" style="color: red; margin-top: 10px; text-align: center">El número de niños Zomac debe ser menor o igual al número total de niños.</div>
@@ -185,7 +185,7 @@
                 <label for="num_vinculados_internacionales">Ingrese el número de niños, niñas y jóvenes vinculados al programa que participan en ferias de ciencia, tecnología e innovación internacionales:</label>
             </div>
             <div class="col-md-3">
-                <input type="number" class="form-control" id="num_vinculados_internacionales" min="0" v-model.number="Num_Vinculados_Internacionales" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Vinculados_Internacionales<0 ? 'red' : ''}">
+                <input type="number" class="form-control" id="num_vinculados_internacionales" min="0" v-model.number="Num_Vinculados_Internacionales" @keydown="preventDecimal" @paste="preventPaste" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Vinculados_Internacionales<0 ? 'red' : ''}">
             </div>
             <div class="col-md-3" v-if="Num_Vinculados_Internacionales<0" style="color: red; margin-top: 10px; text-align: center">El número de niños internacionales debe ser POSITIVO.</div>
         </div>
@@ -195,7 +195,7 @@
                 <label for="num_proyectos_ferias">Ingrese el número de proyectos de investigación apoyados por el programa que son presentados en ferias de ciencia, tecnología e innovación:</label>
             </div>
             <div class="col-md-3">
-                <input type="number" class="form-control" id="num_proyectos_ferias" min="0" v-model.number="Num_Proyectos_Ferias" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Proyectos_Ferias<0 ? 'red' : ''}">
+                <input type="number" class="form-control" id="num_proyectos_ferias" min="0" v-model.number="Num_Proyectos_Ferias" @keydown="preventDecimal" @paste="preventPaste" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Proyectos_Ferias<0 ? 'red' : ''}">
             </div>
             <div class="col-md-3" v-if="Num_Proyectos_Ferias<0" style="color: red; margin-top: 10px; text-align: center">El número de niños proyectos ferias debe ser POSITIVO.</div>
         </div>
@@ -205,7 +205,7 @@
                 <label for="num_grupos_ganadores">Ingrese el número de grupos de investigación vinculados al programa Ondas que han recibido premios o reconocimientos:</label>
             </div>
             <div class="col-md-3">
-                <input type="number" class="form-control" id="num_grupos_ganadores" min="0" v-model.number="Num_Grupos_Ganadores" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Grupos_Ganadores<0 ? 'red' : ''}">
+                <input type="number" class="form-control" id="num_grupos_ganadores" min="0" v-model.number="Num_Grupos_Ganadores" @keydown="preventDecimal" @paste="preventPaste" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Grupos_Ganadores<0 ? 'red' : ''}">
             </div>
             <div class="col-md-3" v-if="Num_Grupos_Ganadores<0" style="color: red; margin-top: 10px; text-align: center">El número de premios debe ser POSITIVO.</div>
         </div>
@@ -215,7 +215,7 @@
                 <label for="num_proyectos_internacional">Ingrese el número de proyectos de investigación apoyados por el programa que son presentados en ferias de ciencia, tecnología e innovación internacionales :</label>
             </div>
             <div class="col-md-3">
-                <input type="number" class="form-control" id="num_proyectos_internacional" min="0" v-model.number="Num_Proyectos_Internacionales" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Proyectos_Internacionales<0 ? 'red' : ''}">
+                <input type="number" class="form-control" id="num_proyectos_internacional" min="0" v-model.number="Num_Proyectos_Internacionales" @keydown="preventDecimal" @paste="preventPaste" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Proyectos_Internacionales<0 ? 'red' : ''}">
             </div>
             <div class="col-md-3" v-if="Num_Proyectos_Internacionales<0" style="color: red; margin-top: 10px; text-align: center">El número de proyectos internacionales debe ser POSITIVO.</div>
         </div>
@@ -270,6 +270,23 @@ export default {
         }   
     },
     methods: {
+        preventDecimal(event) {
+      // Prevent user from entering a decimal point or other invalid characters
+      const invalidKeys = ['.', 'e', 'E', 'v', '-'];
+      if (invalidKeys.includes(event.key) || (event.ctrlKey && event.key === 'v')) {
+        event.preventDefault();
+      }
+    },
+    preventPaste(event) {
+      // Prevent user from pasting non-integer values
+      const pasteData = event.clipboardData.getData('text');
+      if (!/^\d+$/.test(pasteData)) {
+        event.preventDefault();
+        this.errorMessage = 'Only whole numbers are allowed.';
+      } else {
+        this.errorMessage = '';
+      }
+    },
         updateEncuentros() {
                 if (this.encuentros.length > this.Num_Encuentros) {
                     this.encuentros.splice(this.Num_Encuentros);
@@ -300,7 +317,7 @@ export default {
         }
         else{
             console.log(JSON.stringify(this.$data))
-            const response = await fetch('https://localhost:7192/api/movilizaciones/anio/'+this.anio+'/departamento/'+this.departamento+'/'+id+'/'+token, {
+            const response = await fetch(`${this.$baseRoute}/movilizaciones/anio/${this.anio}/departamento/${this.departamento}/${id}/${token}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json'
@@ -358,13 +375,28 @@ watch:{
                     this.$data[key] = [];
                 }
             }
+    },
+    Num_Vinculados_Ferias(newVal){
+        if(newVal == 0){
+            this.Num_Vinculados_Conflicto_Armado= 0;
+            this.Num_Vinculados_Reincorporacion= 0;
+            this.Num_Vinculados_Etnia= 0;
+            this.Num_Vinculados_Pdet= 0;
+            this.Num_Vinculados_Zomac=0;
+            this.Num_Vinculados_Indigena=0;
+            this.Num_Vinculados_Gitano=0;
+            this.Num_Vinculados_Raizal=0;
+            this.Num_Vinculados_Palenquero=0;
+            this.Num_Vinculados_Afro=0;
+            this.Num_Vinculados_Discapacidad=0;
+        }
     }
 },
 computed: {
     isFormValid(){
         for (const key in this.$data) {
                 if (key != "Departamento" && key != "encuentros"){
-                    if (this.$data[key] < 0) {
+                    if (this.$data[key] < 0 || typeof(this.$data[key]) === "string") {
                     return false;
                     }
                 }
@@ -442,7 +474,7 @@ computed: {
         if(this.identificador){
             const token = localStorage.getItem('token');
             const id = jwtDecode(token).id
-            const movilizacion = await fetch('https://localhost:7192/api/Movilizaciones/anio/'+this.anio+'/departamento/'+this.departamento+'/'+id+'/'+token);
+            const movilizacion = await fetch(`${this.$baseRoute}/Movilizaciones/anio/${this.anio}/departamento/${this.departamento}/${id}/${token}`);
             const movilizacionData = await movilizacion.json();
             this.Num_Talleres_Entidades_Coordinadoras = movilizacionData[0].num_Talleres_Entidades_Coordinadoras;
             this.Num_Encuentros = movilizacionData[0].num_Encuentros;

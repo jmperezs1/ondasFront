@@ -51,7 +51,7 @@ export default {
     methods: {
         async confirmPasswordService(){
             this.id = jwtDecode(this.token).id;
-            const response = await fetch(`https://localhost:7192/api/autenticaciones/ConfirmarContrasenia/${this.temp}/${this.token}/${this.id}`);
+            const response = await fetch(`${this.$baseRoute}/autenticaciones/ConfirmarContrasenia/${this.temp}/${this.token}/${this.id}`);
             if(response.ok){
                 if(this.passwordsMatch && this.validPasswordLength){
                     this.saveData();
@@ -62,7 +62,7 @@ export default {
             }
         },
         async saveData(){
-            const response = await fetch(`https://localhost:7192/api/autenticaciones/CambioContrasenia/${this.token}/${this.id}/${this.nueva}`, {
+            const response = await fetch(`${this.$baseRoute}/autenticaciones/CambioContrasenia/${this.token}/${this.id}/${this.nueva}`, {
                 method: 'POST',
             });
             if(response.forbidden){

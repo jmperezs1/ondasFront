@@ -89,7 +89,7 @@ export default {
                 this.usuario = this.usuario.toLowerCase();
                 const token = localStorage.getItem('token');
                 const id = jwtDecode(token).id;
-                const response = await fetch('https://localhost:7192/api/Autenticaciones/'+id+'/'+token, {
+                const response = await fetch(`${this.$baseRoute}/Autenticaciones/${id}/${token}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
