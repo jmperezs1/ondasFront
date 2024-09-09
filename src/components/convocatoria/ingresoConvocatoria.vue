@@ -628,7 +628,6 @@ export default {
                 },
                 body: JSON.stringify(this.$data)
             });
-            console.log( JSON.stringify(this.$data))
             if(response.ok){
                 window.location.reload(); // Refresh the page
                 alert('Datos guardados correctamente');

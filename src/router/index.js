@@ -7,6 +7,7 @@ import exportarConvocatoriaMinciencias from '../components/vistas/minciencias/co
 import exportarConvocatoriasPeriodosMinciencias from '../components/vistas/minciencias/convocatoria/exportarConvocatoriasPeriodosMinciencias.vue';
 import acompanamientoIngresoMinciencias from '../components/vistas/minciencias/acompanamiento/acompanamientoIngresoMinciencias.vue';
 import exportarAcompanamientoMinciencias from '../components/vistas/minciencias/acompanamiento/exportarAcompanamientoMinciencias.vue';
+import consultaConvocatoriaMinciencias from '@/components/vistas/minciencias/graficas/consultaConvocatoriaMinciencias.vue';
 import exportarAcompanamientosPeriodosMinciencias from '../components/vistas/minciencias/acompanamiento/exportarAcompanamientosPeriodosMiciencias.vue';
 import movilizacionIngresoMinciencias from '../components/vistas/minciencias/movilizacion/movilizacionIngresoMinciencias.vue';
 import exportarMovilizacionMinciencias from '../components/vistas/minciencias/movilizacion/exportarMovilizacionMinciencias.vue';
@@ -15,10 +16,12 @@ import cofiguracionMinCiencias from '../components/vistas/minciencias/configurac
 import convocatoriaIngresoDepartamento from '../components/vistas/departamento/convocatoria/convocatoriaIngresoDepartamento.vue';
 import exportarConvocatoriaDepartamento from '../components/vistas/departamento/convocatoria/exportarConvocatoriaDepartamentos.vue';
 import exportarConvocatoriasPeriodosDepartamento from '@/components/vistas/departamento/convocatoria/exportarConvocatoriasPeriodosDepartamento.vue';
+import consultaAcompanamientoMinciencias from '@/components/vistas/minciencias/graficas/consultaAcompanamientoMinciencias.vue';
 import acompanamientoIngresoDepartamento from '@/components/vistas/departamento/acompanamiento/acompanamientoIngresoDepartamento.vue';
 import exportarAcompanamientoDepartamento from '@/components/vistas/departamento/acompanamiento/exportarAcompanamientoDepartamento.vue';
 import exportarAcompaniamientosPeriodosDepartamento from '../components/vistas/departamento/acompanamiento/exportarAcompaniamientosPeriodosDepartamento.vue';
 import movilizacionIngresoDepartamento from '@/components/vistas/departamento/movilizacion/movilizacionIngresoDepartamento.vue';
+import consultaMovilizacionMinciencias from '@/components/vistas/minciencias/graficas/consultaMovilizacion.vue';
 import exportarMovilizacionDepartamento from '@/components/vistas/departamento/movilizacion/exportarMovilizacionDepartamento.vue';
 import exportarMovilizacionesPeriodosDepartamento from '@/components/vistas/departamento/movilizacion/exportarMovilizacionesPeriodosDepartamento.vue';
 import inicioAdmin from '@/components/vistas/admin/inicioAdmin.vue';
@@ -45,6 +48,9 @@ import modificarMovilizacionDepartamento from '@/components/vistas/departamento/
 import modificarConvocatoriaMinciencias from '@/components/vistas/minciencias/convocatoria/modificarConvocatoriaMinciencias.vue';
 import modificarAcompanamientoMinciencias from '@/components/vistas/minciencias/acompanamiento/modificarAcompanamientoMinciencias.vue';
 import modificarMovilizacionMinciencias from '@/components/vistas/minciencias/movilizacion/modificarMovilizacionMinciencias.vue';
+import consultaMovilizacionDepartamento from '@/components/vistas/departamento/graficas/consultaMovilizacionDepartamento.vue';
+import consultaConvocatoriaDepartamento from '@/components/vistas/departamento/graficas/consultaConvocatoria.Departamento.vue';
+import consultaAcompanamientoDepartamento from '@/components/vistas/departamento/graficas/consultaAcompanamientoDepartamento.vue';
 import { jwtDecode } from 'jwt-decode';
 
 const routes = [
@@ -62,7 +68,7 @@ const routes = [
         path: '/minciencias/convocatorias/ingreso',
         name: 'ingresoConvocatoriasMinciencias',
         component: convocatoriaIngresoMinciencias
-    },
+    }, 
     {
         path: '/minciencias/convocatorias/consultas/periodo',
         name: 'periodoConvocatoriasMinciencias',
@@ -102,6 +108,21 @@ const routes = [
         path: '/minciencias/movilizacion/consultas/periodos',
         name: 'periodosMovilizacionMinciencias',
         component: exportarMovilizacionesMinciencias
+    },
+    {
+        path: '/minciencias/graficas/convocatoria',
+        name: 'consultasConvocatoriasMinciencias',
+        component: consultaConvocatoriaMinciencias
+    },
+    {
+        path: '/minciencias/graficas/acompanamiento',
+        name: 'consultaAcompanamientoMinciencias',
+        component: consultaAcompanamientoMinciencias
+    },
+    {
+        path: '/minciencias/graficas/movilizacion',
+        name: 'consultaMovilizacionMinciencias',
+        component: consultaMovilizacionMinciencias
     },
     {
         path:'/minciencias/configuracion',
@@ -266,6 +287,21 @@ const routes = [
         component: modificarMovilizacionDepartamento
     },
     {
+        path: '/departamentos/graficas/movilizaciones',
+        name: 'consultaMovilizacionDepartamento',
+        component: consultaMovilizacionDepartamento
+    },
+    {
+        path: '/departamentos/graficas/convocatorias',
+        name: 'consultaConvocatoriaDepartamento',
+        component: consultaConvocatoriaDepartamento
+    },
+    {
+        path: '/departamentos/graficas/acompanamiento',
+        name: 'consultaAcompanamientoDepartamento',
+        component: consultaAcompanamientoDepartamento
+    },
+    {
         path: '/minciencias/convocatorias/modificar',
         name: 'modificarConvocatoriaMinciencias',
         component: modificarConvocatoriaMinciencias
@@ -298,12 +334,14 @@ router.beforeEach(async (to, from, next) => {
         '/minciencias/movilizacion/ingreso', '/minciencias/movilizacion/consultas/periodo', '/minciencias/movilizacion/consultas/periodos', '/minciencias/configuracion',
         '/minciencias/movilizacion/visualizacion', '/minciencias/acompaniamiento/visualizacion', '/minciencias/convocatorias/visualizacion', '/minciencias/convocatorias/eliminar',
         '/minciencias/acompanamiento/eliminar', '/minciencias/movilizacion/eliminar', '/minciencias/convocatorias/modificar', '/minciencias/acompanamiento/modificar', '/minciencias/movilizacion/modificar',
+        '/minciencias/graficas/convocatoria', '/minciencias/graficas/acompanamiento', '/minciencias/graficas/movilizacion',
      '/minciencias/movilizacion/modificar'];
     const authDepartamento = ['/departamentos', '/departamentos/convocatorias/ingreso', '/departamentos/convocatorias/consultas/periodo', '/departamentos/convocatorias/consultas/periodos',
         '/departamentos/acompanamientos/ingreso', '/departamentos/acompanamientos/consultas/periodo', '/departamentos/acompanamientos/consultas/periodos',
         '/departamentos/movilizaciones/ingreso', '/departamentos/movilizaciones/consultas/periodo', '/departamentos/movilizaciones/consultas/periodos', '/departamentos/configuracion', '/departamentos/movilizaciones/visualizacion', '/departamentos/acompanamientos/visualizacion', '/departamentos/convocatorias/visualizacion', '/departamentos/convocatorias/eliminar',
         '/departamentos/acompanamientos/eliminar', '/departamentos/movilizaciones/eliminar', '/departamentos/convocatorias/modificar',
-        '/departamentos/acompanamientos/modificar', '/departamentos/movilizaciones/modificar'
+        '/departamentos/acompanamientos/modificar', '/departamentos/movilizaciones/modificar',
+        '/departamentos/graficas/movilizaciones', '/departamentos/graficas/convocatorias', '/departamentos/graficas/acompanamiento'
     ];
     const authAdmin = ['/admin', '/admin/crearUsuario', '/admin/eliminarUsuario'];
     
@@ -319,7 +357,6 @@ router.beforeEach(async (to, from, next) => {
             const response = await fetch(`${baseRoute}/tokens/${id}?token=${token}`);
             const json = await response.json();
             if (json.status === "success") {
-                console.log(json);
                 if (authMinciencias.includes(to.path) && json.rol !== 'Minciencias') {
                     next('/');
                 } else if (authDepartamento.includes(to.path) && json.rol !== 'Departamento') {    

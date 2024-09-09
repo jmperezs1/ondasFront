@@ -250,7 +250,6 @@ export default {
           let response;
           if(this.selectedDesagregacion === "nacional"){
             const cadena = this.seleccionIndicadores();
-            console.log(cadena)
             if(this.id === 0){
               response = await fetch(`${this.$baseRoute}/acompaniamientos/filterGroupByAnio/${this.anio}/${this.userId}/${this.token}?columnNames=${cadena}`)
             }

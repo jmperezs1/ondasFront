@@ -445,7 +445,6 @@
                 }
 
                 if(this.startYear == this.endYear){
-                    console.log(this.selectedDepartamentos)
                     const response = await fetch(`${this.$baseRoute}/Movilizaciones/filterAnioDepartamentoVisualizar/${this.startYear}/${this.id}/${this.token}?departamentos=${cadena}`);
                         if(response.ok){
                         const data = await response.json();

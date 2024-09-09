@@ -30,7 +30,6 @@
               'Content-Type': 'application/json'
             },
           });
-          console.log(response);
           if (response.ok) {
             alert('Se ha enviado un correo con las instrucciones para restablecer su contraseña.');
           } else {

@@ -91,7 +91,7 @@
                 <input type="number" class="form-control" id="num_vinculados_etnia" min="0" v-model.number="Num_Vinculados_Etnia" @keydown="preventDecimal" @paste="preventPaste" style="background-color: #D9D9D9; border: 0;" :style="{border:'1px solid', borderColor: this.Num_Vinculados_Etnia<0 || Num_Vinculados_Etnia>Num_Vinculados_Ferias? 'red' : ''}">
             </div>
             <div class="col-md-3" v-if="Num_Vinculados_Etnia<0" style="color: red; margin-top: 10px; text-align: center">El número de etnia debe ser POSITIVO.</div>
-            <div class="col-md-3" v-if="Num_Vinculados_Etnia>=Num_Vinculados_Ferias" style="color: red; margin-top: 10px; text-align: center">El número de etnia debe ser menor o igual número de niños.</div>
+            <div class="col-md-3" v-if="Num_Vinculados_Etnia>Num_Vinculados_Ferias" style="color: red; margin-top: 10px; text-align: center">El número de etnia debe ser menor o igual número de niños.</div>
         </div>
         <div class="row" style="margin-top: 45px;" v-if="Num_Vinculados_Etnia>0">
             <div class="col-md-3" style="text-align: left;"></div>
@@ -316,9 +316,8 @@ export default {
             }
         }
         else{
-            console.log(JSON.stringify(this.$data))
-            const response = await fetch(`${this.$baseRoute}/movilizaciones/anio/${this.anio}/departamento/${this.departamento}/${id}/${token}`, {
-                    method: 'PUT',
+            const response = await fetch(`${this.$baseRoute}/movilizaciones/${id}/${token}`, {
+                    method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
