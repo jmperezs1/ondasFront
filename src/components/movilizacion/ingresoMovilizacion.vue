@@ -299,8 +299,8 @@ export default {
         const token = localStorage.getItem('token');
         const id = jwtDecode(token).id
         this.generateEncuentrosData();
-        if(this.identificador){
-        const response = await fetch(`${this.$baseRoute}/Movilizaciones/${id}/${token}`, {
+        if(!this.identificador){
+        const response = await fetch('https://localhost:7192/api/Movilizaciones/'+id+'/'+token, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
