@@ -108,7 +108,7 @@ export default {
             acc.num_Ninios_Pdet = (acc.num_Ninios_Pdet || 0) + dato.num_Ninios_Pdet;
             acc.num_Ninios_Zomac = (acc.num_Ninios_Zomac || 0) + dato.num_Ninios_Zomac;
             acc.num_Ninios_Conflicto_Armado = acc.num_Ninios_Conflicto_Armado || 0 + dato.num_Ninios_Conflicto_Armado;
-            acc.num_Reincorporacion = acc.num_Reincorporacion || 0 + dato.num_Reincorporacion;
+            acc.num_Ninios_Reincorporacion = acc.num_Ninios_Reincorporacion || 0 + dato.num_Ninios_Reincorporacion;
             acc.num_Vinculados = (acc.num_Vinculados || 0) + dato.num_Vinculados;
             acc.num_Ninios_Discapacidad = (acc.num_Ninios_Discapacidad || 0) + dato.num_Ninios_Discapacidad;
             acc.num_Ninios_Afro = (acc.num_Ninios_Afro || 0) + dato.num_Ninios_Afro;
@@ -275,7 +275,7 @@ export default {
             return {
                 labels: ['Conflicto Armado', 'Reincorporación' ,'PDET', 'ZOMAC', 'Sin territorial'],
                 datasets: [{
-                    data: [data.num_Ninios_Conflicto_Armado, data.num_Ninios_Reincorporacion,data.num_Ninios_Pdet, data.num_Ninios_Zomac, data.num_Vinculados - data.num_Ninios_Pdet - data.num_Ninios_Zomac - data.num_Ninios_Conflicto_Armado - data.num_Reincorporacion],
+                    data: [data.num_Ninios_Conflicto_Armado, data.num_Ninios_Reincorporacion,data.num_Ninios_Pdet, data.num_Ninios_Zomac, data.num_Vinculados - data.num_Ninios_Pdet - data.num_Ninios_Zomac - data.num_Ninios_Conflicto_Armado - data.num_Ninios_Reincorporacion >= 0 ? data.num_Vinculados - data.num_Ninios_Pdet - data.num_Ninios_Zomac - data.num_Ninios_Conflicto_Armado - data.num_Ninios_Reincorporacion:0],
                     backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#C9CBCF']
                 }],
                 title: 'Distribución Territorial'
@@ -336,7 +336,7 @@ export default {
             return {
                 labels: ['Conflicto Armado', 'Reincorporación','PDET', 'ZOMAC', 'Sin territorial'],
                 datasets: [{
-                    data: [data.num_Docentes_Conflicto_Armado,data.num_Docentes_Reincorporacion,data.num_Docentes_Pdet, data.num_Docentes_Zomac, data.num_Docentes - data.num_Docentes_Pdet - data.num_Docentes_Zomac-data.num_Docentes_Conflicto_Armado-data.num_Docentes_Reincorporacion],
+                    data: [data.num_Docentes_Conflicto_Armado,data.num_Docentes_Reincorporacion,data.num_Docentes_Pdet, data.num_Docentes_Zomac, data.num_Docentes - data.num_Docentes_Pdet - data.num_Docentes_Zomac-data.num_Docentes_Conflicto_Armado-data.num_Docentes_Reincorporacion? data.num_Docentes - data.num_Docentes_Pdet - data.num_Docentes_Zomac-data.num_Docentes_Conflicto_Armado-data.num_Docentes_Reincorporacion : 0],
                     backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
                 }],
                 title: 'Distribución Territorial'
