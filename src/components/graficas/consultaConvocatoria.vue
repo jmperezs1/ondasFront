@@ -275,7 +275,7 @@ export default {
             return {
                 labels: ['Conflicto Armado', 'Reincorporación' ,'PDET', 'ZOMAC', 'Sin territorial'],
                 datasets: [{
-                    data: [data.num_Ninios_Conflicto_Armado, data.num_Reincorporacion,data.num_Ninios_Pdet, data.num_Ninios_Zomac, data.num_Vinculados - data.num_Ninios_Pdet - data.num_Ninios_Zomac - data.num_Ninios_Conflicto_Armado - data.num_Reincorporacion],
+                    data: [data.num_Ninios_Conflicto_Armado, data.num_Ninios_Reincorporacion,data.num_Ninios_Pdet, data.num_Ninios_Zomac, data.num_Vinculados - data.num_Ninios_Pdet - data.num_Ninios_Zomac - data.num_Ninios_Conflicto_Armado - data.num_Reincorporacion],
                     backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#C9CBCF']
                 }],
                 title: 'Distribución Territorial'
