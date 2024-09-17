@@ -77,6 +77,17 @@
               </ul>
             </div>
           </div>
+          <div class="col-auto">
+            <div class="dropdown">
+              <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton4" data-bs-toggle="dropdown">
+                Metas
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton4">
+                <li><a class="dropdown-item" href="/minciencias/metas/visualizar">Ver Avance de Metas</a></li>
+                <li><a class="dropdown-item" href="/minciencias/metas/actualizar">Crear y Actualizar Metas</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>

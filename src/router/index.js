@@ -51,6 +51,8 @@ import modificarMovilizacionMinciencias from '@/components/vistas/minciencias/mo
 import consultaMovilizacionDepartamento from '@/components/vistas/departamento/graficas/consultaMovilizacionDepartamento.vue';
 import consultaConvocatoriaDepartamento from '@/components/vistas/departamento/graficas/consultaConvocatoria.Departamento.vue';
 import consultaAcompanamientoDepartamento from '@/components/vistas/departamento/graficas/consultaAcompanamientoDepartamento.vue';
+import MetasMinciencias from '@/components/vistas/minciencias/metas/metasMinciencias.vue';
+import setOrUpdateMetasMinciencias from '@/components/vistas/minciencias/metas/metasUpdateMinciencias.vue';
 import { jwtDecode } from 'jwt-decode';
 
 const routes = [
@@ -315,6 +317,16 @@ const routes = [
         path: '/minciencias/movilizacion/modificar',
         name: 'modificarMovilizacionMinciencias',
         component: modificarMovilizacionMinciencias
+    },
+    {
+        path: '/minciencias/metas/visualizar',
+        name: 'metasMinciencias',
+        component: MetasMinciencias
+    },
+    {
+        path: '/minciencias/metas/actualizar',
+        name: 'setOrUpdateMetasMinciencias',
+        component: setOrUpdateMetasMinciencias
     }
 
 
@@ -335,7 +347,7 @@ router.beforeEach(async (to, from, next) => {
         '/minciencias/movilizacion/visualizacion', '/minciencias/acompaniamiento/visualizacion', '/minciencias/convocatorias/visualizacion', '/minciencias/convocatorias/eliminar',
         '/minciencias/acompanamiento/eliminar', '/minciencias/movilizacion/eliminar', '/minciencias/convocatorias/modificar', '/minciencias/acompanamiento/modificar', '/minciencias/movilizacion/modificar',
         '/minciencias/graficas/convocatoria', '/minciencias/graficas/acompanamiento', '/minciencias/graficas/movilizacion',
-     '/minciencias/movilizacion/modificar'];
+     '/minciencias/movilizacion/modificar', '/minciencias/metas'];
     const authDepartamento = ['/departamentos', '/departamentos/convocatorias/ingreso', '/departamentos/convocatorias/consultas/periodo', '/departamentos/convocatorias/consultas/periodos',
         '/departamentos/acompanamientos/ingreso', '/departamentos/acompanamientos/consultas/periodo', '/departamentos/acompanamientos/consultas/periodos',
         '/departamentos/movilizaciones/ingreso', '/departamentos/movilizaciones/consultas/periodo', '/departamentos/movilizaciones/consultas/periodos', '/departamentos/configuracion', '/departamentos/movilizaciones/visualizacion', '/departamentos/acompanamientos/visualizacion', '/departamentos/convocatorias/visualizacion', '/departamentos/convocatorias/eliminar',

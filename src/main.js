@@ -1,8 +1,13 @@
 import { createApp } from 'vue';
 import App from './App.vue';
-import 'bootstrap-vue/dist/bootstrap-vue.css'; // Import BootstrapVue styles
-import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap styles
-import 'bootstrap/dist/js/bootstrap.bundle'; // Import Bootstrap JavaScript utilities
+
+// Import Bootstrap and BootstrapVue 3 CSS files
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-vue-3/dist/bootstrap-vue-3.css';
+
+// Import BootstrapVue 3
+import BootstrapVue3 from 'bootstrap-vue-3';
+
 import router from './router';
 
 const app = createApp(App);
@@ -10,7 +15,8 @@ const app = createApp(App);
 // Set global properties
 app.config.globalProperties.$baseRoute = 'https://localhost:7192/api';
 
-// Use router and mount the app
+// Use router and BootstrapVue3
 app.use(router);
+app.use(BootstrapVue3);
 
 app.mount('#app');
