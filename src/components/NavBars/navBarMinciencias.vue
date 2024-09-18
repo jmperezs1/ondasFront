@@ -31,6 +31,7 @@
                 <li><a class="dropdown-item" href="/minciencias/convocatorias/consultas/periodo">Exportar información de un año convocatoria</a></li>
                 <li><a class="dropdown-item" href="/minciencias/convocatorias/consultas/periodos">Exportar información en un rango de años convocatoria</a></li>
                 <li><a class="dropdown-item" href="/minciencias/convocatorias/visualizacion">Visualizar convocatorias</a></li>
+                <li><a class="dropdown-item" href='/minciencias/convocatorias/cargaMasiva'>Carga masiva desde Excel</a></li>
               </ul>
             </div>
           </div>
@@ -46,6 +47,7 @@
                 <li><a class="dropdown-item" href="/minciencias/acompanamiento/consultas/periodo">Exportar información de un año</a></li>
                 <li><a class="dropdown-item" href="/minciencias/acompanamiento/consultas/periodos">Exportar información en un rango de años</a></li>
                 <li><a class="dropdown-item" href="/minciencias/acompanamiento/visualizacion">Visualizar acompañamientos</a></li>
+                <li><a class="dropdown-item" href='/minciencias/acompanamiento/cargaMasiva'>Carga masiva desde Excel</a></li>
               </ul>
             </div>
           </div>
@@ -61,6 +63,7 @@
                 <li><a class="dropdown-item" href="/minciencias/movilizacion/consultas/periodo">Exportar información de un año</a></li>
                 <li><a class="dropdown-item" href="/minciencias/movilizacion/consultas/periodos">Exportar información en un rango de años</a></li>
                 <li><a class="dropdown-item" href="/minciencias/movilizaciones/visualizacion">Visualizar movilizaciones</a></li>
+                <li><a class="dropdown-item" href='/minciencias/movilizacion/cargaMasiva'>Visualizar movilizaciones</a></li>
               </ul>
             </div>
           </div>
@@ -73,7 +76,6 @@
                 <li><a class="dropdown-item" href="/minciencias/graficas/convocatoria">Ver Gráficas Convocatoria</a></li>
                 <li><a class="dropdown-item" href="/minciencias/graficas/acompanamiento">Ver Gráficas Acompañamiento</a></li>
                 <li><a class="dropdown-item" href="/minciencias/graficas/movilizacion">Ver Gráficas Movilizacion</a></li>
-                <li><a class="dropdown-item" href="/minciencias/graficas">Ver Gráficas Metas</a></li>
               </ul>
             </div>
           </div>

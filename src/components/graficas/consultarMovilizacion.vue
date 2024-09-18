@@ -199,10 +199,10 @@ export default {
 
         getAsesorTerritorialData(data) {
             return {
-                labels: ['Conflicto Armado', 'Reincorporación','PDET', 'ZOMAC', 'Sin territorial'],
+                labels: ['Conflicto Armado', 'Reincorporación','PDET', 'ZOMAC'],
                 datasets: [{
-                    data: [data.num_Vinculados_Conflicto_Armado, data.num_Vinculados_Reincorporacion, data.num_Vinculados_Pdet, data.num_Vinculados_Zomac, data.num_Vinculados_Ferias - data.num_Vinculados_Conflicto_Armado - data.num_Vinculados_Reincorporacion - data.num_Vinculados_Pdet - data.num_Vinculados_Zomac>=0?data.num_Vinculados_Ferias - data.num_Vinculados_Conflicto_Armado - data.num_Vinculados_Reincorporacion - data.num_Vinculados_Pdet - data.num_Vinculados_Zomac:0],
-                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+                    data: [data.num_Vinculados_Conflicto_Armado, data.num_Vinculados_Reincorporacion, data.num_Vinculados_Pdet, data.num_Vinculados_Zomac],
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#9966FF']
                 }],
                 title: 'Distribución Territorial'
             };
@@ -219,10 +219,10 @@ export default {
         },
         getAsesorEthnicityData(data) {
             return {
-                labels: ['Afro', 'Indígena', 'Gitano', 'Palenquero', 'Raizal', 'Sin etnia'],
+                labels: ['Afro', 'Indígena', 'Gitano', 'Palenquero', 'Raizal'],
                 datasets: [{
-                    data: [data.num_Vinculados_Afro, data.num_Vinculados_Indigena, data.num_Vinculados_Gitano, data.num_Vinculados_Palenquero, data.num_Vinculados_Raizal, data.num_Vinculados_Ferias - data.num_Vinculados_Afro - data.num_Vinculados_Indigena - data.num_Vinculados_Gitano - data.num_Vinculados_Palenquero - data.num_Vinculados_Raizal],
-                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#C9CBCF']
+                    data: [data.num_Vinculados_Afro, data.num_Vinculados_Indigena, data.num_Vinculados_Gitano, data.num_Vinculados_Palenquero, data.num_Vinculados_Raizal],
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF']
                 }],
                 title: 'Distribución Étnica'
             };

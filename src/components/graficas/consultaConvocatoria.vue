@@ -273,10 +273,10 @@ export default {
 
         getChildrenTerritorialData(data) {
             return {
-                labels: ['Conflicto Armado', 'Reincorporación' ,'PDET', 'ZOMAC', 'Sin territorial'],
+                labels: ['Conflicto Armado', 'Reincorporación' ,'PDET', 'ZOMAC'],
                 datasets: [{
-                    data: [data.num_Ninios_Conflicto_Armado, data.num_Ninios_Reincorporacion,data.num_Ninios_Pdet, data.num_Ninios_Zomac, data.num_Vinculados - data.num_Ninios_Pdet - data.num_Ninios_Zomac - data.num_Ninios_Conflicto_Armado - data.num_Ninios_Reincorporacion >= 0 ? data.num_Vinculados - data.num_Ninios_Pdet - data.num_Ninios_Zomac - data.num_Ninios_Conflicto_Armado - data.num_Ninios_Reincorporacion:0],
-                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#C9CBCF']
+                    data: [data.num_Ninios_Conflicto_Armado, data.num_Ninios_Reincorporacion,data.num_Ninios_Pdet, data.num_Ninios_Zomac],
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF']
                 }],
                 title: 'Distribución Territorial'
             };
@@ -295,7 +295,7 @@ export default {
 
         getChildrenEthnicityData(data) {
             return {
-                labels: ['Afro', 'Indígena', 'Gitano', 'Palenquero', 'Raizal', 'Sin etnia'],
+                labels: ['Afro', 'Indígena', 'Gitano', 'Palenquero', 'Raizal'],
                 datasets: [{
                     data: [
                         data.num_Ninios_Afro,
@@ -303,9 +303,8 @@ export default {
                         data.num_Ninios_Gitano,
                         data.num_Ninios_Palenquero,
                         data.num_Ninios_Raizal,
-                        data.num_Vinculados - data.num_Ninios_Afro - data.num_Ninios_Indigena - data.num_Ninios_Gitano - data.num_Ninios_Palenquero - data.num_Ninios_Raizal
                     ],
-                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#C9CBCF']
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF']
                 }],
                 title: 'Distribución Étnica'
             };
@@ -334,9 +333,9 @@ export default {
         },
         getTeachersTerritorialData(data) {
             return {
-                labels: ['Conflicto Armado', 'Reincorporación','PDET', 'ZOMAC', 'Sin territorial'],
+                labels: ['Conflicto Armado', 'Reincorporación','PDET', 'ZOMAC'],
                 datasets: [{
-                    data: [data.num_Docentes_Conflicto_Armado,data.num_Docentes_Reincorporacion,data.num_Docentes_Pdet, data.num_Docentes_Zomac, data.num_Docentes - data.num_Docentes_Pdet - data.num_Docentes_Zomac-data.num_Docentes_Conflicto_Armado-data.num_Docentes_Reincorporacion? data.num_Docentes - data.num_Docentes_Pdet - data.num_Docentes_Zomac-data.num_Docentes_Conflicto_Armado-data.num_Docentes_Reincorporacion : 0],
+                    data: [data.num_Docentes_Conflicto_Armado,data.num_Docentes_Reincorporacion,data.num_Docentes_Pdet, data.num_Docentes_Zomac],
                     backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
                 }],
                 title: 'Distribución Territorial'
@@ -354,7 +353,7 @@ export default {
         },
         getTeachersEthnicityData(data) {
             return {
-                labels: ['Afro', 'Indígena', 'Gitano', 'Palenquero', 'Raizal', 'Sin etnia'],
+                labels: ['Afro', 'Indígena', 'Gitano', 'Palenquero', 'Raizal'],
                 datasets: [{
                     data: [
                         data.num_Docentes_Afro,
@@ -363,7 +362,7 @@ export default {
                         data.num_Docentes_Palenquero,
                         data.num_Docentes_Raizal,
                     ],
-                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#C9CBCF']
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF']
                 }],
                 title: 'Distribución Étnica'
             };

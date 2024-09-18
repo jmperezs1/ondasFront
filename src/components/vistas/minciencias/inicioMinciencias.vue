@@ -20,7 +20,7 @@
               <div class="row h-100 align-items-center justify-content-start">
                 <div class="col-12 col-md-10">
                   <ul class="list-unstyled">
-                    <li class="mb-3">
+                    <li style="margin-bottom: 10px; font-size:14px;">
                       <button
                         @click="navigateTo('/minciencias/convocatorias/ingreso')"
                         class="btn btn-custom w-100"
@@ -28,7 +28,7 @@
                         Ingresar información sobre convocatoria del departamento
                       </button>
                     </li>
-                    <li class="mb-3">
+                    <li style="margin-bottom: 10px; font-size:14px;">
                       <button
                         @click="navigateTo('/minciencias/convocatorias/modificar')"
                         class="btn btn-custom w-100"
@@ -36,7 +36,7 @@
                         Modificar información de una convocatoria
                       </button>
                     </li>
-                    <li class="mb-3">
+                    <li style="margin-bottom: 10px; font-size:14px;">
                       <button
                         @click="navigateTo('/minciencias/convocatorias/eliminar')"
                         class="btn btn-custom w-100"
@@ -44,7 +44,7 @@
                         Eliminar información de una convocatoria
                       </button>
                     </li>
-                    <li class="mb-3">
+                    <li style="margin-bottom: 10px; font-size:14px;">
                       <button
                         @click="navigateTo('/minciencias/convocatorias/consultas/periodo')"
                         class="btn btn-custom w-100"
@@ -52,7 +52,7 @@
                         Exportar información de un año
                       </button>
                     </li>
-                    <li class="mb-3">
+                    <li style="margin-bottom: 10px; font-size:14px;">
                       <button
                         @click="navigateTo('/minciencias/convocatorias/consultas/periodos')"
                         class="btn btn-custom w-100"
@@ -60,7 +60,7 @@
                         Exportar información en un rango de años
                       </button>
                     </li>
-                    <li class="mb-3">
+                    <li style="margin-bottom: 10px; font-size:14px;">
                       <button
                         @click="navigateTo('/minciencias/convocatorias/visualizacion')"
                         class="btn btn-custom w-100"
@@ -68,6 +68,9 @@
                         Visualizar convocatorias
                       </button>
                     </li>
+                    <li style="margin-bottom: 10px; font-size:14px;">
+                        <button @click="navigateTo('/minciencias/convocatorias/cargaMasiva')" class="btn btn-custom w-100">Carga masiva desde Excel</button>
+                      </li>
                   </ul>
                 </div>
               </div>
@@ -88,7 +91,7 @@
               <div class="row h-100 align-items-center justify-content-start">
                 <div class="col-12 col-md-10">
                   <ul class="list-unstyled">
-                    <li class="mb-3">
+                    <li style="margin-bottom: 10px; font-size:14px;">
                       <button
                         @click="navigateTo('/minciencias/acompanamiento/ingreso')"
                         class="btn btn-custom w-100"
@@ -96,7 +99,7 @@
                         Ingresar información sobre acompañamientos del departamento
                       </button>
                     </li>
-                    <li class="mb-3">
+                    <li style="margin-bottom: 10px; font-size:14px;">
                       <button
                         @click="navigateTo('/minciencias/acompanamiento/modificar')"
                         class="btn btn-custom w-100"
@@ -104,7 +107,7 @@
                         Modificar información un acompañamiento
                       </button>
                     </li>
-                    <li class="mb-3">
+                    <li style="margin-bottom: 10px; font-size:14px;">
                       <button
                         @click="navigateTo('/minciencias/acompanamiento/eliminar')"
                         class="btn btn-custom w-100"
@@ -112,7 +115,7 @@
                         Eliminar información un acompañamiento
                       </button>
                     </li>
-                    <li class="mb-3">
+                    <li style="margin-bottom: 10px; font-size:14px;">
                       <button
                         @click="navigateTo('/minciencias/acompanamiento/consultas/periodo')"
                         class="btn btn-custom w-100"
@@ -120,7 +123,7 @@
                         Exportar información de un año
                       </button>
                     </li>
-                    <li class="mb-3">
+                    <li style="margin-bottom: 10px; font-size:14px;">
                       <button
                         @click="navigateTo('/minciencias/acompanamiento/consultas/periodos')"
                         class="btn btn-custom w-100"
@@ -128,7 +131,7 @@
                         Exportar información en un rango de años
                       </button>
                     </li>
-                    <li class="mb-3">
+                    <li style="margin-bottom: 10px; font-size:14px;">
                       <button
                         @click="navigateTo('/minciencias/acompanamiento/visualizacion')"
                         class="btn btn-custom w-100"
@@ -136,6 +139,9 @@
                         Visualizar acompañamientos
                       </button>
                     </li>
+                    <li style="margin-bottom: 10px; font-size:14px;">
+                        <button @click="navigateTo('/minciencias/acompanamiento/cargaMasiva')" class="btn btn-custom w-100">Carga masiva desde Excel</button>
+                      </li>
                   </ul>
                 </div>
               </div>
@@ -204,6 +210,15 @@
                         Visualizar movilizaciones
                       </button>
                     </li>
+                    <li class="mb-3">
+                      <button
+                        @click="navigateTo('/minciencias/movilizacion/cargaMasiva')"
+                        class="btn btn-custom w-100"
+                      >
+                        Visualizar movilizaciones
+                      </button>
+                    </li>
+                    
                   </ul>
                 </div>
               </div>
@@ -246,14 +261,6 @@
                         class="btn btn-custom w-100"
                       >
                         Visualizar Movilización
-                      </button>
-                    </li>
-                    <li class="mb-3">
-                      <button
-                        @click="navigateTo('')"
-                        class="btn btn-custom w-100"
-                      >
-                        Visualizar Progreso Metas
                       </button>
                     </li>
                   </ul>

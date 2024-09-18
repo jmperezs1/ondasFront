@@ -205,14 +205,6 @@
                         Visualizar Movilización
                       </button>
                     </li>
-                    <li class="mb-3">
-                      <button
-                        @click="navigateTo('')"
-                        class="btn btn-custom w-100"
-                      >
-                        Visualizar Progreso Metas
-                      </button>
-                    </li>
                   </ul>
                 </div>
               </div>

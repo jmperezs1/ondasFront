@@ -53,6 +53,10 @@ import consultaConvocatoriaDepartamento from '@/components/vistas/departamento/g
 import consultaAcompanamientoDepartamento from '@/components/vistas/departamento/graficas/consultaAcompanamientoDepartamento.vue';
 import MetasMinciencias from '@/components/vistas/minciencias/metas/metasMinciencias.vue';
 import setOrUpdateMetasMinciencias from '@/components/vistas/minciencias/metas/metasUpdateMinciencias.vue';
+
+import cargaMasivaConvocatoria from '@/components/vistas/minciencias/convocatoria/cargaMasiva.vue';
+import cargaMasivaAcompamiamiento from '@/components/vistas/minciencias/acompanamiento/cargaMasivaAcompamiamiento.vue';
+import cargaMasivaMovilizacion from '@/components/vistas/minciencias/movilizacion/cargaMasivaMovilizacion.vue';
 import { jwtDecode } from 'jwt-decode';
 
 const routes = [
@@ -327,6 +331,21 @@ const routes = [
         path: '/minciencias/metas/actualizar',
         name: 'setOrUpdateMetasMinciencias',
         component: setOrUpdateMetasMinciencias
+    },
+    {
+        path: '/minciencias/convocatorias/cargaMasiva',
+        name: 'cargaMasivaConvocatoria',
+        component: cargaMasivaConvocatoria
+    },
+    {
+        path:'/minciencias/acompanamiento/cargaMasiva',
+        name: 'cargaMasivaAcompamiamiento',
+        component: cargaMasivaAcompamiamiento
+    },
+    {
+        path: '/minciencias/movilizacion/cargaMasiva',
+        name: 'cargaMasivaMovilizacion',
+        component: cargaMasivaMovilizacion
     }
 
 
@@ -341,12 +360,12 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
-    const authMinciencias = ['/minciencias','/minciencias/convocatorias/ingreso', '/minciencias/convocatorias/consultas/periodo', '/minciencias/convocatorias/consultas/periodos',
-        '/minciencias/acompanamiento/ingreso', '/minciencias/acompanamiento/consultas/periodo', '/minciencias/acompanamiento/consultas/periodos',
+    const authMinciencias = ['/minciencias','/minciencias/convocatorias/ingreso', '/minciencias/convocatorias/consultas/periodo', '/minciencias/convocatorias/consultas/periodos', '/minciencias/convocatorias/cargaMasiva',
+        '/minciencias/acompanamiento/ingreso', '/minciencias/acompanamiento/consultas/periodo', '/minciencias/acompanamiento/consultas/periodos','/minciencias/acompanamiento/cargaMasiva' ,
         '/minciencias/movilizacion/ingreso', '/minciencias/movilizacion/consultas/periodo', '/minciencias/movilizacion/consultas/periodos', '/minciencias/configuracion',
         '/minciencias/movilizacion/visualizacion', '/minciencias/acompaniamiento/visualizacion', '/minciencias/convocatorias/visualizacion', '/minciencias/convocatorias/eliminar',
         '/minciencias/acompanamiento/eliminar', '/minciencias/movilizacion/eliminar', '/minciencias/convocatorias/modificar', '/minciencias/acompanamiento/modificar', '/minciencias/movilizacion/modificar',
-        '/minciencias/graficas/convocatoria', '/minciencias/graficas/acompanamiento', '/minciencias/graficas/movilizacion',
+        '/minciencias/graficas/convocatoria', '/minciencias/graficas/acompanamiento', '/minciencias/graficas/movilizacion', '/minciencias/movilizacion/cargaMasiva',
      '/minciencias/movilizacion/modificar', '/minciencias/metas'];
     const authDepartamento = ['/departamentos', '/departamentos/convocatorias/ingreso', '/departamentos/convocatorias/consultas/periodo', '/departamentos/convocatorias/consultas/periodos',
         '/departamentos/acompanamientos/ingreso', '/departamentos/acompanamientos/consultas/periodo', '/departamentos/acompanamientos/consultas/periodos',

@@ -273,10 +273,10 @@ export default {
         },
         getAsesorTerritorialData(data) {
             return {
-                labels: ['Conflicto Armado', 'Reincorporación','PDET', 'ZOMAC', 'Sin territorial'],
+                labels: ['Conflicto Armado', 'Reincorporación','PDET', 'ZOMAC'],
                 datasets: [{
-                    data: [data.num_Asesores_Conflicto_Armado,data.num_Asesores_Reincorporacion,data.num_Asesores_Pdet, data.num_Asesores_Zomac, data.num_Asesores - data.num_Asesores_Pdet - data.num_Asesores_Zomac-data.num_Asesores_Conflicto_Armado-data.num_Asesores_Reincorporacion>=0?data.num_Asesores - data.num_Asesores_Pdet - data.num_Asesores_Zomac-data.num_Asesores_Conflicto_Armado-data.num_Asesores_Reincorporacion:0],
-                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+                    data: [data.num_Asesores_Conflicto_Armado,data.num_Asesores_Reincorporacion,data.num_Asesores_Pdet, data.num_Asesores_Zomac],
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#9966FF']
                 }],
                 title: 'Distribución Territorial'
             };
@@ -293,17 +293,16 @@ export default {
         },
         getAsesorEthnicityData(data) {
             return {
-                labels: ['Afro', 'Indígena', 'Gitano', 'Palenquero', 'Raizal', 'Sin etnia'],
+                labels: ['Afro', 'Indígena', 'Gitano', 'Palenquero', 'Raizal'],
                 datasets: [{
                     data: [
                         data.num_Asesores_Afro,
                         data.num_Asesores_Indigena,
                         data.num_Asesores_Gitano,
                         data.num_Asesores_Palenquero,
-                        data.num_Asesores_Raizal,
-                        data.num_Asesores - data.num_Asesores_Afro - data.num_Asesores_Indigena - data.num_Asesores_Gitano - data.num_Asesores_Palenquero - data.num_Asesores_Raizal
+                        data.num_Asesores_Raizal
                     ],
-                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#C9CBCF']
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF']
                 }],
                 title: 'Distribución Étnica'
             };

@@ -73,7 +73,6 @@
                 <li><a class="dropdown-item" href="/departamentos/graficas/convocatorias">Ver Gráficas Convocatoria</a></li>
                 <li><a class="dropdown-item" href='/departamentos/graficas/acompanamiento'>Ver Gráficas Acompañamiento</a></li>
                 <li><a class="dropdown-item" href="/departamentos/graficas/movilizaciones">Ver Gráficas Movilizacion</a></li>
-                <li><a class="dropdown-item" href="/minciencias/graficas">Ver Gráficas Metas</a></li>
               </ul>
             </div>
           </div>
